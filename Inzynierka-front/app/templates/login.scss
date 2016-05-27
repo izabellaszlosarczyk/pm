@@ -1,0 +1,59 @@
+#login {
+  text-align: center;
+  background-color: #262626;
+  //background-image: url("/app/assets/d.png");
+
+  h1, h2 {
+    text-align: center;
+  }
+
+  h1 {
+    padding-top: 50px;
+    font-size: 3.0em;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    font: italic normal bold 76px/1 "fondamento", Helvetica, sans-serif;
+    color: #705470;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+  }
+
+  form {
+    padding-top: 30px;
+  }
+
+
+  input {
+    background-color: #FFFFFF;
+    color: #705470;
+    box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) ;
+  }
+
+  input[type=email] {
+    margin-bottom: 10px;
+  }
+
+  button {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: #705470;
+    border-color: #705470;
+    box-shadow: 3px 4px 2px 0 rgba(0,0,0,0.1)  ;
+
+  }
+
+  .form-group {
+    text-align: left;
+  }
+
+}
+#err_msg {
+  p{
+    font-size:150%;
+    color : red;
+  }
+
+}

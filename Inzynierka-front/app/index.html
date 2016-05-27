@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Termity</title>
+  <link rel="stylesheet" href="">
+</head>
+<body ng-app="app">
+
+  <script src="vendor.js"></script>
+  <script src="bundle.js"></script>
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <img src="./assets/d.png" class="img-circle" id="logo" /> MovePatterApp
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/#/info">Information</a></li>
+            <li><a href="/#/login">Login</a></li>
+            <li><a href="/#/register">Register</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container-fluid -->
+    </nav>
+
+
+
+  <div class="container">
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="row" ui-view>
+    </div>
+  </div> <!-- /container -->
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted"  id="foot1"> MovePatternProject® </p>
+    </div>
+  </footer>
+</body>
+</html>

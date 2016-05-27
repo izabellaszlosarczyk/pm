@@ -1,0 +1,130 @@
+#%RAML 0.8
+title: "Termity mock serwer"
+version: "v1"
+baseUri: "http://localhost"
+protocols: [HTTP]
+mediaType: "application/json"
+
+/login:
+  options:
+    headers:
+      Access-Control-Allow-Origin:
+        example: |
+          *
+    responses:
+      200:
+        headers:
+          Access-Control-Allow-Origin:
+            example: |
+              *
+          Access-Control-Allow-Methods:
+            example: |
+              GET, POST
+          Access-Control-Allow-Headers:
+            example: |
+              Content-Type
+        body:
+          application/json:
+            example: !include static_examples/login.json
+  post:
+    body:
+      application/json:
+        schema: !include schemas/login.json
+        example: !include static_examples/loginRequest.json
+    responses:
+      200:
+        headers:
+          Access-Control-Allow-Origin:
+            example: |
+              *
+        body:
+          application/json:
+            example: !include static_examples/login.json
+
+/logout:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include static_examples/logout.json
+
+/users:
+  /{userId}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include static_examples/user.json
+    /edit:
+      post:
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include static_examples/status_ok.json
+    /offers:
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include static_examples/offers_list.json
+      /new:
+        post:
+          responses:
+            200:
+              body:
+                application/json:
+                  example: !include static_examples/status_ok.json
+      /{offerId}:
+        /edit:
+          post:
+            responses:
+              200:
+                body:
+                  application/json:
+                    example: !include static_examples/status_ok.json
+        delete:
+          responses:
+            200:
+              body:
+                application/json:
+                  example: !include static_examples/status_ok.json
+  /new:
+    post:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include static_examples/status_ok.json
+
+/offers:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include static_examples/offers_list.json
+  /{offerId}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include static_examples/offer.json
+/subjects:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include static_examples/subject_list.json
+  /:{subjectId}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include static_examples/subject.json

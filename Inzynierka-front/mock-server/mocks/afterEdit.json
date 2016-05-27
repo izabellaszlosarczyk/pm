@@ -1,0 +1,10 @@
+{
+  "subject": "subjectID0",
+  "userId": "userId0",
+  "term": "ItermID0",
+
+  "preferredTerms": [{
+    "termId": "termID0"},{"termId": "termID1"}, {"termId": "termID2"}],
+  "preferredProfessor": [ {
+    "professorId": "professorID0"}, {"professorId": "professorID1"}, {"professorId": "professorID2"}]
+}

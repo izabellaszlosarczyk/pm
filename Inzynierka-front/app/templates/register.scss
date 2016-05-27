@@ -1,0 +1,47 @@
+#register {
+  text-align: center;
+  button {
+    display: inline-block;
+  }
+  #h13 {
+    padding-bottom: 20px;
+    margin-left: 80px;
+    font-weight: bold;
+    color: #705470;
+  }
+
+  input {
+    height: 30px;
+    margin-top: 20px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #F1ECFF;
+    box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) ;
+  }
+
+  label {
+    padding-top: 5px;
+  }
+
+  #okButton{
+    margin-top: 20px;
+    display: block;
+    margin-left: 250px;
+    margin-right: auto;
+    background-color: #705470;
+    border-color: #705470;
+    box-shadow: 3px 4px 2px 0 rgba(0,0,0,0.1)  ;
+
+  }
+
+  #another2{
+    padding-top: 20px;
+  }
+
+  .control-label{
+    text-align: left;
+    font-size: 0.7em;
+  }
+}

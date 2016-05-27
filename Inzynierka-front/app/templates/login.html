@@ -1,0 +1,27 @@
+<div class="row row-eq-height" id="login" >
+    <div class="col-xs-offset-3 col-xs-6">
+        <h1>LOGIN</h1>
+        <h2>Web App</h2>
+        <div class="animate-switch-container"
+        ng-switch="loginCtrl.token" id='err_msg'>
+            <p ng-switch-when="WRONG_PASSWORD">You typed wrong password, try again</p>
+            <p ng-switch-when="WRONG_EMAIL">User doesn't exist</p>
+            <p ng-switch-default></p>
+        </div>
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="form-group">
+                    <label for="inputEmail"  class="control-label">E-mail:</label>
+                    <input class="form-control" id="inputEmail" placeholder="Email" type="email" ng-model="loginCtrl.email">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="control-label">Password:</label>
+                    <input class="form-control" id="inputPassword" placeholder="Password" type="password" ng-model="loginCtrl.password">
+                </div>
+                <div class="form-group">
+                    <button href="#" id="buttonSubmit" class="btn btn-success" ng-click="loginCtrl.login()">Okej</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
