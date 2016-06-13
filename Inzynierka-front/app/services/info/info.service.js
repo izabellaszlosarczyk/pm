@@ -1,8 +1,8 @@
-class OffersService {
+class InfoService {
     /*@ngInject*/
-    constructor($http, termityServerUrl) {
+    constructor($http, pmServerUrl) {
         this.$http = $http;
-        this.baseUrl = termityServerUrl;
+        this.baseUrl = pmServerUrl;
 
     }
 
@@ -69,4 +69,4 @@ class OffersService {
 
 }
 
-export default OffersService;
+export default InfoService;

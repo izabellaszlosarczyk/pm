@@ -1,6 +1,6 @@
 import usersService from './users/users';
-import offersService from './offers/offers';
+import infoService from './info/info';
 
 export default app => {
-  INCLUDE_ALL_MODULES([usersService, offersService], app);
+  INCLUDE_ALL_MODULES([usersService, infoService], app);
 }

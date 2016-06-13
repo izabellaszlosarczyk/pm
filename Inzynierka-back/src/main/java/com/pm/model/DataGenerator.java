@@ -88,8 +88,6 @@ public class DataGenerator {
 		user.setLastLog(dateFormat.format(date));
 		return user;
 	}
-	//przedmiot
-
 
 	public void generate(){
 		for (int i = 0 ; i < 20; i = i + 1){

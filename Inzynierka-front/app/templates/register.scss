@@ -3,11 +3,17 @@
   button {
     display: inline-block;
   }
-  #h13 {
+  #hreg3 {
     padding-bottom: 20px;
-    margin-left: 80px;
+    //margin-left: 80px;
     font-weight: bold;
     color: #705470;
+    font-size: 200%;
+  }
+
+  #hreg2{
+    padding-top: 20px;
+    font-size: 120%;
   }
 
   input {
@@ -44,4 +50,20 @@
     text-align: left;
     font-size: 0.7em;
   }
+  #b1{
+    margin-left: 70px;
+    margin-top: 20px;
+    background-color: #4B4B4B;
+    border-color: #4B4B4B;
+    box-shadow: 3px 4px 2px 0 rgba(0,0,0,0.1)  ;
+  }
+
+  #b2{
+    margin-top: 20px;
+    margin-left: 50px;
+    background-color: #4B4B4B;
+    border-color: #4B4B4B;
+    box-shadow: 3px 4px 2px 0 rgba(0,0,0,0.1)  ;
+  }
+
 }

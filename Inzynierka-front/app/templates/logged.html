@@ -1,40 +1,42 @@
 <div class="col-md-12">
-    <div class="col-md-4">
-        <h1 id="h11">PM</h1>
+    <div class="col-md-3">
+        <img src="./assets/fl.png"  id="PMLogo" class="img-responsive" style="background-color:transparent;">
         <h2 id="h21"></h2>
         <div class="list-group table-of-contents">
-            <a class="list-group-item menu-label" href="/#/logged/yourTopics">Filtered topics</a>
+            <a class="list-group-item menu-label" href="/#/logged/yourTopics">Your subscriptions</a>
             <a class="list-group-item menu-label" href="/#/logged/viewInfo">View</a>
             <a class="list-group-item menu-label" href="/#/logged/news">News!</a>
+            <a class="list-group-item menu-label" href="/#/logged/yourStuff">Your stuff</a>
         </div>
+        <p class="text-muted"  id="fot"><a href="/#/logged/privacy">Privacy</a> · <a href="#/logged/terms">Terms</a> · <a href="#/logged/terms">Advertising</a> · <a href="#/logged/choices">Ad Choices</a> · <a href="#/logged/cookies">Cookies More</a> </p>
+        <p class="text-muted" id="stat">Some stats! - <b>TUTAJ COS BEDZIE!</b></p>
     </div>
-
-    <div class="col-md-8" ui-view>
-        <img src="./assets/ma.jpg" id="photoUser" class="img-responsive" style="background-color:transparent;">
+    <div class="col-md-6" ui-view>
+        <p id="desc">PatternMoves WebApp</p>
+    </div>
+    <div class="col-md-3" id="uiV">
+        <img src="./assets/rich.jpg" id="photoUser" class="img-responsive" style="background-color:transparent; drop-shadow(5px 5px 5px #222)">
         <form class="form-horizontal" id="informacje">
             <fieldset>
                 <div class="form-group">
-                    <label for="input-name" class="col-xs-4 control-label">Name</label>
                     <div class="col-xs-6">
-                        <input type="text" class="field left" readonly id="input-name" ng-model="userDataViewCtrl.userData.name">
+                        <input type="text" class="field left" readonly id="input-name" placeholder="FirstName" ng-model="userDataViewCtrl.userData.name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="input-surname" class="col-xs-4 control-label">Surname</label>
                     <div class="col-xs-6">
-                        <input type="text" class="field left" readonly id="input-surname" ng-model="userDataViewCtrl.userData.surname">
+                        <input type="text" class="field left" readonly id="input-surname" placeholder="Surname" ng-model="userDataViewCtrl.userData.surname">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="input-email" class="col-xs-4 control-label">E-mail</label>
                     <div class="col-xs-6">
-                        <input type="text"  class="field left" readonly id="input-email" ng-model="userDataViewCtrl.userData.email">
+                        <input type="text"  class="field left" readonly id="input-email" placeholder="Email" ng-model="userDataViewCtrl.userData.email">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <a href="#/logged/userEdit" class="btn btn-success" id="b22">Edit information</a>
+                        <a href="/#/logged/editUser"><button class="btn btn-success" id="b22">Edit information</button></a>
                     </div>
                 </div>
             </fieldset>
@@ -42,6 +44,4 @@
         </form>
     </div>
     <p style="visibility: hidden">tmptmp</p>
-    <p class="text-muted"  id="fot">Privacy · Terms · Advertising · Ad Choices· Cookies More </p>
-    <p class="text-muted" id="stat">Some stats! - <b>TUTAJ COS BEDZIE!</b></p>
 </div>

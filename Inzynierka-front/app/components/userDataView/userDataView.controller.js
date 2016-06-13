@@ -11,7 +11,7 @@ export default class UserDataViewController {
         this.userData = {
             name: '',
             surname: '',
-            email: '',
+            email: ''
         };
         this.getUsersData();
     }

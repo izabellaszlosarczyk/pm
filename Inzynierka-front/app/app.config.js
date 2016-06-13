@@ -1,6 +1,6 @@
 export default app => {
   app.config([configFn]);
-  app.constant('pmServerUrl', 'http://localhost:8080');
+  app.constant('pmServerUrl', 'http://localhost:9999');
   app.constant('AuthorizationToken', {
     'ADMIN' : 'ADMIN',
     'USER' : 'USER',

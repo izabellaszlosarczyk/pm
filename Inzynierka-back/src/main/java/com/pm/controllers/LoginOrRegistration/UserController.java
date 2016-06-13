@@ -13,25 +13,7 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
-/*
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ResponseBody
-    public Object login() {
-        return 0;
-    }
 
-    @RequestMapping(value = "logout", method = RequestMethod.GET)
-    @ResponseBody
-    public Object logout() {
-        return 0;
-    }
-
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    @ResponseBody
-    public Object register() {
-        return 0;
-    }
-*/
     @RequestMapping(value = "/users/{login}", method = RequestMethod.GET)
     @ResponseBody
     public int getAttr(@PathVariable(value="login") String login) {

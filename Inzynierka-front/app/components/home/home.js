@@ -28,11 +28,35 @@ export default app => {
             })
             .state('logged.viewInfo', {
                 url: '/viewInfo',
-                templateUrl: '<t-offers-view></t-offers-view>'
+                templateUrl: '<t-info-view></t-info-view>'
             })
             .state('logged.news', {
                 url: '/news',
                 templateUrl: 'templates/app/news.html'
+            })
+            .state('logged.yourStuff', {
+                url: '/yourStuff',
+                templateUrl: 'templates/app/yourStuff.html'
+            })
+            .state('logged.privacy', {
+                url: '/privacy',
+                templateUrl: 'templates/app/privacy.html'
+            })
+            .state('logged.edit', {
+                url: '/editUser',
+                templateUrl: 'templates/app/editUser.html'
+            })
+            .state('logged.terms', {
+                url: '/terms',
+                templateUrl: 'templates/app/terms.html'
+            })
+            .state('logged.choices', {
+                url: '/choices',
+                templateUrl: 'templates/app/choices.html'
+            })
+            .state('logged.cookies', {
+                url: '/cookies',
+                templateUrl: 'templates/app/cookies.html'
             })
     }).directive('home', homeComponent);
 
