@@ -1,17 +1,10 @@
-package com.pm.controllers.LoginOrRegistration;
+package com.pm.controllers.userService.login;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-@Data
-@AllArgsConstructor
-@EqualsAndHashCode
 public class LoginRequest {
+
     private String email;
     private String password;
-
-    public LoginRequest(){}
 
     public String getEmail() {
         return email;

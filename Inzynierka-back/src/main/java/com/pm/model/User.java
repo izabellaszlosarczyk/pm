@@ -16,6 +16,7 @@ public class User extends AbstractModel {
 	private String password;
 	private String lastLog;
 	private List<String> hashPreferences= new ArrayList<String>();
+	private List<File> files = new ArrayList<File>();
 
 	public User(){}
 

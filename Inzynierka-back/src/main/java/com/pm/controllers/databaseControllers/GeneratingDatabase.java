@@ -1,4 +1,4 @@
-package com.pm.controllers;
+package com.pm.controllers.databaseControllers;
 
 import com.pm.model.*;
 import com.pm.repository.*;
