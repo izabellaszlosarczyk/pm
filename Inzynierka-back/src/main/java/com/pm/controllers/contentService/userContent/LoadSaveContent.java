@@ -3,19 +3,19 @@ package com.pm.controllers.contentService.userContent;
 /**
  * Created by izabella on 22.07.16.
  */
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
+import com.mongodb.gridfs.GridFSDBFile;
 import com.pm.SpringConfig.DataBaseConfig;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -26,49 +26,44 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/content")
 public class LoadSaveContent {
 
-    @RequestMapping(value = "/saveProfilePhoto", method = RequestMethod.POST)
+    @RequestMapping(value = "/load/{fileName:.+}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<String> savePP(@RequestParam("file") MultipartFile multipartFile){
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
-        GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
-        String response = "";
-        DBObject metaData = new BasicDBObject();
-        metaData.put("extra1", "anything 1");
-        metaData.put("extra2", "anything 2");
+    public ResponseEntity<InputStreamResource> getImage(@PathVariable String fileName) {
+        GridFSDBFile gridFsFile = FileOperations.loadFileFromDatabase(fileName);
 
-        InputStream inputStream = null;
-        try {
-            inputStream = new FileInputStream("/home/izabella/Pulpit/12.jpg");
-            gridOperations.store(inputStream, "12.png", "profilePic/jpg", metaData);
+        return ResponseEntity.ok().contentLength(gridFsFile.getLength()).contentType(MediaType.parseMediaType(gridFsFile.getContentType())).body(new InputStreamResource(gridFsFile.getInputStream()));
+    }
+    @RequestMapping(value = "/save/upload/image/",  headers = "content-type=multipart/*", method = RequestMethod.POST)
+    public @ResponseBody String uploadFileHandler(@ModelAttribute("name") String name, @ModelAttribute("file") MultipartFile file) {
+        FileInputStream fis = null;
+        AnnotationConfigApplicationContext ctx = null;
+        if (!file.isEmpty()) {
+            try {
+                ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
+                GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
+                File convFile = new File(file.getOriginalFilename());
+                convFile.createNewFile();
+                FileOutputStream fos = new FileOutputStream(convFile);
+                fos.write(file.getBytes());
+                fos.close();
+                fis = new FileInputStream(convFile);
+                gridOperations.store(fis, name.toString(), "profilePic/jpg");
+                System.out.println(name);
+                System.out.println(convFile);
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            } catch (Exception e) {
+                return "You failed to upload " + name + " => " + e.getMessage();
+            } finally {
+                if (fis != null)
+                    try {
+                        fis.close();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
             }
         }
-
-        System.out.println("Done");
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-    }
-
-    @RequestMapping(value = "/loadProfilePhoto", method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseEntity<String> loadPP(@RequestParam("file") MultipartFile multipartFile){
-        String response = "";
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-    }
-
-    @RequestMapping(value = "/loadContent", method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseEntity<String> loadContent(@RequestParam("file") MultipartFile multipartFile){
-        String response = "";
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        return 	"dupa";
     }
 
 }

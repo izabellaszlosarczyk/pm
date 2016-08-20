@@ -1,8 +1,10 @@
 class UserService {
     /*@ngInject*/
-    constructor($http, pmServerUrl, AuthorizationToken) {
+
+    constructor($http, pmServerUrl, AuthorizationToken, $base64) {
         this.$http = $http;
         this.baseUrl = pmServerUrl;
+        this.base64 = $base64;
         this.userSessionData = {
             'userId' : '',
             'token' : AuthorizationToken.NO_AUTH
@@ -14,10 +16,20 @@ class UserService {
     }
 
     login(loginData) {
+        const basicAuth = 'Basic ' + this.base64.encode(loginData.email + ':' + loginData.password);
         return this.$http({
-            url: this.getUrl('login'),
-            method: "POST",
-            data: loginData
+            url: this.getUrl('user/info'),
+            method: "GET",
+            headers: {
+                'Authorization': basicAuth
+            }
+        });
+    }
+
+    getUserData(){
+        return this.$http({
+            url: this.getUrl('user/getUser'),
+            method: "POST"
         });
     }
 
@@ -56,11 +68,11 @@ class UserService {
             method: "DELETE"
         });
     }
-
-
+    
     setUserSessionData(userSessionData){
         this.userSessionData = userSessionData;
     }
+    
     getUserSessionData(){
         return this.userSessionData;
     }

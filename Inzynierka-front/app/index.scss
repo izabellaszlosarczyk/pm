@@ -7,14 +7,24 @@
 @import "~common/navbar/navbar.scss";
 
 html, body {
-  background-color: #2c2c2c;
+  background-color: #fff;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .navbar {
   padding-bottom: 0;
-  background-color: #4B4B4B;
+  //background-color: #fff;
+  background: url("./assets/cream_pixels.png") repeat;
+  color:   #21211C;
   margin-bottom: 0;
-  box-shadow: 4px 4px 6px 1px rgba(0,0,0,0.12) ;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,0.3);
+  border:1px solid #CBD5DD;
+  border-radius:2px;
+}
+
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-brands {
+  color: black;
 }
 
 #navbar {
@@ -35,13 +45,16 @@ html, body {
 }
 .footer {
   position: fixed;
-  background-color:   #4B4B4B;
+  background-color:   #fff;
   //position: absolute;
   bottom: 0;
   width: 100%;
   height: 25px;
   text-align: center;
-  box-shadow: 4px -1px 6px 1px rgba(0,0,0,0.2) ;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,0.3);
+  border:1px solid #CBD5DD;
+  //border-radius:2px;
+  color:   #21211C;
 }
 
 

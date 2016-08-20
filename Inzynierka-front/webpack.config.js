@@ -62,7 +62,7 @@ switch (nodeEnvironment) {
 
     config.entry = {
       bundle: './index.js',
-      vendor: ['angular', 'angular-ui-router', 'lodash']
+      vendor: ['angular', 'angular-ui-router', 'lodash', 'angular-base64']
     }
 
     break;

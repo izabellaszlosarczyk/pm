@@ -9,12 +9,14 @@ import appConfiguration from './app.config';
 // Single Style Entry Point
 import './index.scss';
 
+require('imports?angular=angular!angular-base64/angular-base64');
+
 if (ENVIRONMENT === 'test') {
   console.log('ENV:', ENVIRONMENT);
   require('angular-mocks/angular-mocks');
 }
 
-const app = angular.module('app', ['ui.router']);
+const app = angular.module('app', ['ui.router', 'base64']);
 
 // Components Entrypoint
 appComponents(app);
@@ -26,6 +28,27 @@ appConfiguration(app);
 
 // App Services Entrypoint
 appServices(app);
+
+app.service('authInterceptor', function($q, tokenService) {
+  var service = this;
+
+  service.request = function (config) {
+    if (tokenService.token) {
+      config.headers['x-auth-token'] = tokenService.token;
+    }
+    return config;
+  }
+
+  service.responseError = function(response) {
+    if (response.status === 401){
+      tokenService.removeToken();
+      window.location = "/#/login";
+    }
+    return $q.reject(response);
+  };
+}).config(['$httpProvider', function($httpProvider) {
+      $httpProvider.interceptors.push('authInterceptor');
+}])
 
 // Router Configuration
 // Components must be declared first since

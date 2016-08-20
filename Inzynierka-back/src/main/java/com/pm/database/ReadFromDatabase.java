@@ -2,6 +2,7 @@ package com.pm.database;
 
 import com.pm.model.*;
 import com.pm.repository.*;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,10 @@ public class ReadFromDatabase {
 
     @Autowired
     SessionRepository sessionRepository;
+
+    @SuppressWarnings("SpringJavaAutowiringInspection")
+    @Autowired
+    UserRepositoryCustom userRepositoryCustom;
 
     //session
     public Iterable<Session> searchAllSessions(){return sessionRepository.findAll();}
@@ -64,4 +69,9 @@ public class ReadFromDatabase {
 
     public User searchOneByLogin(String login){ return userRepository.findOneByLogin(login);}
     public User searchOneByEmail(String email){ return userRepository.findOneByEmail(email);}
+
+    public User searchOneById(String id){return userRepositoryCustom.findByID(id);}
+    public User searchOneById(ObjectId id){return userRepositoryCustom.findByID(id);}
+
+    public User searchOneByEmailAndPassword(String email, String password){return userRepositoryCustom.findByEmailAndPassword(email,password);}
 }

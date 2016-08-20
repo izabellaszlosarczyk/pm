@@ -1,14 +1,16 @@
 <div class="row row-eq-height" id="login" >
-    <div class="col-xs-offset-3 col-xs-6">
-        <h1>LOGIN</h1>
-        <h2>Web App</h2>
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-5">
+        <h1 id="loginH1">LOGIN</h1>
+        <h2 id="loginH2">Web App</h2>
         <div class="animate-switch-container"
-        ng-switch="loginCtrl.token" id='err_msg'>
+             ng-switch="loginCtrl.token" id='err_msg'>
             <p ng-switch-when="WRONG_PASSWORD">You typed wrong password, try again</p>
             <p ng-switch-when="WRONG_EMAIL">User doesn't exist</p>
             <p ng-switch-default></p>
         </div>
-        <form class="form-horizontal">
+        <form class="form-style-7">
             <fieldset>
                 <div class="form-group">
                     <label for="inputEmail"  class="control-label">E-mail:</label>
@@ -19,9 +21,18 @@
                     <input class="form-control" id="inputPassword" placeholder="Password" type="password" ng-model="loginCtrl.password">
                 </div>
                 <div class="form-group">
-                    <button href="#" id="buttonSubmit" class="btn btn-success" ng-click="loginCtrl.login()">Okej</button>
+                    <button href="#" class="myButton" ng-click="loginCtrl.login()">Okej</button>
                 </div>
             </fieldset>
         </form>
     </div>
+    <div class="col-xs-6 divImages">
+        <img src="./assets/mainF.png" id="logo-home" class="img-responsive" style="background-color:transparent;">
+        <div>
+            <h1>MovePatterns WebApp</h1>
+            <h2>Computer Science, WIET AGH, 2016</h2>
+            <a href="/#/login" class="myButton login">Login</a>
+        </div>
+    </div>
 </div>
+

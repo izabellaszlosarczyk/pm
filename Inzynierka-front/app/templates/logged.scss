@@ -1,3 +1,14 @@
+#uiV{
+  //background: url("../assets/cream_pixels.png") repeat;
+  border: 0.5px solid #CBD5DD;
+  //padding-top: 20px;
+  //margin-bottom:-100px;
+  max-height: 100%;
+}
+#photoUser {
+  border-radius: 50px;
+  box-shadow: 10px 10px;
+}
 
 #h11 {
   padding-top: 40px;
@@ -46,12 +57,15 @@
 }
 
 a.menu-label{
-  background-color: #1C1C1C;
+  background-color: #fff;
   text-align: center;
-  color: #BFAA8F;
-  border-color: #131313;
+  color: #1c1c1c;
+  -webkit-box-shadow: -1px -1px 1px 0 rgba(0,0,0,0.14) inset;
+  box-shadow: -1px -1px 1px 0 rgba(0,0,0,0.14) inset;
+  border: 0.5px solid #CBD5DD;
   //margin-left: 30px;
 }
+
 
 #ps{
   padding-top: 20px;
@@ -60,11 +74,17 @@ a.menu-label{
 
 #informacje {
 
+  input {
+    background-color: #FEFEFE;
+    -webkit-box-shadow: -1px -1px 2px 0 rgba(0,0,0,0.14) inset;
+    box-shadow: -1px -1px 2px 0 rgba(0,0,0,0.14) inset;
+    border: 0.5px solid #CBD5DD;
+  }
+
+
   input, select {
     //margin-left: 30px;
     padding-top: 20px;
-    background-color: #1C1C1C;
-    color: #BFAA8F;
     width: 250px;
     height: 40px;
     text-align: center;
@@ -81,16 +101,7 @@ a.menu-label{
     margin-right: auto;
     text-align: center;
   }
-  #b22{
-    background-color: #644766;
-    border-color: #644766;
-    padding-left: 50px;
-    padding-right: 50px;
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: auto;
-    text-align: center;
-  }
+
 }
 #err_msg {
   p {
