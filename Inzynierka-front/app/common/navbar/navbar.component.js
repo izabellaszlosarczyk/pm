@@ -3,7 +3,7 @@ import controller from './navbar.controller';
 
 let navbarComponent = function () {
   return {
-    restrict: 'E',
+    restrict: 'AEC',
     scope: {},
     template,
     controller,

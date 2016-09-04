@@ -92,18 +92,23 @@ class UserService {
             method: "DELETE"
         });
     }
-    
+
     setUserSessionData(userSessionData){
         this.userSessionData = userSessionData;
         this.$storage.userSessionData = this.userSessionData;
     }
-    
+
     getUserSessionData(){
         if (!this.userSessionData && this.$storage.userSessionData) {
             this.userSessionData = this.$storage.userSessionData;
         }
         return this.userSessionData;
     }
+    removeUserSessionData() {
+        delete this.userSessionData;
+        delete this.$storage.userSessionData;
+    }
+
     getUserDataValues(){
         if (this.$storage.userData) {
             this.userData = this.$storage.userData;
@@ -114,6 +119,11 @@ class UserService {
     setUserDataValues(userData){
         this.userData = userData;
         this.$storage.userData = this.userData;
+    }
+
+    removeUserDataValues(){
+        delete this.userData;
+        delete this.$storage.userData;
     }
 }
 

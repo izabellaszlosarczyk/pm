@@ -1,7 +1,8 @@
 export default class LoginController {
-  constructor(usersService, $state, $http, tokenService) {
+  constructor(usersService, $state, $http, tokenService, $rootScope) {
     this.usersService = usersService;
     this.tokenService = tokenService;
+    this.$rootScope = $rootScope;
     this.email = '';
     this.password = '';
     this.$state = $state;
@@ -10,7 +11,8 @@ export default class LoginController {
 
     if(this.usersService.getUserSessionData() && this.tokenService.getToken()) {
       // init data from local storage
-        this.$state.go('logged');
+      this.$rootScope.$broadcast('user-login');
+      this.$state.go('logged');
     }
   }
 
@@ -19,7 +21,7 @@ export default class LoginController {
       email: this.email,
       password: this.password
     };
-    
+
     this.usersService.login(data).then(function successCallback(response, status, headers, config) {
       this.usersService.setUserSessionData(response.data);
       console.log(response.data);
@@ -28,6 +30,7 @@ export default class LoginController {
       console.log(data);
       this.usersService.getUserData(data).then(function successCallback(response, status, headers, config) {
         this.usersService.setUserDataValues(response.data);
+        this.$rootScope.$broadcast('user-login');
         this.$state.go('logged');
       }.bind(this));
     }.bind(this), function errorCallback(response) {
