@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -60,6 +62,7 @@ public class GeneratingDatabase {
             usersList.get(i).setFirstName(usersList.get(i).getFirstName());
             usersList.get(i).setLastName(usersList.get(i).getLastName());
             usersList.get(i).setPassword(usersList.get(i).getPassword());
+            usersList.get(i).setProfilePhoto(usersList.get(i).getProfilePhoto());
             userRepository.save(usersList.get(i));
         }
         //dokument dla node'a
@@ -102,7 +105,7 @@ public class GeneratingDatabase {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/generate", method=RequestMethod.GET)
     @ResponseBody
     public Object getHomePage() {
 
@@ -110,4 +113,6 @@ public class GeneratingDatabase {
 
         return 0;
     }
+
+
 }

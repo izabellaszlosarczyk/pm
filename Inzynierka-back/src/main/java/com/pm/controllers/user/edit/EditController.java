@@ -56,6 +56,8 @@ public class EditController {
         if (user ==null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
+        System.out.println("DUUUUUUUUUUUUUUUPA");
+        System.out.println(user);
         return ResponseEntity.status(HttpStatus.OK).body(user);
 
     }
@@ -63,12 +65,13 @@ public class EditController {
 
     @RequestMapping(value = "/saveEdited", method=RequestMethod.POST, consumes = "application/json")
     @ResponseBody
-    public ResponseEntity<String> saveUser(@RequestBody User editedUser){
-        if (editedUser == null ) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        if (editedUser.getPassword() == null || editedUser.getEmail() == null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
-        editClass.saveUser(editedUser);
-        return  ResponseEntity.status(HttpStatus.OK).body("OK");
+    public ResponseEntity<String> saveUser(@RequestBody EditRequest editedUser){
+        System.out.println(editedUser);
+//        if (editedUser == null ) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+//        if (editedUser.getPassword() == null || editedUser.getEmail() == null){
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+//        }
+//        editClass.saveUser(editedUser);
+       return  ResponseEntity.status(HttpStatus.OK).body("OK");
     }
 }

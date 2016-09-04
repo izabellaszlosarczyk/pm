@@ -1,5 +1,5 @@
 {
-  "name": "termity-front",
+  "name": "inzynierka-front",
   "version": "1.0.0",
   "description": "An Application Shell for generating Angular Applications with Webpack and ES6",
   "main": "app.js",
@@ -13,7 +13,7 @@
     "webpack",
     "es6"
   ],
-  "author": "Sean Larkin",
+  "author": "Izabella Szlosarczyk",
   "license": "ISC",
   "devDependencies": {
     "angular-mocks": "^1.4.7",
@@ -62,6 +62,7 @@
     "karma-chai": "^0.1.0",
     "ng-annotate-loader": "0.0.10",
     "ngrequire-webpack-plugin": "^2.0.23",
+    "ngstorage": "^0.3.11",
     "node-bourbon": "^4.2.3",
     "node-sass": "^3.3.3",
     "sass-loader": "^3.0.0",

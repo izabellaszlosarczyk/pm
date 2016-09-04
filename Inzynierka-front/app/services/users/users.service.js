@@ -1,14 +1,16 @@
 class UserService {
     /*@ngInject*/
 
-    constructor($http, pmServerUrl, AuthorizationToken, $base64) {
+    constructor($http, pmServerUrl, AuthorizationToken, $base64, $sessionStorage) {
         this.$http = $http;
         this.baseUrl = pmServerUrl;
         this.base64 = $base64;
+        this.$storage = $sessionStorage;
         this.userSessionData = {
             'userId' : '',
             'token' : AuthorizationToken.NO_AUTH
         };
+        this.userData = {};
     }
 
     getUrl(url) {
@@ -26,13 +28,35 @@ class UserService {
         });
     }
 
-    getUserData(){
+    getUserData(loginData){
         return this.$http({
-            url: this.getUrl('user/getUser'),
-            method: "POST"
+            url: this.getUrl('edit/getAfterLogin'),
+            method: "POST",
+            data: loginData
         });
     }
 
+    getUserImage(fileName){
+        return this.$http({
+            url: this.getUrl('content/' + fileName),
+            method: "GET"
+        });
+    }
+
+    saveNewImage(userFile){
+        var formdata = new FormData();
+        formdata.append( 'name', userFile.name );
+        formdata.append( 'file', userFile.file );
+        return this.$http({
+            url: this.getUrl('content/save/upload/image/'),
+            method: "POST",
+            data: formdata,
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+    }
     logout() {
         return this.$http({
             url: this.getUrl('logout'),
@@ -48,9 +72,9 @@ class UserService {
         });
     }
 
-    edit(userId, userData) {
+    edit(userData) {
         return this.$http({
-            url: this.getUrl(`users/${userId}/edit`),
+            url: this.getUrl(`edit/saveEdited`),
             method: "POST",
             data: userData
         });
@@ -71,10 +95,25 @@ class UserService {
     
     setUserSessionData(userSessionData){
         this.userSessionData = userSessionData;
+        this.$storage.userSessionData = this.userSessionData;
     }
     
     getUserSessionData(){
+        if (!this.userSessionData && this.$storage.userSessionData) {
+            this.userSessionData = this.$storage.userSessionData;
+        }
         return this.userSessionData;
+    }
+    getUserDataValues(){
+        if (this.$storage.userData) {
+            this.userData = this.$storage.userData;
+        }
+        return this.userData;
+    }
+
+    setUserDataValues(userData){
+        this.userData = userData;
+        this.$storage.userData = this.userData;
     }
 }
 

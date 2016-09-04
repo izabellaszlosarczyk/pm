@@ -10,13 +10,14 @@ import appConfiguration from './app.config';
 import './index.scss';
 
 require('imports?angular=angular!angular-base64/angular-base64');
+require('imports?angular=angular!ngstorage/ngStorage');
 
 if (ENVIRONMENT === 'test') {
   console.log('ENV:', ENVIRONMENT);
   require('angular-mocks/angular-mocks');
 }
 
-const app = angular.module('app', ['ui.router', 'base64']);
+const app = angular.module('app', ['ui.router', 'base64', 'ngStorage']);
 
 // Components Entrypoint
 appComponents(app);
@@ -33,8 +34,8 @@ app.service('authInterceptor', function($q, tokenService) {
   var service = this;
 
   service.request = function (config) {
-    if (tokenService.token) {
-      config.headers['x-auth-token'] = tokenService.token;
+    if (tokenService.getToken()) {
+      config.headers['x-auth-token'] = tokenService.getToken();
     }
     return config;
   }

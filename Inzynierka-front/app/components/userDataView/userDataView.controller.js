@@ -1,11 +1,5 @@
 export default class UserDataViewController {
 
-    getUsersData() {
-        this.usersService.getUser(this.usersService.getUserSessionData().userId).then(successResponse => {
-            this.userData = successResponse.data;
-        })
-    }
-
     constructor(usersService) {
         this.usersService = usersService;
         this.userData = {
@@ -13,8 +7,15 @@ export default class UserDataViewController {
             surname: '',
             email: ''
         };
-        this.getUsersData();
+        this.avatar = '';
     }
 
+    $onInit() {
+        this.userData = this.usersService.getUserDataValues();
+        this.avatar = this.usersService.getUrl(`/content/load/${this.userData.profilePhoto}`);
+    }
 
+    editUser(){
+
+    }
 }

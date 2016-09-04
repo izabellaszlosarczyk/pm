@@ -1,22 +1,25 @@
-#uiV{
-  //background: url("../assets/cream_pixels.png") repeat;
-  border: 0.5px solid #CBD5DD;
-  //padding-top: 20px;
-  //margin-bottom:-100px;
-  max-height: 100%;
-}
-#photoUser {
-  border-radius: 50px;
-  box-shadow: 10px 10px;
-}
-
-#h11 {
-  padding-top: 40px;
-  font-weight: bold;
-  font-size: 1.7em;
-  color: #BFAA8F;
+#yourFiles{
+  border-right: 0.5px solid #CBD5DD;
+  a:hover, a:visited {
+    text-decoration: none
+  }
   text-align: center;
 }
+
+#mainMenu{
+  a:hover, a:visited {
+    text-decoration: none
+  }
+  text-align: center;
+  //color: #3c3c3c;
+}
+#photoUser {
+  border: 15px solid #a73f2d;
+  padding: 20px;
+  background-color: transparent;
+  height: auto!important
+}
+
 #PMLogo{
   padding-top: 10px;
   //max-height: 80%;
@@ -28,16 +31,16 @@
 
 #desc{
   font-size: 150%;
-  margin-left: 80px;
   color: #1c1c1c;
+  padding-top: 20px;
+  text-align: center;
 }
 
 #photoUser{
-  height: auto;
-  width: auto;
+  height: 100%;
+  width: 100%;
   max-width: 200px;
   max-height: 200px;
-  margin-left: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -72,7 +75,7 @@ a.menu-label{
   opacity: 0.7;
 }
 
-#informacje {
+#informacje, #userInfo {
 
   input {
     background-color: #FEFEFE;
@@ -85,8 +88,8 @@ a.menu-label{
   input, select {
     //margin-left: 30px;
     padding-top: 20px;
-    width: 250px;
-    height: 40px;
+    width: 150px;
+    height: 35px;
     text-align: center;
     //box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) ;
     //box-shadow: inset 0 1px 2px  0 rgba(0,0,0,0.4);
@@ -103,6 +106,15 @@ a.menu-label{
   }
 
 }
+.editUser{
+  max-width: 100px;
+  max-height: 40px;
+  font-size: 13px;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #err_msg {
   p {
     font-size: 150%;

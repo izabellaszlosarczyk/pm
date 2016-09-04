@@ -1,47 +1,20 @@
 #stuff{
   h1{
-    color: #BFAA8F;
+    color: #3c3c3c;
     font-size: 170%;
     text-align: center;
   }
   #patterns,#charts,#files{
-    background-color: #1C1C1C;
+    background-color: #FEFEFE;
+    -webkit-box-shadow: -1px -1px 2px 0 rgba(0,0,0,0.14) inset;
+    box-shadow: -1px -1px 2px 0 rgba(0,0,0,0.14) inset;
+    border: 0.5px solid #CBD5DD;
     text-align: center;
+    color: black;
   }
-  #patterns {
-    #patt, #viewButton {
-      display: inline-block;
-    }
-    #viewButton{
-      margin-left: 40px;
-      background-color: #BFAA8F;
-      border-color: #BFAA8F;
-      color: #1c1c1c;
-    }
+  .files{
+    display: inline-block;
+  }
     margin-top: 20px;
-  }
-  #charts {
-    #ch, #viewButton2 {
-      display: inline-block;
-    }
-    #viewButton2{
-      margin-left: 40px;
-      background-color: #BFAA8F;
-      border-color: #BFAA8F;
-      color: #1c1c1c;
-    }
-    margin-top: 20px;
-  }
-  #files{
-    #fi, #viewButton3 {
-      display: inline-block;
-    }
-    #viewButton3{
-      margin-left: 60px;
-      background-color: #BFAA8F;
-      border-color: #BFAA8F;
-      color: #1c1c1c;
-    }
-    margin-top: 20px;
-  }
+
 }

@@ -44,7 +44,7 @@ export default app => {
             })
             .state('logged.edit', {
                 url: '/editUser',
-                templateUrl: 'templates/app/editUser.html'
+                template: '<t-user-data-edit></t-user-data-edit>'
             })
             .state('logged.terms', {
                 url: '/terms',

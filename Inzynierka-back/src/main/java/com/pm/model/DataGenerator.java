@@ -1,6 +1,9 @@
 package com.pm.model;
 
 
+import com.pm.controllers.contentService.userContent.FileOperations;
+
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -86,6 +89,13 @@ public class DataGenerator {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		user.setLastLog(dateFormat.format(date));
+		System.out.println("dupa");
+		try {
+			FileOperations.saveFileToDatabase("https://upload.wikimedia.org/wikipedia/commons/c/cc/" , "Ivan_Ukhov_Doha_2010.jpg");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		user.setProfilePhoto("Ivan_Ukhov_Doha_2010.jpg");
 		return user;
 	}
 
@@ -118,6 +128,7 @@ public class DataGenerator {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		u.setLastLog(dateFormat.format(date));
+		u.setProfilePhoto("Ivan_Ukhov_Doha_2010.jpg");
 		return u;
 	}
 

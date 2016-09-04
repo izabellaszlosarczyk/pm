@@ -1,47 +1,64 @@
 <div class="col-md-12">
-    <div class="col-md-3">
-        <img src="./assets/mmm.png"  id="PMLogo" class="img-responsive" style="background-color:transparent;">
-        <h2 id="h21"></h2>
-        <div class="list-group table-of-contents">
-            <a class="list-group-item menu-label" href="/#/logged/yourTopics">Your subscriptions</a>
-            <a class="list-group-item menu-label" href="/#/logged/viewInfo">View</a>
-            <a class="list-group-item menu-label" href="/#/logged/news">News!</a>
-            <a class="list-group-item menu-label" href="/#/logged/yourStuff">Your stuff</a>
+    <div class="row row-eq-height">
+        <div class="col-md-2" style="background-image:url('../assets/cream.png'); background-repeat:repeat;">
+            <img src="./assets/mmm.png"  id="PMLogo" class="img-responsive" style="background-color:transparent;">
+            <h2 id="h21"></h2>
+            <div style="border-bottom: 2px solid #CBD5DD;"><p style="color: #1c1c1c; padding-bottom:20px; text-align:center;">Our stuff for you</p></div>
+            <div class="list-group table-of-contents" id="mainMenu">
+                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;"> <a href="/#/logged/yourTopics">Your subscriptions</a></div>
+                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;" > <a href="/#/logged/viewInfo">View</a> </div>
+                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;"> <a href="/#/logged/news">News!</a> </div>
+                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;"> <a href="/#/logged/yourStuff">Your stuff</a><br></div>
+            </div>
         </div>
-        <p class="text-muted"  id="fot"><a href="/#/logged/privacy">Privacy</a> · <a href="#/logged/terms">Terms</a> · <a href="#/logged/terms">Advertising</a> · <a href="#/logged/choices">Ad Choices</a> · <a href="#/logged/cookies">Cookies More</a> </p>
-        <p class="text-muted" id="stat">Some stats! - <b>TUTAJ COS BEDZIE!</b></p>
-    </div>
-    <div class="col-md-6" ui-view>
-        <p id="desc">PatternMoves WebApp</p>
-    </div>
-    <div class="col-md-3" id="uiV">
-        <img src="./assets/rich.jpg" id="photoUser" class="img-responsive" style="background-color:transparent; drop-shadow(5px 5px 5px #222)">
-        <form class="form-horizontal" id="informacje">
-            <fieldset>
-                <div class="form-group">
-                    <div class="col-xs-6">
-                        <input type="text" class="field left" readonly id="input-name" placeholder="FirstName" ng-model="userDataViewCtrl.userData.name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-6">
-                        <input type="text" class="field left" readonly id="input-surname" placeholder="Surname" ng-model="userDataViewCtrl.userData.surname">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-6">
-                        <input type="text"  class="field left" readonly id="input-email" placeholder="Email" ng-model="userDataViewCtrl.userData.email">
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <a href="/#/logged/editUser"><button class="myButton">Edit information</button></a>
+        <div class="col-md-7" ui-view id="infoMiddle">
+            <div id="desc">
+                <p >PatternMoves WebApp Project</p>
+            </div>
+        </div>
+
+        <div class="col-md-2"  id="yourFiles" style="background-color:#F7F7F3;">
+            <div style="border-bottom: 2px solid #CBD5DD; margin-top: 20px; padding-bottom:20px">
+                <p style="color:#1c1c1c; text-align: center">Your uploaded <br> /saved files</p>
+            </div>
+            <div style="text-align: center; padding-top:20px"><a  href="/#/logged/yourStuff">Your stuff</a></div>
+            <div  style="text-align: center; padding-top:20px; padding-bottom:20px;"><p style="color:#1c1c1c;">Types of content</p></div>
+            <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px; text-align: center"><a  href="/#/logged/yourStuff" >Saved Chartes</a></div>
+            <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px; text-align: center"><a  href="/#/logged/yourStuff" style="text-align: center">Uploaded images</a></div>
+            <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px; text-align: center"><a  href="/#/logged/yourStuff" style="text-align: center">Saved Patterns</a></div>
+            <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px; text-align: center"><a  href="/#/logged/yourStuff">Uploaded csv's</a></div>
+            <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px; text-align: center"><a  href="/#/logged/yourStuff">Saved other files</a></div>
+        </div>
+
+        <div class="col-md-2" id="uiV" style="background-image:url('../assets/cream.png'); background-repeat:repeat;">
+            <img ng-src="{{userDataViewCtrl.avatar}}" id="photoUser" class="img-responsive">
+            <form class="form-horizontal" id="informacje">
+                <fieldset>
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <input type="text" class="field left" readonly id="input-name" placeholder="FirstName" ng-model="userDataViewCtrl.userData.firstName">
+                        </div>
                     </div>
-                </div>
-            </fieldset>
-            <div id="err_msg"><p>{{userDataViewCtrl.msg}}</p></div>
-        </form>
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <input type="text" class="field left" readonly id="input-surname" placeholder="Surname" ng-model="userDataViewCtrl.userData.lastName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <input type="text"  class="field left" readonly id="input-email" placeholder="Email" ng-model="userDataViewCtrl.userData.email">
+                        </div>
+                    </div>
+                </fieldset>
+                <div id="err_msg"><p>{{userDataViewCtrl.msg}}</p></div>
+            </form>
+            <div style="display: inline-block; margin-left: 20px;">
+                <a href="/#/logged/editUser"><button class="myButton editUser">Edit</button></a>
+            </div>
+            <p class="text-muted"  id="fot"><a href="/#/logged/privacy">Privacy</a> · <a href="#/logged/terms">Terms</a> · <a href="#/logged/terms">Advertising</a> · <a href="#/logged/choices">Ad Choices</a> · <a href="#/logged/cookies">Cookies More</a> </p>
+            <p class="text-muted" id="stat">Some stats! - <b>TUTAJ COS BEDZIE!</b></p>
+        </div>
     </div>
     <p style="visibility: hidden">tmptmp</p>
 </div>

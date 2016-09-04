@@ -15,7 +15,7 @@ html, body {
 .navbar {
   padding-bottom: 0;
   //background-color: #fff;
-  background: url("./assets/cream_pixels.png") repeat;
+  background: url("assets/cream.png") repeat;
   color:   #21211C;
   margin-bottom: 0;
   box-shadow:inset 0 1px 2px rgba(0,0,0,0.3);
@@ -28,10 +28,15 @@ html, body {
 }
 
 #navbar {
+  .navbar-default .navbar-nav > li > a, .navbar-default .navbar-brands {
+    color: black;
+  }
   ul.navbar-nav {
     li {
       a:hover {
-        color: #705470;
+        color: #7a2a1d;
+        background-color: #f8f8fd;
+        box-shadow: -1px -1px 2px 0 rgba(0,0,0,0.04) inset;
       }
     }
   }

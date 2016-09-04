@@ -7,6 +7,11 @@ export default class LoginController {
     this.$state = $state;
     this.$http = $http;
     this.token = '';
+
+    if(this.usersService.getUserSessionData() && this.tokenService.getToken()) {
+      // init data from local storage
+        this.$state.go('logged');
+    }
   }
 
   login() {
@@ -14,15 +19,17 @@ export default class LoginController {
       email: this.email,
       password: this.password
     };
+    
     this.usersService.login(data).then(function successCallback(response, status, headers, config) {
       this.usersService.setUserSessionData(response.data);
       console.log(response.data);
       this.token = response.headers()['x-auth-token'];
       this.tokenService.setToken(this.token);
-
+      console.log(data);
       this.usersService.getUserData(data).then(function successCallback(response, status, headers, config) {
+        this.usersService.setUserDataValues(response.data);
         this.$state.go('logged');
-      });
+      }.bind(this));
     }.bind(this), function errorCallback(response) {
       console.log(response);
       /*this.token = response.data.token;
