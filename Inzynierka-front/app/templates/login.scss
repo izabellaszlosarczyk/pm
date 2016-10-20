@@ -17,6 +17,10 @@
   form {
     padding-top: 30px;
   }
+  #logo-home2{
+    width: 85%;
+    padding-left: 100px;
+  }
 
   label{
     text-align: center;
@@ -35,6 +39,18 @@
 
   .form-group {
     text-align: left;
+  }
+  #plusInfo{
+    padding-top: 20px;
+    padding-bottom: 50px;
+  }
+
+  .myButton.login{
+    margin-top: 100px;
+  }
+  .myButton.confirm{
+    display:block;
+    margin: 0 auto;
   }
 
 }

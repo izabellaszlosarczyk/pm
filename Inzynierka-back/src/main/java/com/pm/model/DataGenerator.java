@@ -2,6 +2,7 @@ package com.pm.model;
 
 
 import com.pm.controllers.contentService.userContent.FileOperations;
+import com.pm.database.SaveUpdateDatabase;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -19,6 +20,7 @@ public class DataGenerator {
 	private List<Session> sessionsList = new ArrayList<Session>();
 	private List<Node> nodesList = new ArrayList<Node>();
 	private List<Move> movesList = new ArrayList<Move>();
+	private List<File> filesList = new ArrayList<>();
 
 	public DataGenerator(){
 
@@ -70,6 +72,55 @@ public class DataGenerator {
 		n.setLabelOfNode("Number of node: "+ i);
 		return n;
 	}
+	public List<File> generateFiles(){
+		File f = new File();
+		List<File> files = new ArrayList<>();
+		List<String> c = new ArrayList<>();
+		c.add("Comment 1. Ble ble ble , temporary comment for temporary testing. Idk what to write here");
+		c.add("Comment 2. Ble ble ble , temporary comment for temporary testing. Idk what to write here");
+		f.setComments(c);
+		f.setTitle("Ivan_Ukhov_Doha_2010.jpg");
+		List<Integer> s = new ArrayList<>();
+		s.add(4);
+		s.add(3);
+		s.add(2);
+		s.add(5);
+		f.setScores(s);
+		int tmp = 0, count = 0;
+		for (int i : s){
+			tmp = tmp + i;
+			count++;
+		}
+		f.setAverage(String.valueOf(tmp/count) );
+		f.setType("image");
+		files.add(f);
+
+
+		File f3 = new File();
+		System.out.println("dupa");
+		c.add("Comment 3. Ble ble ble , temporary comment for temporary testing. Idk what to write here");
+		c.add("Comment 4. Ble ble ble , temporary comment for temporary testing. Idk what to write here");
+		f3.setAverage(String.valueOf(tmp+1/count) );
+		f3.setTitle("Ivan_Ukhov_Doha_2011.jpg");
+		f3.setComments(c);
+		//files.add(f3);
+		f3.setAverage(String.valueOf(tmp/count) );
+		f3.setType("image");
+		files.add(f3);
+
+		File f2 = new File();
+		f2.setAverage(String.valueOf(tmp/count));
+		f2.setType("image/img");
+		System.out.println("dupa");
+		c.add("Comment 5. Ble ble ble , temporary comment for temporary testing. Idk what to write here");
+		c.add("Comment 6. Ble ble ble , temporary comment for temporary testing. Idk what to write here");
+		f2.setAverage(String.valueOf(tmp+1/count) );
+		f2.setComments(c);
+		f2.setTitle("Ivan_Ukhov_Doha_2012.jpg");
+		files.add(f2);
+		return files;
+	}
+
 	//studnet
 	public User generateUser(){
 
@@ -80,11 +131,14 @@ public class DataGenerator {
 		String login = loginA[i%(this.loginA.length)];
 		String password = login + firstName + lastName;
 		String email= emailA[i%(this.emailA.length)];
+		List<String> files = new ArrayList<String>();
+		files.add("Ivan_Ukhov_Doha_2010.jpg");
 		User user = new User();
 		user.setLogin(login);
 		user.setLastName(lastName);
 		user.setFirstName(firstName);
 		user.setEmail(email);
+		user.setSavedFiles(files);
 		user.setPassword(password);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
@@ -100,6 +154,7 @@ public class DataGenerator {
 	}
 
 	public void generate(){
+		System.out.println("dupcia");
 		for (int i = 0 ; i < 20; i = i + 1){
 			usersList.add(generateUser());
 		}
@@ -109,10 +164,13 @@ public class DataGenerator {
 		}
 		for (int i = 0; i < 10; i = i + 1){
 			patientsList.add(generatePatient(i));
-			patternsList.add(generatePattern(i));
 			sessionsList.add(generateSession());
 		}
+		for (int i = 0; i < 30; i = i + 1){
+			patternsList.add(generatePattern(i));
+		}
 		usersList.add(addMock());
+		filesList.addAll(generateFiles());
 	}
 
 	public User addMock(){
@@ -125,6 +183,11 @@ public class DataGenerator {
 		sss.add("pref1");
 		sss.add("pref2");
 		u.setHashPreferences(sss);
+		List<String> files = new ArrayList<String>();
+		files.add("Ivan_Ukhov_Doha_2010.jpg");
+		files.add("Ivan_Ukhov_Doha_2011.jpg");
+		files.add("Ivan_Ukhov_Doha_2012.jpg");
+		u.setSavedFiles(files);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		u.setLastLog(dateFormat.format(date));
@@ -173,5 +236,13 @@ public class DataGenerator {
 
 	public void setMovesList(List<Move> movesList) {
 		this.movesList = movesList;
+	}
+
+	public List<File> getFilesList() {
+		return filesList;
+	}
+
+	public void setFilesList(List<File> filesList) {
+		this.filesList = filesList;
 	}
 }

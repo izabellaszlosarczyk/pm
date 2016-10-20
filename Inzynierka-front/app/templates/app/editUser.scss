@@ -6,10 +6,6 @@
     background-color: #F5F5FA;
     box-shadow: -1px -1px 2px 0 rgba(0,0,0,0.04) inset;
   }
-  .myButton.changeButton {
-    padding-top: 30px;
-  }
-
   input {
     margin-top: 20px;
     margin-left: 40px;
@@ -22,6 +18,13 @@
 
   #input-surname, #input-surnameEdit{
     display: inline-block;
+  }
+
+  .myButton.changeButton {
+    padding-top: 150px;
+    display:block;
+    margin: 0 auto;
+    background-color: pink;
   }
 
 }

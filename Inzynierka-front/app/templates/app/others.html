@@ -1,0 +1,56 @@
+<div class="col-md-12" id="stuff">
+    <h1>Generated materials for your uploaded files</h1>
+    <h1>OTHERS</h1>
+    <div id="files">
+        <p id="fi">Uploaded files</p>
+        <button class="myButton files" id="viewButton3">view</button>
+        <table class="table table-striped table-hover" id="content1" ng-if="!offersViewCtrl.loading">
+            <thead>
+            <tr id="labels2">
+                <th>.</th>
+                <th>name</th>
+                <th>uploaded</th>
+                <th>additional info</th>
+                <th>link</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr >
+                <td>.</td>
+                <td>file1.csv</td>
+                <td>10.02.2015</td>
+                <td>medical info</td>
+                <td>
+                    <a ui-sref="logged.fileDetails({ fileId: 'jakiesidpliku'})">Plik1</a>
+                </td>
+            </tr>
+            <tr>
+                <td>.</td>
+                <td>file2.csv</td>
+                <td>5.04.2016</td>
+                <td>something</td>
+                <td>
+                    <a ui-sref="logged.fileDetails({ fileId: 'jakiesidpliku2'})">Plik1</a>
+                </td>
+            </tr>
+            <tr>
+                <td>.</td>
+                <td>file3.csv</td>
+                <td>29.06.2016</td>
+                <td>what else?</td>
+                <td>
+                    <a ui-sref="logged.fileDetails({ fileId: 'jakiesidpliku333'})">Plik1</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="charts">
+        <p id="ch">Generated Charts</p>
+        <button class="myButton files" id="viewButton2">view</button>
+    </div>
+    <div id="patterns">
+        <p id="patt">Generated Patterns</p>
+        <button class="myButton files" id="viewButton">view</button>
+    </div>
+</div>

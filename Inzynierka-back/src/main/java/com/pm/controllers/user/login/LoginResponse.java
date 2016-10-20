@@ -1,5 +1,8 @@
 package com.pm.controllers.user.login;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by izabella on 23.07.16.
  */
@@ -12,6 +15,7 @@ public class LoginResponse {
     private String password;
     private String lastLog;
     private String token;
+    private List<String> files = new ArrayList<>();
 
     public String getLastName() {
         return lastName;
@@ -67,5 +71,13 @@ public class LoginResponse {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public List<String> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<String> files) {
+        this.files = files;
     }
 }

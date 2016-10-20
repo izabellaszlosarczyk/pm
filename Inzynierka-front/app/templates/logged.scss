@@ -106,13 +106,11 @@ a.menu-label{
   }
 
 }
-.editUser{
+.myButton.editUser{
   max-width: 100px;
   max-height: 40px;
   font-size: 13px;
-  display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
+  display:block; margin: 0 auto;
 }
 
 #err_msg {
@@ -123,6 +121,10 @@ a.menu-label{
 }
 #stat{
   text-align: center;
+}
+
+a{
+  color:#7A7A7A;
 }
 
 #fot{

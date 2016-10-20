@@ -2,8 +2,7 @@
     <div class="col-xs-1">
     </div>
     <div class="col-xs-5">
-        <h1 id="loginH1">LOGIN</h1>
-        <h2 id="loginH2">Web App</h2>
+        <img src="./assets/PMlogo.jpeg" id="imgLogo" class="img-responsive" style="background-color:transparent; width: 50%; height: auto; display:block; margin: 0 auto;">
         <div class="animate-switch-container"
              ng-switch="loginCtrl.token" id='err_msg'>
             <p ng-switch-when="WRONG_PASSWORD">You typed wrong password, try again</p>
@@ -21,16 +20,16 @@
                     <input class="form-control" id="inputPassword" placeholder="Password" type="password" ng-model="loginCtrl.password">
                 </div>
                 <div class="form-group">
-                    <button href="#" class="myButton" ng-click="loginCtrl.login()">Okej</button>
+                    <button href="#" class="myButton confirm" ng-click="loginCtrl.login()">Okej</button>
                 </div>
             </fieldset>
         </form>
     </div>
     <div class="col-xs-6 divImages">
-        <img src="./assets/mainF.png" id="logo-home" class="img-responsive" style="background-color:transparent;">
-        <div>
-            <h1>MovePatterns WebApp</h1>
-            <h2>Computer Science, WIET AGH, 2016</h2>
+        <img src="./assets/mainF.png" id="logo-home2" class="img-responsive" style="background-color:transparent;">
+        <div id="plusInfo">
+            <h2>MovePatterns WebApp</h2>
+            <h3>Computer Science, WIET AGH, 2016</h3>
             <a href="/#/login" class="myButton login">Login</a>
         </div>
     </div>

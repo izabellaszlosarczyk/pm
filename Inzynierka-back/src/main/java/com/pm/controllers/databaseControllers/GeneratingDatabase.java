@@ -29,6 +29,8 @@ public class GeneratingDatabase {
     @Autowired
     PatternRepository patternRepository;
     @Autowired
+    FileRepository fileRepository;
+    @Autowired
     MoveRepository moveRepository;
 
     private List<User> usersList = new ArrayList<User>();
@@ -37,6 +39,7 @@ public class GeneratingDatabase {
     private List<Session> sessionsList = new ArrayList<Session>();
     private List<Node> nodesList = new ArrayList<Node>();
     private List<Move> movesList = new ArrayList<Move>();
+    private List<File> filesList = new ArrayList<>();
 
     public void generateMockData() {
         DataGenerator d = new DataGenerator();
@@ -47,6 +50,7 @@ public class GeneratingDatabase {
         this.sessionsList.addAll(d.getSessionsList());
         this.nodesList.addAll(d.getNodesList());
         this.movesList.addAll(d.getMovesList());
+        this.filesList.addAll(d.getFilesList());
     }
 
     public void generateDatabaseCollections() {
@@ -100,6 +104,11 @@ public class GeneratingDatabase {
             patternsList.get(i).setTitle(patternsList.get(i).getTitle());
             patternsList.get(i).setPatient(patientsList.get(tmp%patientsList.size()));
             patternRepository.save(patternsList.get(i));
+        }
+        System.out.println(filesList.size());
+        //dokument file'u
+        for (int i = 0; i< filesList.size(); i = i + 1){
+            fileRepository.save(filesList.get(i));
         }
 
     }

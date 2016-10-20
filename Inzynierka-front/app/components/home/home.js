@@ -22,21 +22,45 @@ export default app => {
                 url: '/logged',
                 template: '<t-user-data-view></t-user-data-view>'
             })
-            .state('logged.yourTopics', {
-                url: '/yourTopics',
-                templateUrl: 'templates/app/yourTopics.html'
+            .state('logged.subs', {
+                url: '/subscriptions',
+                template: '<t-subs></t-subs>'
             })
             .state('logged.viewInfo', {
                 url: '/viewInfo',
-                templateUrl: '<t-info-view></t-info-view>'
+                template: '<t-info-view></t-info-view>'
             })
             .state('logged.news', {
                 url: '/news',
-                templateUrl: 'templates/app/news.html'
+                template: '<t-news></t-news>'
             })
             .state('logged.yourStuff', {
                 url: '/yourStuff',
-                templateUrl: 'templates/app/yourStuff.html'
+                template: '<t-user-stuff></t-user-stuff>'
+            })
+            .state('logged.patterns', {
+                url: '/patterns',
+                template: '<t-patterns></t-patterns>'
+            })
+            .state('logged.cvs', {
+                url: '/cvs',
+                template: '<t-cvs></t-cvs>'
+            })
+            .state('logged.images', {
+                url: '/images',
+                template: '<t-images></t-images>'
+            })
+            .state('logged.others', {
+                url: '/others',
+                template: '<t-others></t-others>'
+            })
+            .state('logged.charts', {
+                url: '/charts',
+                template: '<t-charts></t-charts>'
+            })
+            .state('logged.fileDetails', {
+                url: '/fileDetails/:fileId',
+                template: '<t-file></t-file>'
             })
             .state('logged.privacy', {
                 url: '/privacy',
@@ -57,6 +81,10 @@ export default app => {
             .state('logged.cookies', {
                 url: '/cookies',
                 templateUrl: 'templates/app/cookies.html'
+            })
+            .state('logged.file', {
+                url: '/file',
+                template: '<t-file></t-file>'
             })
     }).directive('home', homeComponent);
 

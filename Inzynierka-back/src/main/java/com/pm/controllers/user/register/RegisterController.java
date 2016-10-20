@@ -1,6 +1,8 @@
 package com.pm.controllers.user.register;
 
 import com.pm.model.User;
+import com.pm.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ import java.util.Date;
 @RequestMapping("/register")
 public class RegisterController {
 
+    @Autowired
+    UserRepository userRepository;
+
     @RequestMapping(value = "/new", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
     public ResponseEntity<String> newUser(@RequestBody RegisterRequest registerRequest) {
@@ -33,6 +38,7 @@ public class RegisterController {
         u.setFirstName(registerRequest.getFirstName());
         u.setLastName(registerRequest.getLastName());
         u.setLastLog((new Date().toString()));
+        userRepository.save(u);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 }

@@ -24,13 +24,16 @@ public class FileOperations {
 
     @SuppressWarnings("resource")
     public static GridFSDBFile loadFileFromDatabase(String filename){
+        System.out.println("fileName:              ------>" + filename);
         AnnotationConfigApplicationContext ctx2 = null;
         GridFSDBFile result= null;
         try {
             ctx2 = new AnnotationConfigApplicationContext(DataBaseConfig.class);
             //ctx2 = new AnnotationConfigApplicationContext(DatabaseConfig.class);
             GridFsOperations gridOperations2 = (GridFsOperations) ctx2.getBean("gridFsTemplate");
+            //TODO: poprawić!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             result = gridOperations2.findOne(new Query().addCriteria(Criteria.where("filename").is(filename)));
+            System.out.println(result);
         } finally {
             ctx2.destroy();
         }

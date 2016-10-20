@@ -28,6 +28,50 @@ class UserService {
         });
     }
 
+    getFileDetails(fileName){
+        console.log("get po details");
+        return this.$http({
+            url: this.getUrl(`file/loadDetails/${fileName}`),
+            method: "GET"
+        });
+
+    }
+
+    getUserFiles(userId) {
+        return this.$http({
+            url: this.getUrl(`files/users/${userId}`),
+            method: "GET"
+        });
+    }
+    getFile(fileName) {
+        return this.$http({
+            url: this.getUrl(`file/load/${fileName}`),
+            method: "GET"
+        });
+    }
+    addOpinionToFile(fileName,grade){
+        let request = {
+            file: fileName,
+            grade: grade
+        };
+        return this.$http({
+            url: this.getUrl(`file/load/${fileName}`),
+            method: "POST",
+            data: request
+        });
+    }
+    addCommentToFile(fileName,comment){
+        let request = {
+            file: fileName,
+            comment: comment
+        };
+        return this.$http({
+            url: this.getUrl(`file/load/${fileName}`),
+            method: "POST",
+            data: request
+        });
+    }
+
     getUserData(loginData){
         return this.$http({
             url: this.getUrl('edit/getAfterLogin'),
@@ -37,6 +81,7 @@ class UserService {
     }
 
     getUserImage(fileName){
+        console.log("ALE DUPPPAAAAAAA");
         return this.$http({
             url: this.getUrl('content/' + fileName),
             method: "GET"
@@ -125,6 +170,8 @@ class UserService {
         delete this.userData;
         delete this.$storage.userData;
     }
+
+
 }
 
 export default UserService;

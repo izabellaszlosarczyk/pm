@@ -36,6 +36,9 @@ public class ReadFromDatabase {
     @Autowired
     UserRepositoryCustom userRepositoryCustom;
 
+    @Autowired
+    FileRepository fileRepository;
+
     //session
     public Iterable<Session> searchAllSessions(){return sessionRepository.findAll();}
     //moves
@@ -74,4 +77,8 @@ public class ReadFromDatabase {
     public User searchOneById(ObjectId id){return userRepositoryCustom.findByID(id);}
 
     public User searchOneByEmailAndPassword(String email, String password){return userRepositoryCustom.findByEmailAndPassword(email,password);}
+
+    //file
+    public List<File> searchAllFiles() { return (List<File>) fileRepository.findAll();}
+    public File searchOneFileByTitle(String title){ return fileRepository.findOneByTitle(title);};
 }

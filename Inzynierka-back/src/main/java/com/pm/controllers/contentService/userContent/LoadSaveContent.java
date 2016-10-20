@@ -4,9 +4,14 @@ package com.pm.controllers.contentService.userContent;
  * Created by izabella on 22.07.16.
  */
 import java.io.*;
+import java.io.File;
 
 import com.mongodb.gridfs.GridFSDBFile;
 import com.pm.SpringConfig.DataBaseConfig;
+import com.pm.database.ReadFromDatabase;
+import com.pm.database.SaveUpdateDatabase;
+import com.pm.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.io.InputStreamResource;
@@ -26,11 +31,15 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/content")
 public class LoadSaveContent {
 
+
+
     @RequestMapping(value = "/load/{fileName:.+}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<InputStreamResource> getImage(@PathVariable String fileName) {
+        System.out.println(fileName);
+        System.out.println("==========================================");
         GridFSDBFile gridFsFile = FileOperations.loadFileFromDatabase(fileName);
-
+        System.out.println(gridFsFile);
         return ResponseEntity.ok().contentLength(gridFsFile.getLength()).contentType(MediaType.parseMediaType(gridFsFile.getContentType())).body(new InputStreamResource(gridFsFile.getInputStream()));
     }
     @RequestMapping(value = "/save/upload/image/",  headers = "content-type=multipart/*", method = RequestMethod.POST)
