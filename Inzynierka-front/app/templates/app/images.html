@@ -1,56 +1,27 @@
 <div class="col-md-12" id="stuff">
     <h1>Generated materials for your uploaded files</h1>
     <h1>IMAGES</h1>
-    <div id="files">
-        <p id="fi">Uploaded files</p>
-        <button class="myButton files" id="viewButton3">view</button>
-        <table class="table table-striped table-hover" id="content1" ng-if="!offersViewCtrl.loading">
-            <thead>
-            <tr id="labels2">
-                <th>.</th>
-                <th>name</th>
-                <th>uploaded</th>
-                <th>additional info</th>
-                <th>link</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr >
-                <td>.</td>
-                <td>file1.csv</td>
-                <td>10.02.2015</td>
-                <td>medical info</td>
-                <td>
-                    <a ui-sref="logged.fileDetails({ fileId: 'jakiesidpliku'})">Plik1</a>
-                </td>
-            </tr>
-            <tr>
-                <td>.</td>
-                <td>file2.csv</td>
-                <td>5.04.2016</td>
-                <td>something</td>
-                <td>
-                    <a ui-sref="logged.fileDetails({ fileId: 'jakiesidpliku2'})">Plik1</a>
-                </td>
-            </tr>
-            <tr>
-                <td>.</td>
-                <td>file3.csv</td>
-                <td>29.06.2016</td>
-                <td>what else?</td>
-                <td>
-                    <a ui-sref="logged.fileDetails({ fileId: 'jakiesidpliku333'})">Plik1</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div id="charts">
-        <p id="ch">Generated Charts</p>
-        <button class="myButton files" id="viewButton2">view</button>
-    </div>
-    <div id="patterns">
-        <p id="patt">Generated Patterns</p>
-        <button class="myButton files" id="viewButton">view</button>
-    </div>
+    <table class="table table-striped table-hover" id="content">
+        <thead>
+        <tr id="labels">
+            <th>.</th>
+            <th>content</th>
+            <th>comments</th>
+            <th>rate</th>
+            <th>delete from subscription</th>
+            <th>view file</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--<tr ng-repeat="image in imagesCtrl.userData.savedFiles"  id="viewOffers">-->
+            <!--<td>{{$index+1}}</td>-->
+            <!--<td>{{offer.ownerName + ' ' + offer.ownerSurname}}</td>-->
+            <!--<td>{{offer.ownerMail}}</td>-->
+            <!--<td>{{offer.subject}}</td>-->
+            <!--<td><div style="width: 100px">{{offer.term.day + ' ' + offer.term.start + '-'+offer.term.end+ ' ' + offer.term.teacher }}</div></td>-->
+            <!--<td><div ng-repeat="preferredTerm in offer.preferredTerms" style="width: 250px">{{$index+1 + ' ' + preferredTerm.day + ' ' + preferredTerm.start+'-'+preferredTerm.end + ' ' + preferredTerm.teacher+'\n'}}</div></td>-->
+            <!--<td ng-hide="offersViewCtrl.hideButton(offer)"><button type="submit" ng-click="offersViewCtrl.acceptOffer(offer)" id="accept">Akceptuj</button></td>-->
+        <!--</tr>-->
+        </tbody>
+    </table>
 </div>

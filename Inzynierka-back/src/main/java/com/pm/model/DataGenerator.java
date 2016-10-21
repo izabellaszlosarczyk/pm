@@ -105,12 +105,11 @@ public class DataGenerator {
 		f3.setComments(c);
 		//files.add(f3);
 		f3.setAverage(String.valueOf(tmp/count) );
-		f3.setType("image");
-		files.add(f3);
+		f3.setType("chart");
 
 		File f2 = new File();
 		f2.setAverage(String.valueOf(tmp/count));
-		f2.setType("image/img");
+		f2.setType("pattern");
 		System.out.println("dupa");
 		c.add("Comment 5. Ble ble ble , temporary comment for temporary testing. Idk what to write here");
 		c.add("Comment 6. Ble ble ble , temporary comment for temporary testing. Idk what to write here");
@@ -172,6 +171,7 @@ public class DataGenerator {
 		usersList.add(addMock());
 		filesList.addAll(generateFiles());
 	}
+
 
 	public User addMock(){
 		User u = new User();

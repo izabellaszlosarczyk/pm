@@ -81,7 +81,6 @@ class UserService {
     }
 
     getUserImage(fileName){
-        console.log("ALE DUPPPAAAAAAA");
         return this.$http({
             url: this.getUrl('content/' + fileName),
             method: "GET"

@@ -51,6 +51,8 @@ public class GeneratingDatabase {
         this.nodesList.addAll(d.getNodesList());
         this.movesList.addAll(d.getMovesList());
         this.filesList.addAll(d.getFilesList());
+
+
     }
 
     public void generateDatabaseCollections() {
