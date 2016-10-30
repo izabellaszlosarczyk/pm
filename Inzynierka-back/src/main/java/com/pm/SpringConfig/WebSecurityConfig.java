@@ -25,6 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                 //.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/database/generate").permitAll() //TODO: usunąć!
+                .antMatchers(HttpMethod.GET,"/test/test").permitAll() //TODO: usunąć!
                 .anyRequest().authenticated()
                 .and()
                 .requestCache()

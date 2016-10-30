@@ -4,6 +4,9 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.pm.SpringConfig.DataBaseConfig;
+import com.pm.database.ReadFromDatabase;
+import com.pm.database.SaveUpdateDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -22,6 +25,8 @@ import java.util.List;
  */
 public class FileOperations {
 
+
+
     @SuppressWarnings("resource")
     public static GridFSDBFile loadFileFromDatabase(String filename){
         System.out.println("fileName:              ------>" + filename);
@@ -39,6 +44,9 @@ public class FileOperations {
         }
         return result;
     }
+
+
+
 
     @SuppressWarnings("resource")
     public static GridFSDBFile loadFileFromDatabaseByID(String id){

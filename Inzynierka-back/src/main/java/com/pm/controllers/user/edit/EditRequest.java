@@ -8,6 +8,7 @@ public class EditRequest {
     private String name;
     private String surname;
     private String email;
+    private String oldemail;
     private String password;
 
     public String getPassword() {
@@ -40,5 +41,13 @@ public class EditRequest {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOldemail() {
+        return oldemail;
+    }
+
+    public void setOldemail(String oldemail) {
+        this.oldemail = oldemail;
     }
 }

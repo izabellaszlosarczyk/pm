@@ -18,6 +18,7 @@ public class User extends AbstractModel {
 	private List<String> hashPreferences= new ArrayList<String>();
 	private List<String> savedFiles= new ArrayList<String>();
 	private String profilePhoto;
+	private List<String> subscribedFiles = new ArrayList<>();
 
 	public User(){}
 
@@ -81,5 +82,13 @@ public class User extends AbstractModel {
 
 	public void setSavedFiles(List<String> savedFiles) {
 		this.savedFiles = savedFiles;
+	}
+
+	public List<String> getSubscribedFiles() {
+		return subscribedFiles;
+	}
+
+	public void setSubscribedFiles(List<String> subscribedFiles) {
+		this.subscribedFiles = subscribedFiles;
 	}
 }

@@ -1,29 +1,40 @@
 <div class="col-md-12" >
-    <form class="form-horizontal" id="edit">
+    <a href="/#/logged"><button class="button" id="x" style="margin-right: auto">x</button></a>
+    <p style="padding-top: 15px; color: #181818">Here you can edit your profile data - like email, password, photos, </p>
+    <p style="color: grey">For more information chceck our <a href="/#/logged/privacy">Privacy</a>/<a href="/#/logged/terms">Terms</a> Policy 27 october 2016</p>
+    <form class="form-horizontal">
         <fieldset id="inputs">
-            <div class="form-group">
+            <div class="edit" style="padding-bottom: 20px">
+                <div class="form-group">
                     <input type="text"  class="field left" readonly id="input-name" placeholder="FirstName" ng-model="userDataEditCtrl.userData.firstName">
                     <input type="text" class="field left" id="input-nameEdit" placeholder="New FirstName" ng-model="userDataEditCtrl.userNewData.name">
-            </div>
-            <div class="form-group">
+                </div>
+                <div class="form-group">
                     <input type="text"  class="field left" readonly id="input-surname" placeholder="Surname" ng-model="userDataEditCtrl.userData.lastName">
                     <input type="text" class="field left" id="input-surnameEdit" placeholder=" New Surname" ng-model="userDataEditCtrl.userNewData.surname">
-            </div>
-            <div class="form-group">
+                </div>
+                <div class="form-group">
                     <input type="text"  class="field left" readonly id="input-email" placeholder="Email" ng-model="userDataEditCtrl.userData.email">
                     <input type="text"  class="field left"  id="input-emailEdit" placeholder="New Email" ng-model="userDataEditCtrl.userNewData.email">
+                </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group edit" style=" padding-bottom: 20px">
                 <p style="color:#1c1c1c; text-align: center">Change password!</p>
                 <input type="text"  class="field left"  id="input-password" placeholder="Password">
                 <input type="text"  class="field left"  id="input-passwordEdit" placeholder="Repeat Password" ng-model="userDataEditCtrl.userNewData.password">
             </div>
-            <div class="photoUpload">
+            <a href="/#/logged"><button class="editButton" ng-click="userDataEditCtrl.editUser()">Change</button></a>
+            <div class="photoUpload edit" style="padding-bottom: 20px">
+                <div class="col-md-12" >
+                </div>
+                <div class="col-md-12" >
+                </div>
                 <p style="color:#1c1c1c; text-align: center">Change your photo!</p>
-                <input type="file" class ="fileInput" id="file"><br>
+                <input type="file" class ="fileInput" id="file"  ngf-change="onChange($files)" ngf-select ng-model="picFile" name="attachement" accept="image/png, image/jpeg, image/jpg, application/msword, application/vnd.ms-excel, application/pdf "><br>
+                <a> <button class="editButton" ng-click="userDataEditCtrl.editUser()">Change photo</button></a>
             </div>
         </fieldset>
     </form>
-    <a href="/#/logged"><button class="myButton changeButton" ng-click="userDataEditCtrl.editUser()">Change</button></a>
+
 </div>

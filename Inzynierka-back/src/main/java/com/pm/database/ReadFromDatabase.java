@@ -81,4 +81,5 @@ public class ReadFromDatabase {
     //file
     public List<File> searchAllFiles() { return (List<File>) fileRepository.findAll();}
     public File searchOneFileByTitle(String title){ return fileRepository.findOneByTitle(title);};
+    public List<File> searchAllByType(String type){return fileRepository.findByType(type);}
 }

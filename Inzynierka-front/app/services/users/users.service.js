@@ -11,6 +11,7 @@ class UserService {
             'token' : AuthorizationToken.NO_AUTH
         };
         this.userData = {};
+        this.requestedFileName= "";
     }
 
     getUrl(url) {
@@ -27,12 +28,25 @@ class UserService {
             }
         });
     }
+    setRequestedFileName(name){
+        this.requestedFileName = name;
+    }
 
     getFileDetails(fileName){
-        console.log("get po details");
+        console.log(fileName);
         return this.$http({
             url: this.getUrl(`file/loadDetails/${fileName}`),
             method: "GET"
+        });
+
+    }
+
+    getFilesDetails(filesNames){
+        console.log(filesNames);
+        return this.$http({
+            url: this.getUrl(`file/loadDetails/files`),
+            method: "POST",
+            data: filesNames
         });
 
     }
@@ -117,6 +131,7 @@ class UserService {
     }
 
     edit(userData) {
+        console.log(userData);
         return this.$http({
             url: this.getUrl(`edit/saveEdited`),
             method: "POST",

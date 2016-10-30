@@ -26,7 +26,7 @@ export default class RegisterController {
 
         if (this.name.length == 0 ||
             this.surname.length == 0 ||
-            his.email.length == 0 ||
+            this.email.length == 0 ||
             this.password.length == 0 ||
             this.repeatedPassword.length == 0) {
 

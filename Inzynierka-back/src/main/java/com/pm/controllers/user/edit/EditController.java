@@ -56,22 +56,25 @@ public class EditController {
         if (user ==null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        System.out.println("DUUUUUUUUUUUUUUUPA");
         System.out.println(user);
         return ResponseEntity.status(HttpStatus.OK).body(user);
 
     }
 
 
-    @RequestMapping(value = "/saveEdited", method=RequestMethod.POST, consumes = "application/json")
+    @RequestMapping(value = "/saveEdited", method=RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> saveUser(@RequestBody EditRequest editedUser){
         System.out.println(editedUser);
-//        if (editedUser == null ) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-//        if (editedUser.getPassword() == null || editedUser.getEmail() == null){
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-//        }
-//        editClass.saveUser(editedUser);
-       return  ResponseEntity.status(HttpStatus.OK).body("OK");
+        User user = readClass.searchOneByEmail(editedUser.getOldemail());
+        System.out.println(user);
+        if (user == null)return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"value\":\"NOPE\"}");
+        if (!editedUser.getEmail().isEmpty()) user.setEmail(editedUser.getEmail());
+        if (!editedUser.getPassword().isEmpty()) user.setPassword(editedUser.getPassword());
+        if (!editedUser.getName().isEmpty()) user.setFirstName(editedUser.getName());
+        if (!editedUser.getSurname().isEmpty()) user.setLastName(editedUser.getSurname());
+
+        editClass.saveUser(user);
+       return  ResponseEntity.status(HttpStatus.OK).body("{\"value\":\"OK\"}");
     }
 }

@@ -3,7 +3,9 @@ package com.pm.model;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,6 +18,7 @@ public class File extends  AbstractModel{
     private List<String> comments = new ArrayList<>();
     private List<Integer> scores = new ArrayList<>();
     private String average;
+    private LocalDate creationDate;
 
     public String getTitle() {
         return title;
@@ -55,5 +58,13 @@ public class File extends  AbstractModel{
 
     public void setAverage(String average) {
         this.average = average;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 }

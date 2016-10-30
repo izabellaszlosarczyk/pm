@@ -1,5 +1,40 @@
+#x{
+  margin-top: 1px;
+  margin-right: 2px;
+  position:absolute;
+  top:0;
+  right:0;
+}
 
-#edit{
+.editButton {
+  -moz-box-shadow: inset 0px 34px 0px -15px #181818;
+  -webkit-box-shadow: inset 0px 34px 0px -15px #181818;
+  box-shadow: inset 0px 34px 0px -15px #181818;
+  background-color: #141414;;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 25px;
+  text-decoration: none;
+  text-shadow: 0px -1px 0px #141414;
+  margin-top: 30px;
+  display:block;
+  margin: 0 auto;
+
+}
+.editButton:hover {
+  background-color: #181818;
+  color: #FFFFFF;
+}
+.editButton:active {
+  position: relative;
+  top: 1px;
+}
+.edit{
+  background-color: #F7F7F3;
+  -webkit-box-shadow: -1px -1px 2px 0 rgba(0,0,0,0.14) inset;
 
   margin-top:50px;
   #inputs{
@@ -18,13 +53,6 @@
 
   #input-surname, #input-surnameEdit{
     display: inline-block;
-  }
-
-  .myButton.changeButton {
-    padding-top: 150px;
-    display:block;
-    margin: 0 auto;
-    background-color: pink;
   }
 
 }

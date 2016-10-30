@@ -7,6 +7,7 @@ import com.pm.database.SaveUpdateDatabase;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -93,6 +94,7 @@ public class DataGenerator {
 		}
 		f.setAverage(String.valueOf(tmp/count) );
 		f.setType("image");
+		f.setCreationDate(LocalDate.now());
 		files.add(f);
 
 
@@ -138,6 +140,7 @@ public class DataGenerator {
 		user.setFirstName(firstName);
 		user.setEmail(email);
 		user.setSavedFiles(files);
+		user.setSubscribedFiles(files);
 		user.setPassword(password);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
@@ -188,6 +191,7 @@ public class DataGenerator {
 		files.add("Ivan_Ukhov_Doha_2011.jpg");
 		files.add("Ivan_Ukhov_Doha_2012.jpg");
 		u.setSavedFiles(files);
+		u.setSubscribedFiles(files);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		u.setLastLog(dateFormat.format(date));
