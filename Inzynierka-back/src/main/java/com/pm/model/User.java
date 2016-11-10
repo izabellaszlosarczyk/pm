@@ -15,6 +15,7 @@ public class User extends AbstractModel {
 	private String email;
 	private String password;
 	private String lastLog;
+	private String previousLog;
 	private List<String> hashPreferences= new ArrayList<String>();
 	private List<String> savedFiles= new ArrayList<String>();
 	private String profilePhoto;
@@ -90,5 +91,13 @@ public class User extends AbstractModel {
 
 	public void setSubscribedFiles(List<String> subscribedFiles) {
 		this.subscribedFiles = subscribedFiles;
+	}
+
+	public String getPreviousLog() {
+		return previousLog;
+	}
+
+	public void setPreviousLog(String previousLog) {
+		this.previousLog = previousLog;
 	}
 }

@@ -1,28 +1,23 @@
 export default class ImagesController {
-  constructor(infoService, usersService) {
+  constructor(infoService, usersService,$state, $http,$scope, $stateParams) {
+    this.state = $state;
+    this.stateParams = $stateParams;
+    this.$scope = $scope;
     this.infoService = infoService;
     this.usersService = usersService;
     this.userData;
     this.filesDetails = [];
     this.loading = true;
+    this.$http = $http;
   }
 
   $onInit() {
     this.userData = this.usersService.getUserDataValues();
     console.log(this.userData.savedFiles);
-    // for (let file of this.userData.savedFiles){
-    //   this.usersService.getFileDetails(file).then(function successCallback(response, status, headers, config) {
-    //     this.filesDetails.push(response.data);
-    //     console.log(this.filesDetails);
-    //   }.bind(this), function errorCallback(response) {
-    //     console.log(response);
-    //     console.log("whyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
-    //   }.bind(this));
-    // }
+    
     this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
       this.loading = false;
       this.filesDetails= response.data;
-      console.log("duuuuuuuuuuuuuuuupa");
       console.log(this.filesDetails);
     }.bind(this));
     // this.filesDetails.push(response.data);
@@ -31,13 +26,25 @@ export default class ImagesController {
     //console.log(this.userNewData);
   }
 
-  deleteFromSubs(image){
-    console.log(image);
-    //this.usersService.setRequestedFileName(image.)
+  deleteFromSubs(fileDetails){
+    console.log(this.usersService.userData);
+    console.log(fileDetails);
+    let data = {
+      userEmail: this.usersService.userData.email,
+      fileName: fileDetails.title
+    };
+    this.usersService.deleteFileFromSubs(data);
+  }
+  html_creator(fileDetails){
+    var sref_name =  "home(logged/fileDetails/{id:" +fileDetails.title+"})"
+    return sref_name
   }
 
-  viewFile(image){
-    console.log(image);
+  viewFile(fileDetails){
+    this.usersService.addRequestedFileDetails(fileDetails);
+    console.log(this.usersService.requestedFileDetails);
+    console.log(fileDetails);
+    this.state.go('logged.fileDetails', fileDetails.title);
   }
 
 }

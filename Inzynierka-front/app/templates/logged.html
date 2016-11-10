@@ -6,7 +6,7 @@
             <div style="border-bottom: 2px solid #CBD5DD;"><p style="color: #1c1c1c; padding-bottom:20px; text-align:center;">Our stuff for you</p></div>
             <div class="list-group table-of-contents" id="mainMenu">
                 <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;"> <a href="/#/logged/subscriptions">Your subscriptions</a></div>
-                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;" > <a href="/#/logged/viewInfo">View</a> </div>
+                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;" > <a href="/#/logged/viewInfo">Random file</a> </div>
                 <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;"> <a href="/#/logged/news">News!</a> </div>
                 <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;"> <a href="/#/logged/yourStuff">Your stuff</a><br></div>
             </div>
@@ -21,6 +21,10 @@
                 <div class="col-md-4" style="background-color:#F7F7F3;">
                     <img src="./assets/wykres2.png"  class="img-responsive" style="background-color:transparent;">
                     <img src="./assets/wykres4.png" style="padding-top: 10px;" class="img-responsive" style="background-color:transparent;">
+                </div>
+                <div>
+                    <p>Upload some stuff - we will analyze for you </p>
+                    <input type="file" class ="fileInput" id="fileUpload"  ngf-change="onChange($files)" ngf-select ng-model="picFile" name="attachement" accept="image/png, image/jpeg, image/jpg, application/msword, application/vnd.ms-excel, application/pdf "><br>
                 </div>
             </div>
         </div>

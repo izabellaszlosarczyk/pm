@@ -4,24 +4,38 @@ export default class OthersController {
     this.usersService = usersService;
     this.userData;
     this.filesDetails = [];
+    this.loading = true;
   }
 
   $onInit() {
     this.userData = this.usersService.getUserDataValues();
-    console.log("dupa fdsnihtroirvio rviueuur dupa");
     console.log(this.userData.savedFiles);
-    for (let file of this.userData.savedFiles){
-      console.log(file);
-      this.infoService.getFileDetails(file).then(function successCallback(response, status, headers, config) {
-        this.filesDetails.push(response.data);
-        console.log(response.data);
-      }.bind(this), function errorCallback(response) {
-        console.log(response);
-      }.bind(this));
-    }
+    this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
+      this.loading = false;
+      this.filesDetails= response.data;
+      console.log("duuuuuuuuuuuuuuuupa");
+      console.log(this.filesDetails);
+    }.bind(this));
+    // this.filesDetails.push(response.data);
     //this.usersService.getFileDetails()
     //this.userNewData = this.userData;
     //console.log(this.userNewData);
+  }
+
+  deleteFromSubs(fileDetails){
+    //this.usersService.setRequestedFileDetails(fileDetails);
+    console.log(this.usersService.userData);
+    console.log(fileDetails);
+    let data = {
+      userEmail: this.usersService.userData.email,
+      fileName: fileDetails.title
+    };
+    this.usersService.deleteFileFromSubs(data);
+  }
+
+  viewFile(fileDetails){
+    //this.usersService.setRequestedFileDetails(fileDetails);
+    console.log(fileDetails);
   }
 }
 

@@ -52,7 +52,7 @@ public class DataGenerator {
 	}
 	public Pattern generatePattern(int i){
 		Pattern p = new Pattern();
-		p.setTitle("Pattern number: "+ i);
+		p.setTitle("pattern"+ i);
 		p.setBody("something something");
 		return p;
 	}
@@ -147,6 +147,18 @@ public class DataGenerator {
 		user.setLastLog(dateFormat.format(date));
 		System.out.println("dupa");
 		try {
+			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/4/42/", "Jonwalker.jpg" , "image1");
+			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/7/71/", "Germ%C3%A1n_Lux.jpg" , "image2");
+			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/c/ca/", "Sk%C5%99%C3%ADpov_kostel.JPG" , "image3");
+			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Biplot_of_Anderson%27s_Iris_data_set.svg/", "540px-Biplot_of_Anderson%27s_Iris_data_set.svg.png" , "chart1");
+			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/3/33/Zinc-finger-dot-plot.png", "Zinc-finger-dot-plot.png" , "chart2");
+			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/c/c4/Scatter_plot.jpg", "Scatter_plot.jpg" , "chart3");
+			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/6/63/Bode_High-Pass.PNG", "Bode_High-Pass.PNG" , "other1");
+			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Biplot_of_Anderson%27s_Iris_data_set.svg/", "540px-Biplot_of_Anderson%27s_Iris_data_set.svg.png" , "other2");
+			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Biplot_of_Anderson%27s_Iris_data_set.svg/", "540px-Biplot_of_Anderson%27s_Iris_data_set.svg.png" , "other3");
+			FileOperations.saveFileToDatabaseWithName("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/", "iris.data" , "csv1");
+			FileOperations.saveFileToDatabaseWithName("http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/", "abalone.data" , "csv2");
+			FileOperations.saveFileToDatabaseWithName("http://archive.ics.uci.edu/ml/machine-learning-databases/annealing/", "anneal.data" , "csv3");
 			FileOperations.saveFileToDatabase("https://upload.wikimedia.org/wikipedia/commons/c/cc/" , "Ivan_Ukhov_Doha_2010.jpg");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -173,6 +185,45 @@ public class DataGenerator {
 		}
 		usersList.add(addMock());
 		filesList.addAll(generateFiles());
+		for (int i = 0; i < 5; i = i + 1){
+			generateFile("image", "image"+ i);
+		}
+		for (int i = 0; i < 5; i = i + 1){
+			generateFile("charts", "chart" + i);
+		}
+		for (int i = 0; i < 5; i = i + 1){
+			generateFile("pattern", "pattern" + i);
+		}
+		for (int i = 0; i < 5; i = i + 1){
+			generateFile("csv", "csv"+ i);
+		}
+		for (int i = 0; i < 5; i = i + 1){
+			generateFile("other", "other"+ i);
+		}
+	}
+
+	public File generateFile(String type, String title){
+		File f = new File();
+		List<String> c = new ArrayList<>();
+		c.add("Comment 1. Ble ble ble , temporary comment for temporary testing. Idk what to write here");
+		c.add("Comment 2. Ble ble ble , temporary comment for temporary testing. Idk what to write here");
+		f.setComments(c);
+		f.setTitle(title);
+		List<Integer> s = new ArrayList<>();
+		s.add(4);
+		s.add(3);
+		s.add(2);
+		s.add(5);
+		f.setScores(s);
+		int tmp = 0, count = 0;
+		for (int i : s){
+			tmp = tmp + i;
+			count++;
+		}
+		f.setAverage(String.valueOf(tmp/count) );
+		f.setType(type);
+		f.setCreationDate(LocalDate.now());
+		return f;
 	}
 
 
@@ -198,6 +249,8 @@ public class DataGenerator {
 		u.setProfilePhoto("Ivan_Ukhov_Doha_2010.jpg");
 		return u;
 	}
+
+
 
 	public List<User> getUsersList() {
 		return usersList;

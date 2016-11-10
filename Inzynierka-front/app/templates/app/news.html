@@ -1,55 +1,30 @@
-<div class="col-md-12">
-    <table class="table table-striped table-hover" id="content1" ng-if="!offersViewCtrl.loading">
+<div class="col-md-12" id="stuff">
+    <h1>Generated materials for your uploaded files</h1>
+    <h1>IMAGES</h1>
+    <div ng-if="newsCtrl.loading" style="text-align: center; transform: scale(2)">
+
+    </div>
+    <table class="table"  id="imageTable" ng-if="!newsCtrl.loading" style="font-size: 70%; color:grey;">
         <thead>
-        <tr id="labels2">
+        <tr id="labels" style="color:black;">
             <th>.</th>
-            <th>topic</th>
-            <th>information</th>
-            <th>new info</th>
+            <th>title</th>
+            <th>comments</th>
+            <th>rate</th>
+            <th>date of creation</th>
+            <th>view file</th>
+            <th>delete</th>
         </tr>
         </thead>
         <tbody>
-        <tr id="viewOffers">
-            <td>.</td>
-            <td>topic</td>
-            <td>information</td>
-            <td>4</td>
-            <td><button  class="btn btn-success" id="accept">news</button></td>
-        </tr>
-        <tr id="viewOffers2">
-            <td>.</td>
-            <td>topic</td>
-            <td>information</td>
-            <td>4</td>
-            <td><button  class="btn btn-success" id="accept">news</button></td>
-        </tr>
-        <tr id="viewOffers3">
-            <td>.</td>
-            <td>topic</td>
-            <td>information</td>
-            <td>4</td>
-            <td><button  class="btn btn-success" id="accept">news</button></td>
-        </tr>
-        <tr id="viewOffers4">
-            <td>.</td>
-            <td>topic</td>
-            <td>information</td>
-            <td>4</td>
-            <td><button  class="btn btn-success" id="accept">news</button></td>
-        </tr>
-        <tr id="viewOffers5">
-            <td>.</td>
-            <td>topic</td>
-            <td>information</td>
-            <td>4</td>
-            <td><button  class="btn btn-success" id="accept">news</button></td>
-        </tr>
-        <tr id="viewOffers6">
-            <td>.</td>
-            <td>topic</td>
-            <td>information</td>
-            <td>4</td>
-            <td><button  class="btn btn-success" id="accept">news</button></td>
+        <tr ng-repeat="file in newsCtrl.filesDetails">
+            <td>{{$index+1}}</td>
+            <td>{{file.title}}</td>
+            <td><div ng-repeat="comment in file.comments" style="width: 250px">{{$index+1 + ' ' + comment +'\n'}}</div></td>
+            <td>{{file.average}}</td>
+            <td>{{file.creationDate}}</td>
+            <td ><button type="myButton" ng-click="newsCtrl.viewFile(file)" id="view" style="color:black;">view</button></td>
+            <td ><button type="myButton" ng-click="newsCtrl.deleteFromSubs(file)" id="deleteSub" style="color:black">x</button></td>
         </tr>
         </tbody>
     </table>

@@ -59,7 +59,7 @@ export default app => {
                 template: '<t-charts></t-charts>'
             })
             .state('logged.fileDetails', {
-                url: '/fileDetails/:fileId',
+                url: '/fileDetails',
                 template: '<t-file></t-file>'
             })
             .state('logged.privacy', {

@@ -36,7 +36,7 @@ public class FileStats {
         System.out.println(file);
         int average = 0;
         List<Integer> scores = file.getScores();
-        scores.add(request.getScore());
+        scores.add(Integer.valueOf(request.getScore()));
         int sum  = 0;
         for (int f: scores) sum = sum + f;
         sum = sum / scores.size();

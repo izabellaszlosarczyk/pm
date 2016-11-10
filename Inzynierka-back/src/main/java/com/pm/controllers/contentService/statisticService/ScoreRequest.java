@@ -5,7 +5,7 @@ package com.pm.controllers.contentService.statisticService;
  */
 public class ScoreRequest {
     private String fileName;
-    private int score;
+    private String score;
 
     public String getFileName() {
         return fileName;
@@ -15,11 +15,11 @@ public class ScoreRequest {
         this.fileName = fileName;
     }
 
-    public int getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(String score) {
         this.score = score;
     }
 }

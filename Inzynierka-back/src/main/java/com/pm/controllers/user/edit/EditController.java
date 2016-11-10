@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.time.LocalDate;
+
 /**
  * Created by izabella on 23.07.16.
  */
@@ -56,6 +58,8 @@ public class EditController {
         if (user ==null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
+        user.setPreviousLog(user.getLastLog());
+        user.setLastLog(LocalDate.now().toString());
         System.out.println(user);
         return ResponseEntity.status(HttpStatus.OK).body(user);
 

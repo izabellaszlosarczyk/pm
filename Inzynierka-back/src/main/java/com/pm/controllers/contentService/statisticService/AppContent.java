@@ -1,5 +1,7 @@
 package com.pm.controllers.contentService.statisticService;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.pm.controllers.contentService.userContent.FileOperations;
 import com.pm.database.ReadFromDatabase;
@@ -56,7 +58,30 @@ public class AppContent {
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
 
-    @RequestMapping(value = "/all", method= RequestMethod.GET)
+    @RequestMapping(value = "/newsDetails", method= RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> newContentDetails(@RequestBody int numberOfDaysFromToday) {
+        LocalDate currentDate = LocalDate.now();
+        ObjectMapper mapper = new ObjectMapper();
+        List<File> files = new ArrayList<>();
+        List<File> fileNames = readClass.searchAllFiles();
+        List<String> tmp = new ArrayList<>();
+        for (File f: fileNames){
+            int numberOFdays = (f.getCreationDate()).until(currentDate).getDays();
+            if (numberOFdays < numberOfDaysFromToday){
+                files.add(readClass.searchOneFileByTitle(f.getTitle()));
+            }
+        }
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(mapper.writeValueAsString(files));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
+
+    @RequestMapping(value = "/allFiles", method= RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<List<GridFSDBFile>> allContent() {
         List<File> fileNames = readClass.searchAllFiles();
@@ -100,4 +125,29 @@ public class AppContent {
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
 
+
+    @RequestMapping(value = "/newsDetails/{userEmail:.+}", method= RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<String> newsDetailsForUser(@PathVariable String email) {
+        User user = readClass.searchOneByEmail(email);
+        ObjectMapper mapper = new ObjectMapper();
+        String lastLog = user.getLastLog();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+        formatter = formatter.withLocale(Locale.ENGLISH);  // Locale specifies human language for translating, and cultural norms for lowercase/uppercase and abbreviations and such. Example: Locale.US or Locale.CANADA_FRENCH
+        LocalDate dateOfLog = LocalDate.parse(lastLog, formatter);
+        List<File> fileNames = readClass.searchAllFiles();
+        List<File> tmp = new ArrayList<>();
+        for (File f: fileNames){
+            if (f.getCreationDate().isAfter(dateOfLog)){
+                tmp.add(f);
+            }
+        }
+        List<GridFSDBFile> files = new ArrayList<>();
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(mapper.writeValueAsString(tmp));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
 }

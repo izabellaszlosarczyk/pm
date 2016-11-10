@@ -117,6 +117,36 @@ public class FileOperations {
         }
     }
 
+
+    @SuppressWarnings("resource")
+    public static void saveFileToDatabaseWithName(String url, String filename, String customName) throws MalformedURLException, IOException {
+        AnnotationConfigApplicationContext ctx = null;
+        InputStream inputStream = null;
+        try {
+            ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
+            //ctx = new AnnotationConfigApplicationContext(DatabaseConfig.class);
+            GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
+            DBObject metaData = new BasicDBObject();
+            //metaData.put("extra13232", "anything 1");
+            //metaData.put("extra22323", "anything 2");
+            final InputStream is = new URL(url + filename).openStream();
+            //inputStream = new FileInputStream("C://Users//Comarch//Desktop//ble.png");
+            gridOperations.store(is, customName, "profilePic/jpg", metaData);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                    ctx.destroy();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     @SuppressWarnings("resource")
     public static void saveFileToDatabaseWithCustomOptions(String url, String filename, String[] info) throws MalformedURLException, IOException{
         AnnotationConfigApplicationContext ctx = null;

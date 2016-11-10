@@ -1,8 +1,13 @@
 <div class="col-md-12" id="stuff">
-    <h1>Generated materials for your uploaded files</h1>
-    <h1>IMAGES</h1>
-    <div ng-if="imagesViewCtrl.loading" style="text-align: center; transform: scale(2)">
+    <div class="col-md-6">
+        <h1>Generated materials for your uploaded files</h1>
+        <h1>IMAGES</h1>
+        <div ng-if="imagesViewCtrl.loading" style="text-align: center; transform: scale(2)">
 
+        </div>
+    </div>
+    <div class="col-md-6">
+        <img src="./assets/wykres2aa.png" class="img-responsive" style="background-color:transparent;">
     </div>
     <table class="table"  id="imageTable" ng-if="!imagesCtrl.loading" style="font-size: 70%; color:grey;">
         <thead>

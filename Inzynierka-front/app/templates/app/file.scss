@@ -1,0 +1,59 @@
+#fileDetails {
+  color:#1a1a1a;
+  h2 {
+    color: rgba(0, 0, 0, 0.14);
+  }
+
+  #inputComment {
+    background-color: #FFFFFF;
+    -webkit-box-shadow: -1px -1px 2px 0 rgba(0, 0, 0, 0.14) inset;
+    box-shadow: -1px -1px 2px 0 rgba(0, 0, 0, 0.14) inset;
+    border: 1px solid #CBD5DD;
+    max-width: 50%;
+    max-height: 100%;
+    font-size: 80%;
+    height: 2.7em;
+    display: inline-block;
+  }
+  #score, #details{
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  }
+
+  #content{
+
+  }
+  #comment{
+    text-align: center;
+  }
+  .myButton.score {
+
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 10px;
+    padding: 8px 12px;
+    text-decoration: none;
+    text-shadow: none;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  .commentButton {
+    -moz-box-shadow: inset 0px 34px 0px -15px #181818;
+    -webkit-box-shadow: inset 0px 34px 0px -15px #181818;
+    box-shadow: inset 0px 34px 0px -15px #181818;
+    background-color: #141414;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 12px;
+    padding: 10px 10px;
+    text-decoration: none;
+    text-shadow: none;
+    margin-right: auto;
+  }
+}

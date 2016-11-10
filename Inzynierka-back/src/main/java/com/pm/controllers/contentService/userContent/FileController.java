@@ -2,17 +2,24 @@ package com.pm.controllers.contentService.userContent;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mongodb.gridfs.GridFSDBFile;
+import com.pm.SpringConfig.DataBaseConfig;
 import com.pm.database.ReadFromDatabase;
 import com.pm.database.SaveUpdateDatabase;
 import com.pm.model.File;
 import com.pm.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +79,8 @@ public class FileController {
     @ResponseBody
     public ResponseEntity<String> deleteFileFromSubs(@RequestBody SubsRequest request) {
         System.out.println(request);
+
+        //TODO: NULLL
         User user = readClass.searchOneByEmail(request.getUserEmail());
         List<String> files = user.getSavedFiles();
         if (user == null) return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
@@ -81,7 +90,7 @@ public class FileController {
             }
         }
         user.setSavedFiles(files);
-        return ResponseEntity.status(HttpStatus.OK).body("ok");
+        return ResponseEntity.status(HttpStatus.OK).body("{\"value\":\"OK\"}");
     }
 
     @RequestMapping(value = "/addSubs", method= RequestMethod.POST)
@@ -107,6 +116,60 @@ public class FileController {
             userFilesSubs.add(FileOperations.loadFileFromDatabase(f));
         }
         return ResponseEntity.status(HttpStatus.OK).body(userFilesSubs);
+    }
+
+
+    @RequestMapping(value = "/uploadNew",  headers = "content-type=multipart/*", method = RequestMethod.POST)
+    @ResponseBody
+    public String uploadFileHandler(@ModelAttribute("name") String name, @ModelAttribute("file") MultipartFile file) {
+        FileInputStream fis = null;
+        AnnotationConfigApplicationContext ctx = null;
+        //check
+        if (!file.isEmpty()) {
+            try {
+                ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
+                GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
+                java.io.File convFile = new java.io.File(file.getOriginalFilename());
+                convFile.createNewFile();
+//	            FileOutputStream fos = new FileOutputStream(convFile);
+//	            fos.write(file.getBytes());
+//	            fos.close();
+                fis = new FileInputStream(convFile);
+                gridOperations.store(fis, name.toString(), "profilePic/jpg");
+//	            return convFile.toString();
+
+            } catch (Exception e) {
+                return  "You failed to upload " + name + " => " + e.getMessage();
+            } finally {
+                if (fis != null)
+                    try {
+                        fis.close();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+            }
+        }
+        return null;
+    }
+
+    @RequestMapping(value = "/addFile", method= RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<String> addFile(@RequestBody FileRequest fileRequest) {
+        File file = new File();
+        file.setCreationDate(LocalDate.now());
+        file.setAverage("0");
+        List<String> c = new ArrayList<>();
+        file.setComments(c);
+        file.setTitle("Ivan_Ukhov_Doha_2010.jpg");
+        List<Integer> s = new ArrayList<>();
+        s.add(5);
+        file.setScores(s);
+        file.setTitle(fileRequest.getTitle());
+        file.setType(fileRequest.getType());
+
+        return ResponseEntity.status(HttpStatus.OK).body("null");
+
     }
 
 }

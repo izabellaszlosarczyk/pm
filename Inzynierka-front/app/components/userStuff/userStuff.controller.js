@@ -9,6 +9,7 @@ export default class UserStuffController {
   $onInit() {
     this.userData = this.usersService.getUserDataValues();
     console.log("dupa");
+    console.log(this.userData);
     console.log(this.userData.savedFiles);
     for (let file of this.userData.savedFiles){
       console.log(file);

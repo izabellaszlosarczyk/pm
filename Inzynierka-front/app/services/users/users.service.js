@@ -1,7 +1,7 @@
 class UserService {
     /*@ngInject*/
 
-    constructor($http, pmServerUrl, AuthorizationToken, $base64, $sessionStorage) {
+    constructor($http, pmServerUrl, AuthorizationToken, $base64, $sessionStorage, $state) {
         this.$http = $http;
         this.baseUrl = pmServerUrl;
         this.base64 = $base64;
@@ -11,7 +11,8 @@ class UserService {
             'token' : AuthorizationToken.NO_AUTH
         };
         this.userData = {};
-        this.requestedFileName= "";
+        this.requestedFileDetails = {};
+        this.stateProvider = $state;
     }
 
     getUrl(url) {
@@ -28,8 +29,9 @@ class UserService {
             }
         });
     }
-    setRequestedFileName(name){
-        this.requestedFileName = name;
+    addRequestedFileDetails(file){
+        this.requestedFileDetails = file;
+        console.log(this.requestedFileDetails);
     }
 
     getFileDetails(fileName){
@@ -63,13 +65,22 @@ class UserService {
             method: "GET"
         });
     }
+
+
+    getNewsFiles(userEmail) {
+        return this.$http({
+            url: this.getUrl(`mainContent/newsDetails/${userEmail}`),
+            method: "GET"
+        });
+    }
+
     addOpinionToFile(fileName,grade){
         let request = {
             file: fileName,
             grade: grade
         };
         return this.$http({
-            url: this.getUrl(`file/load/${fileName}`),
+            url: this.getUrl(`rate/score`),
             method: "POST",
             data: request
         });
@@ -80,7 +91,7 @@ class UserService {
             comment: comment
         };
         return this.$http({
-            url: this.getUrl(`file/load/${fileName}`),
+            url: this.getUrl(`rate/comment`),
             method: "POST",
             data: request
         });
@@ -151,6 +162,15 @@ class UserService {
             method: "DELETE"
         });
     }
+
+   deleteFileFromSubs(deleteRequest) {
+        return this.$http({
+            url: this.getUrl(`file/deleteFromSubs`),
+            method: "POST",
+            data: deleteRequest
+        });
+    }
+
 
     setUserSessionData(userSessionData){
         this.userSessionData = userSessionData;
