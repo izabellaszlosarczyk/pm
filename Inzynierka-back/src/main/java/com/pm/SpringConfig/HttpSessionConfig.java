@@ -7,9 +7,6 @@ import org.springframework.session.data.mongo.config.annotation.web.http.EnableM
 import org.springframework.session.web.http.HeaderHttpSessionStrategy;
 import org.springframework.session.web.http.HttpSessionStrategy;
 
-/**
- * Created by piotrpodolski on 04/08/16.
- */
 @Configuration
 @EnableMongoHttpSession
 public class HttpSessionConfig {

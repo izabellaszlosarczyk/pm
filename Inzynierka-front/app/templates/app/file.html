@@ -2,8 +2,13 @@
     <div style="border-bottom: 1px solid #CBD5DD;" id="details">
         <a href="/#/logged"><button class="button" id="x" style="margin-right: auto">x</button></a>
         <h2 id="hFile">Chosen file details</h2>
-        <p>Title: {{fileCtrl.fileDetails.title}}</p>
-        <p>Average score : {{fileCtrl.fileDetails.average}}</p>
+        <div class="col-md-8">
+            <p>Title: {{fileCtrl.fileDetails.title}}</p>
+            <p>Average score : {{fileCtrl.fileDetails.average}}</p>
+        </div>
+        <div class="col-md-4">
+            <img src="./assets/10a.png"  class="img-responsive" style="background-color:transparent; max-width: 50px">
+        </div>
     </div>
     <div id="content" ng-if="!fileCtrl.loading">
         <img ng-src="{{fileCtrl.content}}" class="img-responsive" ng-if="fileCtrl.flagType">

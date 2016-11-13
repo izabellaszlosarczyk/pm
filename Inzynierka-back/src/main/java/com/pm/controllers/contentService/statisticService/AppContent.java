@@ -19,10 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -130,21 +127,67 @@ public class AppContent {
     @ResponseBody
     public ResponseEntity<String> newsDetailsForUser(@PathVariable String email) {
         User user = readClass.searchOneByEmail(email);
+        System.out.println(user);
+        System.out.println("DUPPUPUUPUPUPPUPUPTPRTPRPTRP");
         ObjectMapper mapper = new ObjectMapper();
         String lastLog = user.getLastLog();
+        System.out.println(lastLog);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
         formatter = formatter.withLocale(Locale.ENGLISH);  // Locale specifies human language for translating, and cultural norms for lowercase/uppercase and abbreviations and such. Example: Locale.US or Locale.CANADA_FRENCH
         LocalDate dateOfLog = LocalDate.parse(lastLog, formatter);
+        System.out.println(dateOfLog);
         List<File> fileNames = readClass.searchAllFiles();
         List<File> tmp = new ArrayList<>();
-        for (File f: fileNames){
-            if (f.getCreationDate().isAfter(dateOfLog)){
+        for (File f: fileNames) {
+            if (f.getCreationDate().isAfter(dateOfLog)) {
                 tmp.add(f);
             }
         }
-        List<GridFSDBFile> files = new ArrayList<>();
         try {
             return ResponseEntity.status(HttpStatus.OK).body(mapper.writeValueAsString(tmp));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
+    @RequestMapping(value = "/randomFile", method= RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<String> getRandom() {
+        List<File> filesDetails = new ArrayList<>();
+        filesDetails.addAll(readClass.searchAllFiles());
+        Random rand = new Random();
+
+        int  n = rand.nextInt();
+        n = n%filesDetails.size();
+        File randomFile = filesDetails.get(n);
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(mapper.writeValueAsString(randomFile));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
+    @RequestMapping(value = "/randomName", method= RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<String> getRandomFile() {
+        List<File> filesDetails = new ArrayList<>();
+        filesDetails.addAll(readClass.searchAllFiles());
+        Random rand = new Random();
+        System.out.println(filesDetails.size());
+        ObjectMapper mapper = new ObjectMapper();
+
+        int  n = rand.nextInt();
+
+        n = Math.abs(n%filesDetails.size());
+        System.out.println(n);
+        String randomFileName = filesDetails.get(n).getTitle();
+        //TODO: USUNAC TO I DODAC TYP IMG
+        randomFileName = "Ivan_Ukhov_Doha_2010.jpg";
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(mapper.writeValueAsString(randomFileName));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

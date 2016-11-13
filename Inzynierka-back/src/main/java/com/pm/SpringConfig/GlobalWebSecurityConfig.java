@@ -12,9 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-/**
- * Created by piotrpodolski on 06/08/16.
- */
 @Configuration
 public class GlobalWebSecurityConfig extends GlobalAuthenticationConfigurerAdapter {
 

@@ -134,8 +134,10 @@ class UserService {
     }
 
     register(userData) {
+        console.log("DUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUPA");
+        console.log(userData);
         return this.$http({
-            url: this.getUrl('users/new'),
+            url: this.getUrl('register/new'),
             method: "POST",
             data: userData
         });
@@ -168,6 +170,13 @@ class UserService {
             url: this.getUrl(`file/deleteFromSubs`),
             method: "POST",
             data: deleteRequest
+        });
+    }
+
+    getRandomFileName(){
+        return this.$http({
+            url: this.getUrl(`mainContent/randomName`),
+            method: "GET"
         });
     }
 
@@ -204,6 +213,8 @@ class UserService {
         delete this.userData;
         delete this.$storage.userData;
     }
+
+
 
 
 }

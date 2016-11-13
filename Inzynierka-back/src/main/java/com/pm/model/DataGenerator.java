@@ -159,7 +159,10 @@ public class DataGenerator {
 			FileOperations.saveFileToDatabaseWithName("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/", "iris.data" , "csv1");
 			FileOperations.saveFileToDatabaseWithName("http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/", "abalone.data" , "csv2");
 			FileOperations.saveFileToDatabaseWithName("http://archive.ics.uci.edu/ml/machine-learning-databases/annealing/", "anneal.data" , "csv3");
+			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Justin_Bieber_2010_5.jpg/800px-Justin_Bieber_2010_5.jpg", "800px-Justin_Bieber_2010_5.jpg" , "image69");
+
 			FileOperations.saveFileToDatabase("https://upload.wikimedia.org/wikipedia/commons/c/cc/" , "Ivan_Ukhov_Doha_2010.jpg");
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -11,7 +11,6 @@ import './index.scss';
 
 require('imports?angular=angular!angular-base64/angular-base64');
 require('imports?angular=angular!ngstorage/ngStorage');
-
 if (ENVIRONMENT === 'test') {
   console.log('ENV:', ENVIRONMENT);
   require('angular-mocks/angular-mocks');

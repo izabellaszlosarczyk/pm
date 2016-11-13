@@ -29,7 +29,7 @@ public class UserStuff {
     @Autowired
     SaveUpdateDatabase editClass;
 
-    @RequestMapping(value = "/getSubsFileByType", method= RequestMethod.GET)
+    @RequestMapping(value = "/getSubsFileByType", method= RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<List<GridFSDBFile>> getUserSubsType(@RequestBody UserTypeRequest request) {
         User user = readClass.searchOneByEmail(request.getEmail());
@@ -49,7 +49,9 @@ public class UserStuff {
         return  ResponseEntity.status(HttpStatus.OK).body(filesTmp);
     }
 
-    @RequestMapping(value = "/getSavFileByType", method= RequestMethod.GET)
+
+
+    @RequestMapping(value = "/getSavFileByType", method= RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<List<GridFSDBFile>> getUserSavedType(@RequestBody UserTypeRequest request) {
         User user = readClass.searchOneByEmail(request.getEmail());

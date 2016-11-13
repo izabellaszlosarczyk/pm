@@ -6,9 +6,10 @@
             <div style="border-bottom: 2px solid #CBD5DD;"><p style="color: #1c1c1c; padding-bottom:20px; text-align:center;">Our stuff for you</p></div>
             <div class="list-group table-of-contents" id="mainMenu">
                 <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;"> <a href="/#/logged/subscriptions">Your subscriptions</a></div>
-                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;" > <a href="/#/logged/viewInfo">Random file</a> </div>
+
+                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;" > <a href="" ng-click="userDataViewCtrl.randomFile()">Random file!</a></div>
                 <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;"> <a href="/#/logged/news">News!</a> </div>
-                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;"> <a href="/#/logged/yourStuff">Your stuff</a><br></div>
+                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;"> <a href="/#/logged">Upload file</a><br></div>
             </div>
         </div>
 
@@ -22,9 +23,17 @@
                     <img src="./assets/wykres2.png"  class="img-responsive" style="background-color:transparent;">
                     <img src="./assets/wykres4.png" style="padding-top: 10px;" class="img-responsive" style="background-color:transparent;">
                 </div>
-                <div>
+                <div id="uploadFiles">
                     <p>Upload some stuff - we will analyze for you </p>
-                    <input type="file" class ="fileInput" id="fileUpload"  ngf-change="onChange($files)" ngf-select ng-model="picFile" name="attachement" accept="image/png, image/jpeg, image/jpg, application/msword, application/vnd.ms-excel, application/pdf "><br>
+                    <input type="file" style="font-size: 15px;" class ="fileInput" ngf-change="onChange($files)" ngf-select ng-model="picFile" name="attachement" accept="image/png, image/jpeg, image/jpg, application/msword, application/vnd.ms-excel, application/pdf " ><br>
+                    <div id="type" style="font-size: 15px;">
+                        <input type="radio" name="type" value="other">other
+                        <input type="radio" name="type" value="chart">chart
+                        <input type="radio" name="type" value="image">image
+                        <input type="radio" name="type" value="pattern">pattern
+                        <input type="radio" name="type" value="cv">cv
+                    </div>
+                    <button class="myButton editUser" ng-click="userDataViewCtrl.uploadNewFile()">Upload</button>
                 </div>
             </div>
         </div>
@@ -64,8 +73,8 @@
                 </fieldset>
                 <div id="err_msg"><p>{{userDataViewCtrl.msg}}</p></div>
             </form>
-            <div style="display: inline-block; margin-left: 20px;">
-                <a href="/#/logged/editUser"><button class="myButton editUser">Edit</button></a>
+            <div id="editTextButton" style="display: inline-block; margin-left: 20px;">
+                <a href="/#/logged/editUser"><img src="./assets/12b.png" width="34" height="auto" /></a><p style="color: #5e5e5e ; font-size: 10px">Edit your data</p>
             </div>
             <p class="text-muted"  id="fot"><a href="/#/logged/privacy">Privacy</a> · <a href="#/logged/terms">Terms</a> · <a href="#/logged/terms">Advertising</a> · <a href="#/logged/choices">Ad Choices</a> · <a href="#/logged/cookies">Cookies More</a> </p>
             <p class="text-muted" id="stat">Some stats! - <b>TUTAJ COS BEDZIE!</b></p>

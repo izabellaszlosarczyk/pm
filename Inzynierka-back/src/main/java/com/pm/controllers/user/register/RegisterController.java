@@ -1,5 +1,7 @@
 package com.pm.controllers.user.register;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pm.model.User;
 import com.pm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,21 +26,34 @@ public class RegisterController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping(value = "/new", method = RequestMethod.POST, consumes = "application/json")
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> newUser(@RequestBody RegisterRequest registerRequest) {
+        ObjectMapper objectMapper = new ObjectMapper();
         if (registerRequest == null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error has occured");
+            try {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(objectMapper.writeValueAsString("Error has occured"));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
         }
-        String response = "";
+        System.out.println("REEEEEEEJESTRACJA");
+        System.out.println(registerRequest.getEmail());
+        System.out.println(registerRequest.getName());
         User u = new User();
         u.setLogin(registerRequest.getLogin());
         u.setEmail(registerRequest.getEmail());
         u.setPassword(registerRequest.getPassword());
-        u.setFirstName(registerRequest.getFirstName());
-        u.setLastName(registerRequest.getLastName());
+        u.setFirstName(registerRequest.getName());
+        u.setLastName(registerRequest.getSurname());
         u.setLastLog((new Date().toString()));
+        u.setProfilePhoto("image69"); //zdjecie domyslne
         userRepository.save(u);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(objectMapper.writeValueAsString("ok"));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }

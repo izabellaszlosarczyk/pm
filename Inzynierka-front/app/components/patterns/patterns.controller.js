@@ -3,19 +3,26 @@ export default class PatternsController {
     this.infoService = infoService;
     this.usersService = usersService;
     this.userData;
+    this.patternFiles = [];
     this.filesDetails = [];
     this.loading = true;
   }
 
   $onInit() {
+    console.log("PATTERNS");
     this.userData = this.usersService.getUserDataValues();
     console.log(this.userData.savedFiles);
     this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
       this.loading = false;
       this.filesDetails= response.data;
-      console.log("duuuuuuuuuuuuuuuupa");
       console.log(this.filesDetails);
     }.bind(this));
+    for (var i in this.filesDetails) {
+      if (this.filesDetails[i].type == "pattern"){
+        console.log(this.userData.savedFiles[i]);
+        this.patternFiles.push(this.filesDetails[i]);
+      }
+    }
     // this.filesDetails.push(response.data);
     //this.usersService.getFileDetails()
     //this.userNewData = this.userData;

@@ -5,28 +5,13 @@ package com.pm.controllers.user.register;
  */
 public class RegisterRequest {
 
-    private String lastName;
-    private String firstName;
+    private String name;
+    private String surname;
     private String login;
     private String email;
     private String password;
     private String lastLog;
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
 
     public String getLogin() {
         return login;
@@ -58,5 +43,21 @@ public class RegisterRequest {
 
     public void setLastLog(String lastLog) {
         this.lastLog = lastLog;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

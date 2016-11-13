@@ -5,6 +5,7 @@ export default class ChartsController {
     this.userData;
     this.filesDetails = [];
     this.loading = true;
+    this.chartFiles = [];
   }
 
   $onInit() {
@@ -16,6 +17,12 @@ export default class ChartsController {
       console.log("duuuuuuuuuuuuuuuupa");
       console.log(this.filesDetails);
     }.bind(this));
+    for (var i in this.filesDetails) {
+      if (this.filesDetails[i].type == "chart"){
+        console.log(this.userData.savedFiles[i]);
+        this.chartFiles.push(this.filesDetails[i]);
+      }
+    }
     // this.filesDetails.push(response.data);
     //this.usersService.getFileDetails()
     //this.userNewData = this.userData;

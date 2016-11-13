@@ -21,17 +21,13 @@
 
             <div class="form-group edit" style=" padding-bottom: 20px">
                 <p style="color:#1c1c1c; text-align: center">Change password!</p>
-                <input type="text"  class="field left"  id="input-password" type="password"  placeholder="Password">
-                <input type="text"  class="field left"  id="input-passwordEdit" type="password" placeholder="Repeat Password" ng-model="userDataEditCtrl.userNewData.password">
+                <input  class="field left"  id="input-password" type="password"  placeholder="Password">
+                <input  class="field left"  id="input-passwordEdit" type="password" placeholder="Repeat Password" ng-model="userDataEditCtrl.userNewData.password">
             </div>
             <a href="/#/logged"><button class="editButton" ng-click="userDataEditCtrl.editUser()">Change</button></a>
             <div class="photoUpload edit" style="padding-bottom: 20px">
-                <div class="col-md-12" >
-                </div>
-                <div class="col-md-12" >
-                </div>
-                <p style="color:#1c1c1c; text-align: center">Change your photo!</p>
-                <input type="file" class ="fileInput" id="file"  ngf-change="onChange($files)" ngf-select ng-model="picFile" name="attachement" accept="image/png, image/jpeg, image/jpg, application/msword, application/vnd.ms-excel, application/pdf "><br>
+                <input ng-model="userDataEditCtrl.newImage" onchange="angular.element(this).scope().file_changed(this)" type="file" accept="image/*" />
+                <img ng-src="{{userDataViewCtrl.newImage}}" ng-show="userDataViewCtrl.newImage" class="img-responsive">
                 <a> <button class="editButton" ng-click="userDataEditCtrl.editUser()">Change photo</button></a>
             </div>
         </fieldset>

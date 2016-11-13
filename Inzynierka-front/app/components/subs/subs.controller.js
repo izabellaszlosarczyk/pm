@@ -1,7 +1,14 @@
 export default class SubsController {
-  constructor(infoService, usersService) {
+  constructor(infoService, usersService,$state, $http,$scope, $stateParams) {
+    this.state = $state;
+    this.stateParams = $stateParams;
+    this.$scope = $scope;
     this.infoService = infoService;
     this.usersService = usersService;
+    this.filesDetails = [];
+    this.imageFiles = [];
+    this.loading = true;
+    this.$http = $http;
     this.userData;
     this.filesDetails = [];
     this.loading = true;
@@ -9,7 +16,12 @@ export default class SubsController {
 
   $onInit() {
     this.userData = this.usersService.getUserDataValues();
+    console.log("sgtggeffrghghhhhhhhhhhhhtththththrththtrh");
+    console.log(this.userData);
     console.log(this.userData.savedFiles);
+
+
+    //PONIZEJ ZMIENIC NA SUBSCRIBED z SAVED
     this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
       this.loading = false;
       this.filesDetails= response.data;
@@ -34,8 +46,10 @@ export default class SubsController {
   }
 
   viewFile(fileDetails){
-    //this.usersService.setRequestedFileDetails(fileDetails);
+    this.usersService.addRequestedFileDetails(fileDetails);
+    console.log(this.usersService.requestedFileDetails);
     console.log(fileDetails);
+    this.state.go('logged.fileDetails', fileDetails.title);
   }
 }
 

@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by piotrpodolski on 03/08/16.
- */
 @Component
 public class CorsFilter implements Filter {
 

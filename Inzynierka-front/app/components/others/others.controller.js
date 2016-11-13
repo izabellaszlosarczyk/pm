@@ -5,6 +5,7 @@ export default class OthersController {
     this.userData;
     this.filesDetails = [];
     this.loading = true;
+    this.otherFiles = [];
   }
 
   $onInit() {
@@ -16,6 +17,12 @@ export default class OthersController {
       console.log("duuuuuuuuuuuuuuuupa");
       console.log(this.filesDetails);
     }.bind(this));
+    for (var i in this.filesDetails) {
+      if (this.filesDetails[i].type == "other"){
+        console.log(this.userData.savedFiles[i]);
+        this.otherFiles.push(this.filesDetails[i]);
+      }
+    }
     // this.filesDetails.push(response.data);
     //this.usersService.getFileDetails()
     //this.userNewData = this.userData;

@@ -7,6 +7,7 @@ export default class ImagesController {
     this.usersService = usersService;
     this.userData;
     this.filesDetails = [];
+    this.imageFiles = [];
     this.loading = true;
     this.$http = $http;
   }
@@ -20,6 +21,12 @@ export default class ImagesController {
       this.filesDetails= response.data;
       console.log(this.filesDetails);
     }.bind(this));
+    for (var i in this.filesDetails) {
+      if (this.filesDetails[i].type == "image"){
+        console.log(this.userData.savedFiles[i]);
+        this.imageFiles.push(this.filesDetails[i]);
+      }
+    }
     // this.filesDetails.push(response.data);
     //this.usersService.getFileDetails()
     //this.userNewData = this.userData;

@@ -6,6 +6,12 @@
   text-align: center;
 }
 
+#type{
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
 #mainMenu{
   a:hover, a:visited {
     text-decoration: none
@@ -131,4 +137,10 @@ a{
   padding-top: 10px;
   text-align: center;
   //position: bottom;
+}
+
+#editTextButton{
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
 }
