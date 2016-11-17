@@ -69,23 +69,19 @@ export default class UserDataViewController {
         console.log("TERAZ PLIK");
         console.log(this.$scope.fileNew);
         //save file
-        this.usersService.saveNewImage(userFile).then(function successCallback(response, status, headers, config) {
+        this.usersService.saveNewImage(this.$scope.fileNew, this.newFileName).then(function successCallback(response, status, headers, config) {
             console.log(response.data);
             console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-            let fileEntity = {
-                type : type,
-                name : fileName
-            }
-            this.usersService.addFileEntity(fileEntity).then(function successCallback(response2, status2, headers2, config2) {
-                console.log(response2);
-                console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            }.bind(this));
         }.bind(this));
-        //save details
+        // let fileEntity = {
+        //     type : this.newFileType,
+        //     title : this.newFileName
+        // }
+        // this.usersService.addFileEntity(fileEntity).then(function successCallback(response2, status2, headers2, config2) {
+        //     console.log(response2);
+        //     console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        // }.bind(this));
+        // //save details
     }
 
-    recordSelected(type){
-        console.log(type);
-        this.newFileType = type;    
-    }
 }

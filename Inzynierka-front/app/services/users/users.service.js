@@ -113,11 +113,12 @@ class UserService {
     }
 
     saveNewImage(userFile, fileName){
+        console.log("saveuje\n image");
         var formdata = new FormData();
         formdata.append( 'name', fileName);
         formdata.append( 'file', userFile.file );
         return this.$http({
-            url: this.getUrl('content/save/upload/image/'),
+            url: this.getUrl('file/uploadNew'),
             method: "POST",
             data: formdata,
             cache: false,
