@@ -95,7 +95,7 @@ public class FileController {
 
     @RequestMapping(value = "/addSubs", method= RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> addFileFromSubs(@RequestBody SubsRequest request) {
+    public ResponseEntity<String> addFileToSubs(@RequestBody SubsRequest request) {
         System.out.println(request);
         User user = readClass.searchOneByEmail(request.getUserEmail());
         List<String> files = user.getSavedFiles();
@@ -153,6 +153,7 @@ public class FileController {
         return null;
     }
 
+    //TODO: metoda do testow
     @RequestMapping(value = "/addFile", method= RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<String> addFile(@RequestBody FileRequest fileRequest) {
@@ -165,10 +166,29 @@ public class FileController {
         List<Integer> s = new ArrayList<>();
         s.add(5);
         file.setScores(s);
-        file.setTitle(fileRequest.getTitle());
         file.setType(fileRequest.getType());
 
         return ResponseEntity.status(HttpStatus.OK).body("null");
+
+    }
+
+    @RequestMapping(value = "/addFileDetails", method= RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> addFileDescription(@RequestBody FileRequest fileRequest) throws JsonProcessingException {
+        if (fileRequest == null)return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        File file = new File();
+        ObjectMapper ob = new ObjectMapper();
+        file.setCreationDate(LocalDate.now());
+        file.setAverage("0");
+        List<String> c = new ArrayList<>();
+        file.setComments(c);
+        file.setTitle(fileRequest.getTitle());
+        List<Integer> s = new ArrayList<>();
+        s.add(5);
+        file.setScores(s);
+        file.setType(fileRequest.getType());
+
+        return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("ok"));
 
     }
 

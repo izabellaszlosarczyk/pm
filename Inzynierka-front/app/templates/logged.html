@@ -25,15 +25,17 @@
                 </div>
                 <div id="uploadFiles">
                     <p>Upload some stuff - we will analyze for you </p>
-                    <input type="file" style="font-size: 15px;" class ="fileInput" ngf-change="onChange($files)" ngf-select ng-model="picFile" name="attachement" accept="image/png, image/jpeg, image/jpg, application/msword, application/vnd.ms-excel, application/pdf " ><br>
+                    <input ng-model="userDataViewCtrl.newFile" onchange="angular.element(this).scope().file_upload(this)" type="file" />
+                    <input  type="text"  id="fileNameInput" placeholder="file name" ng-model="userDataViewCtrl.newFileName">
+                    <input  type="text"  id="fileTypeInput" placeholder="file type" ng-model="userDataViewCtrl.newFileType">
                     <div id="type" style="font-size: 15px;">
-                        <input type="radio" name="type" value="other">other
+                        <!--<input type="radio" name="type" value="other" ng-change="userDataViewCtrl.recordSelected('other')" ng-model="userDataViewCtrl">other
                         <input type="radio" name="type" value="chart">chart
                         <input type="radio" name="type" value="image">image
                         <input type="radio" name="type" value="pattern">pattern
-                        <input type="radio" name="type" value="cv">cv
+                        <input type="radio" name="type" value="cv">cv -->
                     </div>
-                    <button class="myButton editUser" ng-click="userDataViewCtrl.uploadNewFile()">Upload</button>
+                    <button class="myButton editUser" ng-click="userDataViewCtrl.addNewFile()">Upload</button>
                 </div>
             </div>
         </div>

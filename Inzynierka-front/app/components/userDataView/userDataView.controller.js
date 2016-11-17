@@ -14,6 +14,31 @@ export default class UserDataViewController {
         };
         this.avatar = '';
         this.requestedFile ='';
+        this.newFileName = '';
+        this.newFileType = '';
+        this.newFile = '';
+        this.$scope.fileNew = '';
+        this.$scope.file_upload = function(element) {
+            console.log("LADDDDDDDDDDDDDDDDDDDDDDDDDDDDDUJE");
+            this.$scope.$apply(function(scope) {
+                var fd = new FormData();
+                //Take the first selected file
+
+                var photofile = element.files[0];
+                var reader = new FileReader();
+                //this.$scope.fileNew = photofile;
+                //this.newFile = photofile;
+                console.log("DUPPPPPPPPPPPPPPPPPPA");
+               //console.log(this.newFile);
+                $scope.fileNew = photofile;
+                console.log($scope.fileNew);
+                reader.onload = function(e) {
+                    var file = new Object();
+                    file.src = reader.result;
+                };
+                reader.readAsDataURL(photofile);
+            });
+        }.bind(this);
     }
 
     $onInit() {
@@ -36,5 +61,31 @@ export default class UserDataViewController {
             this.state.go('logged.fileDetails',this.requestedFile);
         }.bind(this));
 
+    }
+
+    addNewFile(){
+        console.log(this.newFileName);
+        console.log(this.newFileType);
+        console.log("TERAZ PLIK");
+        console.log(this.$scope.fileNew);
+        //save file
+        this.usersService.saveNewImage(userFile).then(function successCallback(response, status, headers, config) {
+            console.log(response.data);
+            console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+            let fileEntity = {
+                type : type,
+                name : fileName
+            }
+            this.usersService.addFileEntity(fileEntity).then(function successCallback(response2, status2, headers2, config2) {
+                console.log(response2);
+                console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            }.bind(this));
+        }.bind(this));
+        //save details
+    }
+
+    recordSelected(type){
+        console.log(type);
+        this.newFileType = type;    
     }
 }

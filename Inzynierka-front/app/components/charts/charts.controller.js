@@ -21,8 +21,11 @@ export default class ChartsController {
       if (this.filesDetails[i].type == "chart"){
         console.log(this.userData.savedFiles[i]);
         this.chartFiles.push(this.filesDetails[i]);
+        console.log("MASAKRA");
+
       }
     }
+    console.log(this.chartFiles);
     // this.filesDetails.push(response.data);
     //this.usersService.getFileDetails()
     //this.userNewData = this.userData;

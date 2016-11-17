@@ -112,9 +112,9 @@ class UserService {
         });
     }
 
-    saveNewImage(userFile){
+    saveNewImage(userFile, fileName){
         var formdata = new FormData();
-        formdata.append( 'name', userFile.name );
+        formdata.append( 'name', fileName);
         formdata.append( 'file', userFile.file );
         return this.$http({
             url: this.getUrl('content/save/upload/image/'),
@@ -126,6 +126,14 @@ class UserService {
         });
 
     }
+    addFileEntity(file){
+        return this.$http({
+            url: this.getUrl(`file/addFileDetails`),
+            method: "POST",
+            data: file
+        });
+    }
+
     logout() {
         return this.$http({
             url: this.getUrl('logout'),

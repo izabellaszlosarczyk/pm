@@ -6,11 +6,13 @@ export default class UserStuffController {
     this.filesDetails = [];
     this.loading = true;
     this.inputContent;
+    this.allFiles = [];
   }
 
   $onInit() {
     this.userData = this.usersService.getUserDataValues();
-    console.log(this.userData.savedFiles);
+    console.log(this.userData);
+    this.allFiles.push(this.userData.savedFiles);
     this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
       this.loading = false;
       this.filesDetails= response.data;
