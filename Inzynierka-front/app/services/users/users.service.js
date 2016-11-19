@@ -124,9 +124,7 @@ class UserService {
             method: "POST",
             data: formdata,
             cache: false,
-            headers: {
-                "Content-Type": "multipart/*;boundary=gc0p4Jq0M2Yt08jU534c0p"
-            },
+            headers: {'Content-Type': undefined },
             processData: false
         });
 

@@ -23,9 +23,11 @@
                     <img src="./assets/wykres2.png"  class="img-responsive" style="background-color:transparent;">
                     <img src="./assets/wykres4.png" style="padding-top: 10px;" class="img-responsive" style="background-color:transparent;">
                 </div>
-                <div id="uploadFiles">
+                <div id="uploadFiles" style="background-color:#F7F7F3;">
                     <p>Upload some stuff - we will analyze for you </p>
-                    <input ng-model="userDataViewCtrl.newFile" onchange="angular.element(this).scope().file_upload(this)" type="file" />
+                    <div id="uploading" style="font-size: 14px;">
+                        <input ng-model="userDataViewCtrl.newFile" onchange="angular.element(this).scope().file_upload(this)" type="file" />
+                    </div>
                     <input  type="text"  id="fileNameInput" placeholder="file name" ng-model="userDataViewCtrl.newFileName">
                     <input  type="text"  id="fileTypeInput" placeholder="file type" ng-model="userDataViewCtrl.newFileType">
                     <div id="type" style="font-size: 15px;">

@@ -181,6 +181,7 @@ public class FileController {
         //check
         if (!file.isEmpty()) {
             try {
+                System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
                 ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
                 GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
                 java.io.File convFile = new java.io.File(file.getOriginalFilename());
@@ -189,8 +190,8 @@ public class FileController {
 //	            fos.write(file.getBytes());
 //	            fos.close();
                 fis = new FileInputStream(convFile);
-                System.out.println(name.toString());
-                gridOperations.store(fis, name.toString(), "profilePic/jpg");
+                System.out.println(name);
+                gridOperations.store(fis, name, "profilePic/jpg");
 //	            return convFile.toString();
 
             } catch (Exception e) {
