@@ -115,14 +115,18 @@ class UserService {
     saveNewImage(userFile, fileName){
         console.log("saveuje\n image");
         var formdata = new FormData();
+        // console.log(fileName);
+        // console.log(userFile);
         formdata.append( 'name', fileName);
-        formdata.append( 'file', userFile.file );
+        formdata.append( 'file', userFile);
         return this.$http({
             url: this.getUrl('file/uploadNew'),
             method: "POST",
             data: formdata,
             cache: false,
-            contentType: false,
+            headers: {
+                "Content-Type": "multipart/*;boundary=gc0p4Jq0M2Yt08jU534c0p"
+            },
             processData: false
         });
 

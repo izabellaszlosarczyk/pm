@@ -118,6 +118,54 @@ public class FileController {
         return ResponseEntity.status(HttpStatus.OK).body(userFilesSubs);
     }
 
+//    @RequestMapping(value = "/uploadNew",  headers = "content-type=multipart/*", method = RequestMethod.POST)
+//    @ResponseBody
+//    public ResponseEntity<String> uploadFileHandler(@RequestBody MultipartFileRequest request) {
+//        System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
+//        FileInputStream fis = null;
+//        ObjectMapper ob = new ObjectMapper();
+//        AnnotationConfigApplicationContext ctx = null;
+//        System.out.println(request.getFile());
+//        System.out.println(request.getName());
+//        //check
+////        if (!request.getFile().isEmpty()) {
+////            try {
+////                ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
+////                GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
+////                java.io.File convFile = new java.io.File(request.getFile().getOriginalFilename());
+////                convFile.createNewFile();
+//////	            FileOutputStream fos = new FileOutputStream(convFile);
+//////	            fos.write(file.getBytes());
+//////	            fos.close();
+////                fis = new FileInputStream(convFile);
+////                System.out.println(request.getFileName());
+////                gridOperations.store(fis, request.getFileName(), "profilePic/jpg");
+//////	            return convFile.toString();
+////
+////            } catch (Exception e) {
+////                try {
+////                    return  ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("You failed to upload " + name + " => " + e.getMessage()));
+////                } catch (JsonProcessingException e1) {
+////                    e1.printStackTrace();
+////                }
+////            } finally {
+////                if (fis != null)
+////                    try {
+////                        fis.close();
+////                    } catch (IOException e) {
+////                        // TODO Auto-generated catch block
+////                        e.printStackTrace();
+////                    }
+////            }
+////        }
+////        try {
+////            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("ok"));
+////        } catch (JsonProcessingException e) {
+////            e.printStackTrace();
+////        }
+//
+//        return null;
+//    }
 
     @RequestMapping(value = "/uploadNew",  headers = "content-type=multipart/*", method = RequestMethod.POST)
     @ResponseBody
@@ -126,6 +174,10 @@ public class FileController {
         FileInputStream fis = null;
         ObjectMapper ob = new ObjectMapper();
         AnnotationConfigApplicationContext ctx = null;
+        System.out.println("CZO TU SIE DZIEJE");
+        System.out.println(name);
+        System.out.println("FILEFILEFILE");
+        System.out.println(file);
         //check
         if (!file.isEmpty()) {
             try {

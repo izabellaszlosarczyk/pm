@@ -19,24 +19,20 @@ export default class UserDataViewController {
         this.newFile = '';
         this.$scope.fileNew = '';
         this.$scope.file_upload = function(element) {
-            console.log("LADDDDDDDDDDDDDDDDDDDDDDDDDDDDDUJE");
             this.$scope.$apply(function(scope) {
-                var fd = new FormData();
                 //Take the first selected file
-
                 var photofile = element.files[0];
+                console.log("dupa2");
+                console.log(element.files);
                 var reader = new FileReader();
-                //this.$scope.fileNew = photofile;
-                //this.newFile = photofile;
-                console.log("DUPPPPPPPPPPPPPPPPPPA");
-               //console.log(this.newFile);
                 $scope.fileNew = photofile;
                 console.log($scope.fileNew);
                 reader.onload = function(e) {
-                    var file = new Object();
-                    file.src = reader.result;
+                    $scope.prev_img = e.target.result;
+                    console.log(reader.result);
                 };
-                reader.readAsDataURL(photofile);
+                console.log($scope.fileNew.data);
+                reader.readAsDataURL($scope.fileNew);
             });
         }.bind(this);
     }
@@ -64,14 +60,9 @@ export default class UserDataViewController {
     }
 
     addNewFile(){
-        console.log(this.newFileName);
-        console.log(this.newFileType);
-        console.log("TERAZ PLIK");
-        console.log(this.$scope.fileNew);
         //save file
         this.usersService.saveNewImage(this.$scope.fileNew, this.newFileName).then(function successCallback(response, status, headers, config) {
             console.log(response.data);
-            console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
         }.bind(this));
         // let fileEntity = {
         //     type : this.newFileType,
