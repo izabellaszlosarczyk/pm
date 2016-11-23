@@ -1,5 +1,6 @@
 package com.pm.SpringConfig;
 
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -29,6 +30,16 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         commonsMultipartResolver.setMaxUploadSize(50000000);
         return commonsMultipartResolver;
     }
+    @Bean
+    public NewJavaServlet jythonServlet(){
+        return new NewJavaServlet();
+    }
+
+    @Bean
+    public ServletRegistrationBean servletRegistrationBean(){
+        return new ServletRegistrationBean(new NewJavaServlet(),"*.py");
+    }
+
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
