@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <style>
+
+        .axis {
+            font: 10px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+        div.tooltip {
+            position: absolute;
+            text-align: center;
+            width: 180px;
+            height: 80px;
+            padding: 2px;
+            font: 16px sans-serif;
+            background: lightsteelblue;
+            border: 0px;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script>
+    var div = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+    var margin = {top: 20, right: 20, bottom: 70, left: 40},
+            width = 3000 - margin.left - margin.right,
+            height = 600 - margin.top - margin.bottom;
+
+
+    var i =0;
+    var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+
+    var y = d3.scale.linear().range([height, 0]);
+
+    var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom")
+//            .tickFormat(d3.time.format("%Y-%m"));
+
+    var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left")
+            .ticks(10);
+
+    var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform",
+                    "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.csv("../generated_data/bar_chart.csv", function(error, data) {
+
+        data.forEach(function(d) {
+            d.node = d.node
+            d.quantity = +d.quantity
+            d.text =  d.text
+        });
+
+        x.domain(data.map(function(d) { return d.node; }));
+        y.domain([0, d3.max(data, function(d) { return d.quantity; })]);
+
+        svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis)
+                .selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em")
+                .attr("dy",
+                function(d) {
+                    i++;
+                    if (i%3==0) {
+                        return "1.55em";
+                    }
+                    else if(i%3==1){
+                        return "2.55em";
+                    }
+                    else
+                        return "3.55em";
+                })
+                .on("mouseover", function(d) {
+                    div.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                    div.html(d.txt)
+                            .style("left", (d3.event.pageX- 100) + "px")
+                            .style("top", (d3.event.pageY - 100) + "px");
+                })
+                .on("mouseout", function(d) {
+                    div.transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                })
+//                .attr("transform", "rotate(-90)" );
+
+        svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis)
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", ".71em")
+
+        svg.selectAll("bar")
+                .data(data)
+                .enter().append("rect")
+                .style("fill", "steelblue")
+                .attr("x", function(d) { return x(d.node); })
+                .attr("width", x.rangeBand())
+                .attr("y", function(d) { return y(d.quantity); })
+                .attr("height", function(d) { return height
+                        - y(d.quantity); })
+        .on("mouseover", function(d) {
+            div.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+            div.html(d.text)
+                    .style("left", (d3.event.pageX- 100) + "px")
+                    .style("top", (d3.event.pageY - 100) + "px");
+        })
+                .on("mouseout", function(d) {
+                    div.transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                })
+
+    });
+
+</script>
+
+</body>

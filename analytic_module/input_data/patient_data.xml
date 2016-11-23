@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VirtualPatientData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ns.medbiq.org/virtualpatientdata/v1/ virtualpatientdata.xsd" xmlns="http://ns.medbiq.org/virtualpatientdata/v1/">
+  <VPDText id="v1" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Mrs. Greer presents to your office  complaining of a deep cough and a high fever.
+"Doctor, the coughing is so bad that I can`t sleep. What is wrong with me?"</div>
+  </VPDText>
+  <VPDText id="v2" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">History</div>
+  </VPDText>
+  <VPDText id="v3" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Diagnostic tests</div>
+  </VPDText>
+  <VPDText id="v4" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Differential Diagnosis</div>
+  </VPDText>
+  <VPDText id="v5" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Mrs Greer is gravely ill. Admitting her is a good idea. Thank you for taking care of the patient!</div>
+  </VPDText>
+  <VPDText id="v6" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Mrs. Greer is gravely ill. Your decision is a bad one and would cause harm. Start over.</div>
+  </VPDText>
+  <VPDText id="v7" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Mrs. Greer`s most recent x-ray shows pneumonia in the lower lobe of the right lung. Oxygen saturation levels are 85%, RBC is low, WBC is high.</div>
+  </VPDText>
+  <VPDText id="v8" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Blood cell count and oxygen saturation</div>
+  </VPDText>
+  <VPDText id="v9" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Proceed</div>
+  </VPDText>
+  <VPDText id="v10" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Mrs Greer is pale, heart rate 115, blood pressure 65 over 100. You hear crackling in the lower lobe of the right lung.</div>
+  </VPDText>
+  <VPDText id="v25" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Asthma</div>
+  </VPDText>
+  <VPDText id="v26" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Viral Pneumonia</div>
+  </VPDText>
+  <VPDText id="v27" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Bacterial Pneumonia</div>
+  </VPDText>
+  <VPDText id="v28" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Asthma is not typically accompanied by high fever. based on her age, bacterial pneumonia is most likely.</div>
+  </VPDText>
+  <VPDText id="v29" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Viral pneumonia is less likely than bacterial pneumonia generally in patients of this age.</div>
+  </VPDText>
+  <VPDText id="v30" textType="narrative">
+    <div xmlns="http://www.w3.org/1999/xhtml">Bacterial pneumonia is most common in an otherwise healthy patient of this age.</div>
+  </VPDText>
+  <InterviewItem id="i1:inquiry">
+    <Question>How long has this been going on?</Question>
+    <Response>About a week. I woke up after a trip overseas and felt horrible.</Response>
+  </InterviewItem>
+  <InterviewItem id="i2:inquiry">
+    <Question>Are you experiencing any pain?</Question>
+    <Response>Yes, it hurts to breathe deeply.</Response>
+  </InterviewItem>
+  <InterviewItem id="i3:inquiry">
+    <Question>Why did you wait so long to see me?</Question>
+    <Response>Gosh, if you're going to talk to me like that maybe I should find another doctor.</Response>
+  </InterviewItem>
+</VirtualPatientData>

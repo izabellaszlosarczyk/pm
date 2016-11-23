@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+    .node circle {
+        fill: #fff;
+        stroke: steelblue;
+        stroke-width: 1.5px;
+    }
+
+    .node {
+        font: 10px sans-serif;
+    }
+
+    .link {
+        fill: none;
+        stroke: #ccc;
+        stroke-width: 1.5px;
+    }
+    div.tooltip {
+        position: absolute;
+        text-align: center;
+        width: 180px;
+        height: 80px;
+        padding: 2px;
+        font: 16px sans-serif;
+        background: lightsteelblue;
+        border: 0px;
+        border-radius: 8px;
+        pointer-events: none;
+    }
+
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+    var div = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+    var width = 1600,
+            height = 1050;
+
+    var cluster = d3.layout.cluster()
+            .size([height, width - 160]);
+
+    var diagonal = d3.svg.diagonal()
+            .projection(function(d) { return [d.y, d.x]; });
+
+    var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(40,0)");
+
+    d3.json("../generated_data/dendrogram.json", function(error, root) {
+        var nodes = cluster.nodes(root),
+                links = cluster.links(nodes);
+
+        var link = svg.selectAll(".link")
+                .data(links)
+                .enter().append("path")
+                .attr("class", "link")
+                .attr("d", diagonal)
+                .attr("stroke", function (d) {
+                    return 'red'; })
+        var node = svg.selectAll(".node")
+                .data(nodes)
+                .enter().append("g")
+                .attr("class", "node")
+                .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+
+                .on("mouseover", function(d) {
+                    if (d.txt!=undefined) {
+                        div.transition()
+                                .duration(200)
+                                .style("opacity", .9);
+                        div.html(
+                                d.txt)
+                                .style("left", (d3.event.pageX - 100) + "px")
+                                .style("top", (d3.event.pageY - 100) + "px");
+                    }
+                })
+                .on("mouseout", function(d) {
+                    div.transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                });
+        node.append("circle")
+                .attr("r", 4.5)
+                .on("dblclick", dblclick)
+        node.append("text")
+                .attr("dx", function(d) { return d.children ? -10 : 10; })
+                .attr("dy", 3)
+                .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
+                .text(function(d) { return d.name; });
+    });
+
+    function dblclick(d) {
+        d3.select(this).style('fill','#f00')
+        var a = d3.select(this)
+        var b = this.children
+        var c =1
+        for (child in this.children)
+        {
+            d3.select(this.children).style('fill','#f00')
+        }
+    }
+
+    d3.select(self.frameElement).style("height", height + "px");
+
+</script>
