@@ -40,6 +40,11 @@
 			<version>2.7.1b3</version>
 		</dependency>
 		<dependency>
+			<groupId>net.sf.mavenjython</groupId>
+			<artifactId>jython-compile-maven-plugin</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
@@ -134,6 +139,26 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>net.sf.mavenjython</groupId>
+				<artifactId>jython-compile-maven-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jython</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<libraries>
+						<param>pandas</param>
+						<param>ply</param>
+						<param>jinja</param>
+					</libraries>
+				</configuration>
 			</plugin>
 		</plugins>
 

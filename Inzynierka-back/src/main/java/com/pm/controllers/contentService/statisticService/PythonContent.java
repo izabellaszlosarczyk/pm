@@ -7,6 +7,8 @@ import org.python.core.PyFunction;
 import org.python.core.PyInteger;
 import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.batch.core.step.tasklet.SystemCommandTasklet;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -32,6 +36,9 @@ public class PythonContent {
     @Autowired
     SaveUpdateDatabase editClass;
 
+    @Autowired
+    private ResourceLoader resourceLoader;
+
     @RequestMapping(value = "/a", method= RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<String> a(){
@@ -40,7 +47,13 @@ public class PythonContent {
         PythonInterpreter pi = new PythonInterpreter();
         pi.exec("print(1)");
         String scriptname = "file.py";
-        pi.execfile(scriptname);
+        Resource resource = resourceLoader.getResource("classpath:/static/"+scriptname);
+        try {
+            InputStream in = resource.getInputStream();
+            pi.execfile(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 //        pi.exec("from pymodule import square");
 //        pi.set("integer", new PyInteger(42));
 //        pi.exec("result = square(integer)");
