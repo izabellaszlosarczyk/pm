@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jython-2.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jython-2.1.jar!/" />
+      <root url="file://$PROJECT_DIR$/target" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="jar://$PROJECT_DIR$/jython-2.1.jar!/" recursive="false" />
+  </library>
+</component>

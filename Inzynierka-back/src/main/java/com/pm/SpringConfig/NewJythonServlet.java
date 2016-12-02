@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 /**
  * Created by izabella on 19.11.16.
  */
-class NewJavaServlet extends HttpServlet {
+class NewJythonServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -22,7 +22,7 @@ class NewJavaServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet NewJavaServlet at " +
-                    request.getContextPath () + "</h1>");
+                    request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {

@@ -31,13 +31,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return commonsMultipartResolver;
     }
     @Bean
-    public NewJavaServlet jythonServlet(){
-        return new NewJavaServlet();
+    public NewJythonServlet jythonServlet(){
+        return new NewJythonServlet();
     }
 
     @Bean
     public ServletRegistrationBean servletRegistrationBean(){
-        return new ServletRegistrationBean(new NewJavaServlet(),"*.py");
+        return new ServletRegistrationBean(new NewJythonServlet(),"*.py");
     }
 
 
