@@ -11,12 +11,19 @@ export default class FileController {
     this.fileDetails = [];
     this.content;
     this.comment = "";
+    this.userFilesSaved = [];
+    this.userFilesSubs = [];
     this.flagType = false; // if text - true  <--> image -false
+    this.flagIs = false;
 
   }
   $onInit() {
     if (this.fileDetails.type != "image" && this.fileDetails.type != "chart"){
       this.flagType = true;
+    }
+
+    if (this.fileDetails.type != "interactive"){
+      console.log("interactive");
     }
 
     //obrazek
@@ -25,6 +32,16 @@ export default class FileController {
     tmp = this.usersService.requestedFileDetails;
     this.fileDetails = tmp;
     console.log(this.fileDetails);
+    console.log("TERAZ CZESC UZYTKOWNIKA");
+    this.userFilesSubs = this.usersService.userData.subscribedFiles;
+    this.userFilesSaved = this.usersService.userData.savedFiles;
+    console.log(this.userFilesSubs);
+    console.log(this.userFilesSaved);
+    console.log(this.fileDetails.title);
+    if ((this.userFilesSaved.indexOf(this.fileDetails.title) > -1) || ( this.userFilesSubs.indexOf(this.fileDetails.title) > -1)) {
+      this.flagIs = true;
+      console.log("okej");
+    }
 
     this.content = this.usersService.getUrl(`/content/load/${this.fileDetails.title}`);
     // this.usersService.getFile(this.fileDetails.title).then(function successCallback(response, status, headers, config) {
@@ -44,12 +61,14 @@ export default class FileController {
 
 
   addComment(){
+    console.log("dodaje komcia sdsadsfsdgsrgrg");
     let data ={
       comment: this.comment,
       fileName: this.fileDetails.title
     };
+    console.log(data);
     this.usersService.addCommentToFile(data).then(function successCallback(response, status, headers, config) {
-
+    
     }.bind(this));
   }
   addScore(score){
@@ -59,6 +78,25 @@ export default class FileController {
     };
     this.usersService.addOpinionToFile(data).then(function successCallback(response, status, headers, config) {
 
+    }.bind(this));
+  }
+  subscribe(){
+    let addData = {
+    email: this.usersService.userData.email,
+    title: this.fileDetails.title
+  };
+    this.usersService.addFileToSubs(addData).then(function successCallback(response, status, headers, config) {
+      console.log("Dupa234235243543t542524w");
+    }.bind(this));
+  }
+  
+  delSubs(){
+    let delData = {
+      email: this.usersService.userData.email,
+      title: this.fileDetails.title
+    };
+    this.usersService.deleteFileFromSubs(delData).then(function successCallback(response, status, headers, config) {
+      console.log("Dupahgjy7t7ti7i6i24w");
     }.bind(this));
   }
 }

@@ -41,7 +41,7 @@ public class File extends  AbstractModel{
     }
 
     public void setComments(List<String> comments) {
-        this.comments.addAll(comments);
+        this.comments = comments;
     }
 
     public List<Integer> getScores() {
@@ -67,4 +67,6 @@ public class File extends  AbstractModel{
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
+
+    public void addComment(String comment){this.comments.add(comment);}
 }

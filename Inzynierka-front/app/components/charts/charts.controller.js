@@ -37,16 +37,19 @@ export default class ChartsController {
     console.log(this.usersService.userData);
     console.log(fileDetails);
     let data = {
-      userEmail: this.usersService.userData.email,
-      fileName: fileDetails.title
+      email: this.usersService.userData.email,
+      title: fileDetails.title
     };
     this.usersService.deleteFileFromSubs(data);
   }
+
 
   viewFile(fileDetails){
     //this.usersService.setRequestedFileDetails(fileDetails);
     console.log(fileDetails);
   }
+
+
 }
 
 

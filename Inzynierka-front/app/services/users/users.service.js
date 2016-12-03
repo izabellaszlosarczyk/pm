@@ -74,10 +74,10 @@ class UserService {
         });
     }
 
-    addOpinionToFile(fileName,grade){
+    addOpinionToFile(scoreReq){
         let request = {
-            file: fileName,
-            grade: grade
+            file: scoreReq.fileName,
+            score: scoreReq.score
         };
         return this.$http({
             url: this.getUrl(`rate/score`),
@@ -85,11 +85,13 @@ class UserService {
             data: request
         });
     }
-    addCommentToFile(fileName,comment){
+    addCommentToFile(commentReq){
+        console.log("komcia2222");
         let request = {
-            file: fileName,
-            comment: comment
+            file: commentReq.fileName,
+            comment: "~" + this.userData.email + ": " + commentReq.comment
         };
+        console.log(request);
         return this.$http({
             url: this.getUrl(`rate/comment`),
             method: "POST",
@@ -183,6 +185,15 @@ class UserService {
             data: deleteRequest
         });
     }
+
+    addFileToSubs(addRequest) {
+        return this.$http({
+            url: this.getUrl(`file/addSubs"`),
+            method: "POST",
+            data: addRequest
+        });
+    }
+
 
     getRandomFileName(){
         return this.$http({

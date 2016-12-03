@@ -4,7 +4,7 @@ package com.pm.controllers.contentService.statisticService;
  * Created by izabella on 21.10.16.
  */
 public class CommentRequest {
-    private String fileName;
+    private String file;
     private String comment;
 
     public String getComment() {
@@ -15,11 +15,11 @@ public class CommentRequest {
         this.comment = comment;
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getFile() {
+        return file;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFile(String file) {
+        this.file = file;
     }
 }

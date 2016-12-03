@@ -140,26 +140,24 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>net.sf.mavenjython</groupId>
-				<artifactId>jython-compile-maven-plugin</artifactId>
-				<version>1.4</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>jython</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<libraries>
-						<param>pandas</param>
-						<param>ply</param>
-						<param>jinja</param>
-					</libraries>
-				</configuration>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>net.sf.mavenjython</groupId>-->
+				<!--<artifactId>jython-compile-maven-plugin</artifactId>-->
+				<!--<version>1.4</version>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<phase>package</phase>-->
+						<!--<goals>-->
+							<!--<goal>jython</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+				<!--<configuration>-->
+					<!--<libraries>-->
+						<!--<param></param>-->
+					<!--</libraries>-->
+				<!--</configuration>-->
+			<!--</plugin>-->
 		</plugins>
 
 	</build>

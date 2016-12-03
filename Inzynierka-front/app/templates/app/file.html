@@ -6,8 +6,11 @@
             <p>Title: {{fileCtrl.fileDetails.title}}</p>
             <p>Average score : {{fileCtrl.fileDetails.average}}</p>
         </div>
-        <div class="col-md-4">
-            <img src="./assets/10a.png"  class="img-responsive" style="background-color:transparent; max-width: 50px">
+        <div class="col-md-4" ng-if="!fileCtrl.flagIs">
+            <a ng-click="fileCtrl.subscribe()"><img src="./assets/10a.png" class="img-responsive" style="background-color:transparent; max-width: 50px" /></a>
+        </div>
+        <div class="col-md-4" ng-if="fileCtrl.flagIs">
+            <a ng-click="fileCtrl.delSubs()"><img src="./assets/10ab.png" class="img-responsive" style="background-color:transparent; max-width: 50px" /></a>
         </div>
     </div>
     <div id="content" ng-if="!fileCtrl.loading">
@@ -23,7 +26,11 @@
         <button class="myButton score" ng-click="fileCtrl.addScore(5)">5</button>
     </div>
     <div id="comment" style="padding-top: 10px">
-        <p>Comments : {{fileCtrl.fileDetails.comments}}</p>
+        <!--<p>Comments : {{fileCtrl.fileDetails.comments}}</p>-->
+        <ul>
+            <li ng-repeat="com in fileCtrl.fileDetails.comments" style=" font-size: 10px;">{{com}}</li>
+        </ul>
+
         <input class="form-control" id="inputComment" placeholder="write a comment"  ng-model="fileCtrl.comment">
         <button class="commentButton" ng-click="fileCtrl.addComment()">add comment</button>
     </div>
