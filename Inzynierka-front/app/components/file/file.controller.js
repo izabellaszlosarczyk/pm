@@ -15,6 +15,7 @@ export default class FileController {
     this.userFilesSubs = [];
     this.flagType = false; // if text - true  <--> image -false
     this.flagIs = false;
+    this.flagInteractive = false;
 
   }
   $onInit() {
@@ -22,8 +23,10 @@ export default class FileController {
       this.flagType = true;
     }
 
-    if (this.fileDetails.type != "interactive"){
+    if (this.fileDetails.type == "json"){
       console.log("interactive");
+      //TUTAJ JEST TEN TYP NA INTERAKTYWNE
+      this.flagInteractive = true;
     }
 
     //obrazek
@@ -68,8 +71,9 @@ export default class FileController {
     };
     console.log(data);
     this.usersService.addCommentToFile(data).then(function successCallback(response, status, headers, config) {
-    
+      this.state.go('logged.fileDetails',this.fileDetails);
     }.bind(this));
+
   }
   addScore(score){
     let data ={
@@ -77,7 +81,7 @@ export default class FileController {
       fileName: this.fileDetails.title
     };
     this.usersService.addOpinionToFile(data).then(function successCallback(response, status, headers, config) {
-
+      this.state.go('logged.fileDetails',this.fileDetails);
     }.bind(this));
   }
   subscribe(){

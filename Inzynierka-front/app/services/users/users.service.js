@@ -196,8 +196,17 @@ class UserService {
 
 
     getRandomFileName(){
+        console.log("RANDOMRANDOMRANDOM");
         return this.$http({
             url: this.getUrl(`mainContent/randomName`),
+            method: "GET"
+        });
+    }
+
+    getRandomFile(){
+        console.log("RANDOMRANDOMRANDOM2");
+        return this.$http({
+            url: this.getUrl(`mainContent/randomFile`),
             method: "GET"
         });
     }

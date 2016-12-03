@@ -37,8 +37,8 @@ export default class ImagesController {
     console.log(this.usersService.userData);
     console.log(fileDetails);
     let data = {
-      userEmail: this.usersService.userData.email,
-      fileName: fileDetails.title
+      email: this.usersService.userData.email,
+      title: fileDetails.title
     };
     this.usersService.deleteFileFromSubs(data);
   }

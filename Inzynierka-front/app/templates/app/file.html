@@ -13,9 +13,17 @@
             <a ng-click="fileCtrl.delSubs()"><img src="./assets/10ab.png" class="img-responsive" style="background-color:transparent; max-width: 50px" /></a>
         </div>
     </div>
+
+
     <div id="content" ng-if="!fileCtrl.loading">
         <img ng-src="{{fileCtrl.content}}" class="img-responsive" ng-if="fileCtrl.flagType">
         <p ng-if="!fileCtrl.flagType">{{fileCtrl.content}}</p>
+
+        <!-- TUTAJ JEST DIV DLA TYCH INTERAKTYWNYCH KTORE CHCESZ GENEROWAC NA BIEZACO-->
+        <div ng-if="fileCtrl.flagInteractive">
+
+        </div>
+
     </div>
     <div id="score" style="border-bottom: 1px solid #CBD5DD;">
         <p>Rate this file!</p>

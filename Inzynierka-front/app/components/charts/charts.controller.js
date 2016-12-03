@@ -1,11 +1,15 @@
 export default class ChartsController {
-  constructor(infoService, usersService) {
+  constructor(infoService, usersService, $state, $http,$scope, $stateParams) {
     this.infoService = infoService;
     this.usersService = usersService;
     this.userData;
     this.filesDetails = [];
     this.loading = true;
     this.chartFiles = [];
+    this.state = $state;
+    this.stateParams = $stateParams;
+    this.$scope = $scope;
+    this.$http = $http;
   }
 
   $onInit() {
@@ -45,8 +49,10 @@ export default class ChartsController {
 
 
   viewFile(fileDetails){
-    //this.usersService.setRequestedFileDetails(fileDetails);
+    this.usersService.addRequestedFileDetails(fileDetails);
+    console.log(this.usersService.requestedFileDetails);
     console.log(fileDetails);
+    this.state.go('logged.fileDetails', fileDetails.title);
   }
 
 

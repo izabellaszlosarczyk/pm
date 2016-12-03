@@ -159,9 +159,12 @@ public class AppContent {
         Random rand = new Random();
 
         int  n = rand.nextInt();
-        n = n%filesDetails.size();
+        n = Math.abs(n%filesDetails.size());
         File randomFile = filesDetails.get(n);
         ObjectMapper mapper = new ObjectMapper();
+
+        System.out.println("co tu sie dzieje");
+        System.out.println(randomFile.getTitle());
         try {
             return ResponseEntity.status(HttpStatus.OK).body(mapper.writeValueAsString(randomFile));
         } catch (JsonProcessingException e) {

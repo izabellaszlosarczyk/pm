@@ -51,7 +51,9 @@ export default class UserDataViewController {
     }
 
     randomFile(){
-        this.usersService.getRandomFileName().then(function successCallback(response, status, headers, config) {
+        console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDUPA");
+        this.usersService.getRandomFile().then(function successCallback(response, status, headers, config) {
+            console.log(response.data);
             this.requestedFile = response.data;
             this.usersService.addRequestedFileDetails(this.requestedFile);
             this.state.go('logged.fileDetails',this.requestedFile);
