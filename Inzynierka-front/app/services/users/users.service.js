@@ -114,7 +114,7 @@ class UserService {
         });
     }
 
-    saveNewImage(userFile, fileName){
+    saveNewImage(userFile, fileName){ //potem to zmienie, ogolna metoda na dodawnaie plikow
         console.log("saveuje\n image");
         var formdata = new FormData();
         // console.log(fileName);
@@ -131,6 +131,45 @@ class UserService {
         });
 
     }
+
+    saveNewFileBackend(userFile, fileName){ //potem to zmienie, ogolna metoda na dodawnaie plikow
+        console.log("saveuje\n image");
+        var formdata = new FormData();
+        // console.log(fileName);
+        // console.log(userFile);
+        formdata.append( 'name', fileName);
+        formdata.append( 'file', userFile);
+        return this.$http({
+            url: this.getUrl('file/uploadNew'),
+            method: "POST",
+            data: formdata,
+            cache: false,
+            headers: {'Content-Type': undefined },
+            processData: false
+        });
+
+    }
+    
+    //Metoda dla Pauliny 
+    sendToPythonServer(userFile, fileName){
+        console.log("saveuje\n ");
+        var formdata = new FormData();
+        formdata.append( 'name', fileName);
+        formdata.append( 'file', userFile);
+        return this.$http({
+            // tutaj podaj url jaki chcesz miec do swojego pythonowego modulu - cała ściezka localhost:8000 .....
+            url: "",
+            method: "POST",
+            data: formdata,
+            cache: false,
+            headers: {'Content-Type': undefined },
+            processData: false
+        });
+
+    }
+    
+    
+    
     addFileEntity(file){
         return this.$http({
             url: this.getUrl(`file/addFileDetails`),

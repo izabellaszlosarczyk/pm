@@ -25,11 +25,19 @@
                 </div>
                 <div id="uploadFiles" style="background-color:#F7F7F3;">
                     <p>Upload some stuff - we will analyze for you </p>
-                    <div id="uploading" style="font-size: 14px;">
-                        <input ng-model="userDataViewCtrl.newFile" onchange="angular.element(this).scope().file_upload(this)" type="file" />
+                    <div  class="col-md-6" id="uploading" style="font-size: 14px;">
+                        <input ng-model="userDataViewCtrl.newFile" onchange="angular.element(this).scope().file_upload(this)" type="file" /><p>CSV with data</p>
                     </div>
-                    <input  type="text"  id="fileNameInput" placeholder="file name" ng-model="userDataViewCtrl.newFileName">
-                    <input  type="text"  id="fileTypeInput" placeholder="file type" ng-model="userDataViewCtrl.newFileType">
+                    <div class="col-md-6" id="uploading2" style="font-size: 14px;">
+                        <input ng-model="userDataViewCtrl.newFile2" onchange="angular.element(this).scope().file_upload(this)" type="file" /><p>JSON with description</p>
+                    </div>
+
+                    <input  type="text"  id="fileNameInput" placeholder="file name" ng-model="userDataViewCtrl.newFileName" style="margin-top: 20px">
+                    <select name="typeSelect" id="typeSelect" ng-model="userDataViewCtrl.newFileType">
+                        <option value="" disabled selected>file type</option>
+                        <option value="labyrinth">labyrinth</option>
+                        <option value="multiple">multiple answers</option>
+                    </select><br>
                     <div id="type" style="font-size: 15px;">
                         <!--<input type="radio" name="type" value="other" ng-change="userDataViewCtrl.recordSelected('other')" ng-model="userDataViewCtrl">other
                         <input type="radio" name="type" value="chart">chart

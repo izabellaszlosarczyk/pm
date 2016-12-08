@@ -12,14 +12,15 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.batch.core.step.tasklet.SystemCommandTasklet;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
-import java.io.InputStream;
+import javax.net.ssl.HttpsURLConnection;
+import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -36,24 +37,30 @@ public class PythonContent {
     @Autowired
     SaveUpdateDatabase editClass;
 
-    @Autowired
-    private ResourceLoader resourceLoader;
 
-    @RequestMapping(value = "/a", method= RequestMethod.GET)
-    @ResponseBody
-    public ResponseEntity<String> a(){
-        System.out.println("dupa");
+    //metoda2: z pythonowego backu request z plikiem wysyłamy na front-end
 
-        PythonInterpreter pi = new PythonInterpreter();
-        pi.exec("print(1)");
-        String scriptname = "file.py";
-        Resource resource = resourceLoader.getResource("classpath:/static/"+scriptname);
-        try {
-            InputStream in = resource.getInputStream();
-            pi.execfile(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+
+
+
+        //@Autowired
+    //    private ResourceLoader resourceLoader;
+//    @RequestMapping(value = "/a", method= RequestMethod.GET)
+//    @ResponseBody
+//    public ResponseEntity<String> a(){
+//        System.out.println("dupa");
+//
+//        PythonInterpreter pi = new PythonInterpreter();
+//        pi.exec("print(1)");
+//        String scriptname = "file.py";
+//        Resource resource = resourceLoader.getResource("classpath:/static/"+scriptname);
+//        try {
+//            InputStream in = resource.getInputStream();
+//            pi.execfile(in);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 //        pi.exec("from pymodule import square");
 //        pi.set("integer", new PyInteger(42));
 //        pi.exec("result = square(integer)");
@@ -62,8 +69,10 @@ public class PythonContent {
 //        System.out.println("result: "+ result.asInt());
 //        PyFunction pf = (PyFunction)pi.get("square");
 //        System.out.println(pf.__call__(new PyInteger(5)));
-        return ResponseEntity.status(HttpStatus.OK).body("0");
-    }
+//        return ResponseEntity.status(HttpStatus.OK).body("0");
+//    }
+
+
 
 }
 

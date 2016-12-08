@@ -14,7 +14,8 @@ export default class UserDataViewController {
         };
         this.avatar = '';
         this.requestedFile ='';
-        this.newFileName = '';
+        this.newFileName = ''; // jeden z dodawanych plikow
+        this.newFileName2 = ''; // drugi z dodawanych plikow
         this.newFileType = '';
         this.newFile = '';
         this.$scope.fileNew = '';
@@ -62,10 +63,19 @@ export default class UserDataViewController {
     }
 
     addNewFile(){
-        //save file
-        this.usersService.saveNewImage(this.$scope.fileNew, this.newFileName).then(function successCallback(response, status, headers, config) {
-            console.log(response.data);
-        }.bind(this));
+        console.log(this.newFileType);
+        //front-end -> python -> front-end
+        // this.usersService.sendToPythonServer(this.$scope.fileNew, this.newFileName).then(function successCallback(response, status, headers, config) {
+                // pliki analizy
+        //     console.log(response.data);
+
+        // }.bind(this));
+
+
+        //save file to database through backend
+        // this.usersService.saveNewFileBackend(this.$scope.fileNew, this.newFileName).then(function successCallback(response, status, headers, config) {
+        //     console.log(response.data);
+        // }.bind(this));
         // let fileEntity = {
         //     type : this.newFileType,
         //     title : this.newFileName
