@@ -132,13 +132,17 @@ class UserService {
 
     }
 
-    saveNewFileBackend(userFile, fileName){ //potem to zmienie, ogolna metoda na dodawnaie plikow
-        console.log("saveuje\n image");
+    saveNewFileBackend(userFileData, userFileDesc, type){ //potem to zmienie, ogolna metoda na dodawnaie plikow
+        console.log("saveuje\n");
+        console.log(userFileData.name);
+        console.log(userFileDesc.name);
+
         var formdata = new FormData();
-        // console.log(fileName);
-        // console.log(userFile);
-        formdata.append( 'name', fileName);
-        formdata.append( 'file', userFile);
+        formdata.append( 'nameData', userFileData.name);
+        formdata.append( 'fileData', userFileData);
+        formdata.append( 'nameDesc', userFileDesc.name);
+        formdata.append( 'fileDesc', userFileDesc);
+        formdata.append( 'type', userFileDesc);
         return this.$http({
             url: this.getUrl('file/uploadNew'),
             method: "POST",
@@ -151,27 +155,7 @@ class UserService {
 
     }
     
-    //Metoda dla Pauliny 
-    sendToPythonServer(userFile, fileName){
-        console.log("saveuje\n ");
-        var formdata = new FormData();
-        formdata.append( 'name', fileName);
-        formdata.append( 'file', userFile);
-        console.log("Formdata");
-        console.log(formdata);
-        jQuery.ajax({
-            url:  "http://127.0.0.1:8000/polls/",
-            type: "POST",
-            data: JSON.stringify({"foo":"bar"}),
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function (response) {
-                console.log("success");
-            },
-            error: function (response) {
-                console.log("failed");
-            }
-        });
+
         // return this.$http({
         //     // tutaj podaj url jaki chcesz miec do swojego pythonowego modulu - cała ściezka localhost:8000 .....
         //     url: "http://127.0.0.1:8000/polls/",
@@ -186,16 +170,13 @@ class UserService {
         // //     url: "http://127.0.0.1:8000/polls/",
         // //     method: 'JSONP'
         // // });
-        return $.ajax({
-                url:  "http://127.0.0.1:8000/polls/",
-                data: queryStatusData,
-                dataType: "jsonp",
-                type: "GET",
-                success: queryStatusSuccessFunc
-            });
-
-    }
-    
+        // return $.ajax({
+        //         url:  "http://127.0.0.1:8000/polls/",
+        //         data: queryStatusData,
+        //         dataType: "jsonp",
+        //         type: "GET",
+        //         success: queryStatusSuccessFunc
+        //     });
     
     
     addFileEntity(file){

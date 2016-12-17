@@ -1,5 +1,6 @@
 package com.pm.controllers.contentService.statisticService;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.pm.database.ReadFromDatabase;
 import com.pm.database.SaveUpdateDatabase;
@@ -7,6 +8,7 @@ import org.python.core.PyFunction;
 import org.python.core.PyInteger;
 import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.batch.core.step.tasklet.SystemCommandTasklet;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -40,6 +43,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
 /**
  * Created by izabella on 23.11.16.
  */
@@ -57,62 +61,60 @@ public class PythonContent {
 
     //metoda2: z pythonowego backu request z plikiem wysyłamy na front-end
 
-@RequestMapping("/send")
- public static void sendPost() throws IOException{
+    @RequestMapping("/send")
+    public static void sendPost() throws IOException {
 
 
- String FILENAME = "//home//zuchens//Desktop//pm//analytic_module//input_data//data.csv";
- String file = "param1=";
+        String FILENAME = "//home//zuchens//Desktop//pm//analytic_module//input_data//data.csv";
+        String file = "param1=";
 
- 	try (BufferedReader br = new BufferedReader(new FileReader(FILENAME))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(FILENAME))) {
 
-			String sCurrentLine;
+            String sCurrentLine;
 
-			while ((sCurrentLine = br.readLine()) != null) {
-			file = file.concat(sCurrentLine+"\n");
-				//System.out.println(sCurrentLine);
-			}
+            while ((sCurrentLine = br.readLine()) != null) {
+                file = file.concat(sCurrentLine + "\n");
+                //System.out.println(sCurrentLine);
+            }
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-
-
- String urlParameters  = file;
-byte[] postData       = urlParameters.getBytes("UTF-8" );
-int    postDataLength = postData.length;
-  URL url = new URL("http://127.0.0.1:8000/polls/");
-  HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-  httpCon.setDoOutput(true);
-  httpCon.setRequestMethod("POST");
-  //OutputStreamWriter out = new OutputStreamWriter(
-  //    httpCon.getOutputStream());
-
-  httpCon.setUseCaches( false );
-
-  try( DataOutputStream wr = new DataOutputStream( httpCon.getOutputStream())) {
-   wr.write( postData );
-}
-    try {
-        System.out.println("getting response");
-        int responseCode = httpCon.getResponseCode();
-        System.out.println("\nSending 'POST' request to URL : " + url);
-        System.out.println("Response Code : " + responseCode);
-    }
-    catch(org.thymeleaf.exceptions.TemplateInputException e){
-        System.out.println("not getting response :(");
-
-    }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
-  //System.out.println(httpCon.getResponseCode());
+        String urlParameters = file;
+        byte[] postData = urlParameters.getBytes("UTF-8");
+        int postDataLength = postData.length;
+        URL url = new URL("http://127.0.0.1:8000/polls/");
+        HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+        httpCon.setDoOutput(true);
+        httpCon.setRequestMethod("POST");
+        //OutputStreamWriter out = new OutputStreamWriter(
+        //    httpCon.getOutputStream());
+
+        httpCon.setUseCaches(false);
+
+        try (DataOutputStream wr = new DataOutputStream(httpCon.getOutputStream())) {
+            wr.write(postData);
+        }
+        try {
+            System.out.println("getting response");
+            int responseCode = httpCon.getResponseCode();
+            System.out.println("\nSending 'POST' request to URL : " + url);
+            System.out.println("Response Code : " + responseCode);
+        } catch (org.thymeleaf.exceptions.TemplateInputException e) {
+            System.out.println("not getting response :(");
+
+        }
+
+
+        //System.out.println(httpCon.getResponseCode());
 //  System.out.println(httpCon.getResponseMessage());
- // out.close();
- }
+        // out.close();
+    }
 
 
-        //@Autowired
+    //@Autowired
     //    private ResourceLoader resourceLoader;
 //    @RequestMapping(value = "/a", method= RequestMethod.GET)
 //    @ResponseBody
@@ -139,7 +141,6 @@ int    postDataLength = postData.length;
 //        System.out.println(pf.__call__(new PyInteger(5)));
 //        return ResponseEntity.status(HttpStatus.OK).body("0");
 //    }
-
 
 
 }

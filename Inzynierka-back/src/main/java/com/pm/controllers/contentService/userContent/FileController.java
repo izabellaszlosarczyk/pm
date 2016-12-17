@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -166,58 +169,199 @@ public class FileController {
 //
 //        return null;
 //    }
-
     @RequestMapping(value = "/uploadNew",  headers = "content-type=multipart/*", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> uploadFileHandler(@ModelAttribute("name") String name, @ModelAttribute("file") MultipartFile file) {
+    public ResponseEntity<String> uploadFileHandlerOld(@ModelAttribute("nameData") String nameData, @ModelAttribute("fileData") MultipartFile fileData, @ModelAttribute("nameDesc") String nameDesc, @ModelAttribute("fileDesc") MultipartFile fileDesc, @ModelAttribute("type") String type) {
         System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
         FileInputStream fis = null;
         ObjectMapper ob = new ObjectMapper();
         AnnotationConfigApplicationContext ctx = null;
-        System.out.println("CZO TU SIE DZIEJE");
-        System.out.println(name);
-        System.out.println("FILEFILEFILE");
-        System.out.println(file);
-        //check
-        if (!file.isEmpty()) {
-            try {
-                System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
-                ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
-                GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
-                java.io.File convFile = new java.io.File(file.getOriginalFilename());
-                convFile.createNewFile();
-//	            FileOutputStream fos = new FileOutputStream(convFile);
-//	            fos.write(file.getBytes());
-//	            fos.close();
-                fis = new FileInputStream(convFile);
-                System.out.println(name);
-                gridOperations.store(fis, name, "profilePic/jpg");
-//	            return convFile.toString();
+        System.out.println("CZO TU SIE DZIEJE2");
+        System.out.println(nameDesc);
+        System.out.println(nameData);
+        System.out.println("FILEFILEFILE2");
+        System.out.println(fileDesc);
+        System.out.println(fileData);
+        String FILENAME = "//home//izabella//Pulpit//index.txt";
+        String file = "param1=";
 
-            } catch (Exception e) {
-                try {
-                    return  ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("You failed to upload " + name + " => " + e.getMessage()));
-                } catch (JsonProcessingException e1) {
-                    e1.printStackTrace();
-                }
-            } finally {
-                if (fis != null)
-                    try {
-                        fis.close();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+        try (BufferedReader br = new BufferedReader(new FileReader(FILENAME))) {
+
+            String sCurrentLine;
+
+            while ((sCurrentLine = br.readLine()) != null) {
+                file = file.concat(sCurrentLine + "\n");
+                //System.out.println(sCurrentLine);
             }
-        }
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("ok"));
-        } catch (JsonProcessingException e) {
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return null;
-    }
+
+        String urlParameters = file;
+        byte[] postData = new byte[0];
+        try {
+            postData = urlParameters.getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        int postDataLength = postData.length;
+        URL url = null;
+        try {
+            url = new URL("http://127.0.0.1:8000/polls/");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        HttpURLConnection httpCon = null;
+        try {
+            httpCon = (HttpURLConnection) url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        httpCon.setDoOutput(true);
+        try {
+            httpCon.setRequestMethod("POST");
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        }
+        httpCon.setUseCaches(false);
+
+        try {
+            try (DataOutputStream wr = new DataOutputStream(httpCon.getOutputStream())) {
+                wr.write(postData);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("getting response");
+        int responseCode = 0;
+        try {
+            responseCode = httpCon.getResponseCode();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader(new InputStreamReader(httpCon.getInputStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String inputLine;
+        try {
+            //zczytywanie responsa
+            while ((inputLine = in.readLine()) != null)
+                System.out.println(inputLine);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("\nSending 'POST' request to URL : " + url);
+        System.out.println("Response Code : " + responseCode);
+        try {
+            System.out.println(httpCon.getResponseMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        //check
+//        if (!fileDesc.isEmpty()) {
+//            try {
+//                System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
+//                ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
+//                GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
+//                java.io.File convFile = new java.io.File(file.getOriginalFilename());
+//                convFile.createNewFile();
+////	            FileOutputStream fos = new FileOutputStream(convFile);
+////	            fos.write(file.getBytes());
+////	            fos.close();
+//                fis = new FileInputStream(convFile);
+//                System.out.println(name);
+//                gridOperations.store(fis, name, "profilePic/jpg");
+////	            return convFile.toString();
+//
+//            } catch (Exception e) {
+//                try {
+//                    return  ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("You failed to upload " + name + " => " + e.getMessage()));
+//                } catch (JsonProcessingException e1) {
+//                    e1.printStackTrace();
+//                }
+//            } finally {
+//                if (fis != null)
+//                    try {
+//                        fis.close();
+//                    } catch (IOException e) {
+//                        // TODO Auto-generated catch block
+//                        e.printStackTrace();
+//                    }
+//            }
+//        }
+//        try {
+//            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("ok"));
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+    System.out.println("koniec funkcji");
+    return null;
+}
+
+//    @RequestMapping(value = "/uploadNew",  headers = "content-type=multipart/*", method = RequestMethod.POST)
+//    @ResponseBody
+//    public ResponseEntity<String> uploadFileHandler(@ModelAttribute("name") String name, @ModelAttribute("file") MultipartFile file) {
+//        System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
+//        FileInputStream fis = null;
+//        ObjectMapper ob = new ObjectMapper();
+//        AnnotationConfigApplicationContext ctx = null;
+//        System.out.println("CZO TU SIE DZIEJE");
+//        System.out.println(name);
+//        System.out.println("FILEFILEFILE");
+//        System.out.println(file);
+//        //check
+//        if (!file.isEmpty()) {
+//            try {
+//                System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
+//                ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
+//                GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
+//                java.io.File convFile = new java.io.File(file.getOriginalFilename());
+//                convFile.createNewFile();
+////	            FileOutputStream fos = new FileOutputStream(convFile);
+////	            fos.write(file.getBytes());
+////	            fos.close();
+//                fis = new FileInputStream(convFile);
+//                System.out.println(name);
+//                gridOperations.store(fis, name, "profilePic/jpg");
+////	            return convFile.toString();
+//
+//            } catch (Exception e) {
+//                try {
+//                    return  ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("You failed to upload " + name + " => " + e.getMessage()));
+//                } catch (JsonProcessingException e1) {
+//                    e1.printStackTrace();
+//                }
+//            } finally {
+//                if (fis != null)
+//                    try {
+//                        fis.close();
+//                    } catch (IOException e) {
+//                        // TODO Auto-generated catch block
+//                        e.printStackTrace();
+//                    }
+//            }
+//        }
+//        try {
+//            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("ok"));
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return null;
+//    }
 
     //TODO: metoda do testow
     @RequestMapping(value = "/addFile", method= RequestMethod.GET)

@@ -27,6 +27,7 @@ def index(request):
     # average, quantity = data_parsing(data_csv)
     # output = histogram_data(quantity)
     # print output
+    print "ustawiam responsa"
     a = HttpResponse(json.dumps({"c": 0, "b": 0, "a": 0}, sort_keys=True), content_type="application/json")
     return a
 

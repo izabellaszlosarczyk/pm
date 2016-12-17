@@ -14,18 +14,17 @@ export default class UserDataViewController {
         };
         this.avatar = '';
         this.requestedFile ='';
-        this.newFileName = ''; // jeden z dodawanych plikow
-        this.newFileName2 = ''; // drugi z dodawanych plikow
         this.newFileType = '';
         this.newFile = '';
 
         this.newFile2 = '';
         this.$scope.fileNew = '';
+        this.$scope.fileNew2 = '';
         this.$scope.file_upload = function(element) {
             this.$scope.$apply(function(scope) {
                 //Take the first selected file
                 var photofile = element.files[0];
-                console.log("dupa2");
+                console.log("dupa111111111111111111111111111111111111111111111111111111");
                 console.log(element.files);
                 var reader = new FileReader();
                 $scope.fileNew = photofile;
@@ -36,6 +35,21 @@ export default class UserDataViewController {
                 };
                 console.log($scope.fileNew.data);
                 reader.readAsDataURL($scope.fileNew);
+            });
+        }.bind(this);
+        this.$scope.file_upload2 = function(element) {
+            this.$scope.$apply(function(scope) {
+                var photofile = element.files[0];
+                console.log("dupa222222222222222222222222222222222222222222222222222222222");
+                console.log(element.files);
+                var reader = new FileReader();
+                $scope.fileNew2 = photofile;
+                reader.onload = function(e) {
+                    $scope.prev_img = e.target.result;
+                    console.log(reader.result);
+                };
+                console.log($scope.fileNew2.data);
+                reader.readAsDataURL($scope.fileNew2);
             });
         }.bind(this);
     }
@@ -65,17 +79,11 @@ export default class UserDataViewController {
     }
 
     addNewFile(){
-        console.log(this.newFileType);
-        // front-end -> python -> front-end
-        this.usersService.sendToPythonServer(this.$scope.fileNew, this.newFileName).then(function successCallback(response, status, headers, config) {
-                // pliki analizy
-            console.log(response.data);
-
-        }.bind(this));
-
-
+        console.log(this.$scope.fileNew);
+        console.log(this.$scope.fileNew2);
         //save file to database through backend
-        // this.usersService.saveNewFileBackend(this.$scope.fileNew, this.newFileName).then(function successCallback(response, status, headers, config) {
+        this.usersService.saveNewFileBackend(this.$scope.fileNew,this.$scope.fileNew2, this.newFileType);
+        //     .then(function successCallback(response, status, headers, config) {
         //     console.log(response.data);
         // }.bind(this));
         // let fileEntity = {

@@ -29,10 +29,9 @@
                         <input ng-model="userDataViewCtrl.newFile" onchange="angular.element(this).scope().file_upload(this)" type="file" /><p>CSV with data</p>
                     </div>
                     <div class="col-md-6" id="uploading2" style="font-size: 14px;">
-                        <input ng-model="userDataViewCtrl.newFile2" onchange="angular.element(this).scope().file_upload(this)" type="file" /><p>JSON with description</p>
+                        <input ng-model="userDataViewCtrl.newFile2" onchange="angular.element(this).scope().file_upload2(this)" type="file" /><p>JSON with description</p>
                     </div>
 
-                    <input  type="text"  id="fileNameInput" placeholder="file name" ng-model="userDataViewCtrl.newFileName" style="margin-top: 20px">
                     <select name="typeSelect" id="typeSelect" ng-model="userDataViewCtrl.newFileType">
                         <option value="" disabled selected>file type</option>
                         <option value="labyrinth">labyrinth</option>
