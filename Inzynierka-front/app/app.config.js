@@ -5,6 +5,7 @@ export default app => {
     'ADMIN' : 'ADMIN',
     'USER' : 'USER',
     'NO_AUTH' : 'NO_AUTH'});
+
   function configFn() {
 
   }

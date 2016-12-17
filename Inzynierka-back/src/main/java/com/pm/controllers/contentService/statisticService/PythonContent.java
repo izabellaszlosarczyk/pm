@@ -23,6 +23,23 @@ import java.io.*;
 import java.net.URL;
 import java.util.List;
 
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 /**
  * Created by izabella on 23.11.16.
  */
@@ -40,8 +57,47 @@ public class PythonContent {
 
     //metoda2: z pythonowego backu request z plikiem wysyłamy na front-end
 
+@RequestMapping("/send")
+ public static void sendPost() throws IOException{
 
 
+ String FILENAME = "//home//zuchens//Desktop//pm//analytic_module//input_data//data.csv";
+ String file = "param1=";
+
+ 	try (BufferedReader br = new BufferedReader(new FileReader(FILENAME))) {
+
+			String sCurrentLine;
+
+			while ((sCurrentLine = br.readLine()) != null) {
+			file = file.concat(sCurrentLine+"\n");
+				System.out.println(sCurrentLine);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
+
+ String urlParameters  = file;
+byte[] postData       = urlParameters.getBytes("UTF-8" );
+int    postDataLength = postData.length;
+  URL url = new URL("http://127.0.0.1:8000/polls/");
+  HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+  httpCon.setDoOutput(true);
+  httpCon.setRequestMethod("POST");
+  //OutputStreamWriter out = new OutputStreamWriter(
+  //    httpCon.getOutputStream());
+
+  httpCon.setUseCaches( false );
+
+  try( DataOutputStream wr = new DataOutputStream( httpCon.getOutputStream())) {
+   wr.write( postData );
+}
+  System.out.println(httpCon.getResponseCode());
+  System.out.println(httpCon.getResponseMessage());
+ // out.close();
+ }
 
 
         //@Autowired

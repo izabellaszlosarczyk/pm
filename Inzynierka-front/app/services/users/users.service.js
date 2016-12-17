@@ -148,6 +148,7 @@ class UserService {
             processData: false
         });
 
+
     }
     
     //Metoda dla Pauliny 
@@ -156,15 +157,42 @@ class UserService {
         var formdata = new FormData();
         formdata.append( 'name', fileName);
         formdata.append( 'file', userFile);
-        return this.$http({
-            // tutaj podaj url jaki chcesz miec do swojego pythonowego modulu - cała ściezka localhost:8000 .....
-            url: "",
-            method: "POST",
-            data: formdata,
-            cache: false,
-            headers: {'Content-Type': undefined },
-            processData: false
+        console.log("Formdata");
+        console.log(formdata);
+        jQuery.ajax({
+            url:  "http://127.0.0.1:8000/polls/",
+            type: "POST",
+            data: JSON.stringify({"foo":"bar"}),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                console.log("success");
+            },
+            error: function (response) {
+                console.log("failed");
+            }
         });
+        // return this.$http({
+        //     // tutaj podaj url jaki chcesz miec do swojego pythonowego modulu - cała ściezka localhost:8000 .....
+        //     url: "http://127.0.0.1:8000/polls/",
+        //     method: "JSONP",
+        //     data: formdata,
+        //     cache: false,
+        //     headers: {'Content-Type': undefined },
+        //     processData: false
+        // });
+        // //
+        // // return this.$http({
+        // //     url: "http://127.0.0.1:8000/polls/",
+        // //     method: 'JSONP'
+        // // });
+        return $.ajax({
+                url:  "http://127.0.0.1:8000/polls/",
+                data: queryStatusData,
+                dataType: "jsonp",
+                type: "GET",
+                success: queryStatusSuccessFunc
+            });
 
     }
     

@@ -18,6 +18,8 @@ export default class UserDataViewController {
         this.newFileName2 = ''; // drugi z dodawanych plikow
         this.newFileType = '';
         this.newFile = '';
+
+        this.newFile2 = '';
         this.$scope.fileNew = '';
         this.$scope.file_upload = function(element) {
             this.$scope.$apply(function(scope) {
@@ -64,12 +66,12 @@ export default class UserDataViewController {
 
     addNewFile(){
         console.log(this.newFileType);
-        //front-end -> python -> front-end
-        // this.usersService.sendToPythonServer(this.$scope.fileNew, this.newFileName).then(function successCallback(response, status, headers, config) {
+        // front-end -> python -> front-end
+        this.usersService.sendToPythonServer(this.$scope.fileNew, this.newFileName).then(function successCallback(response, status, headers, config) {
                 // pliki analizy
-        //     console.log(response.data);
+            console.log(response.data);
 
-        // }.bind(this));
+        }.bind(this));
 
 
         //save file to database through backend
