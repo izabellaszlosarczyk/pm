@@ -70,7 +70,7 @@ public class PythonContent {
 
 			while ((sCurrentLine = br.readLine()) != null) {
 			file = file.concat(sCurrentLine+"\n");
-				System.out.println(sCurrentLine);
+				//System.out.println(sCurrentLine);
 			}
 
 		} catch (IOException e) {
@@ -94,8 +94,20 @@ int    postDataLength = postData.length;
   try( DataOutputStream wr = new DataOutputStream( httpCon.getOutputStream())) {
    wr.write( postData );
 }
-  System.out.println(httpCon.getResponseCode());
-  System.out.println(httpCon.getResponseMessage());
+    try {
+        System.out.println("getting response");
+        int responseCode = httpCon.getResponseCode();
+        System.out.println("\nSending 'POST' request to URL : " + url);
+        System.out.println("Response Code : " + responseCode);
+    }
+    catch(org.thymeleaf.exceptions.TemplateInputException e){
+        System.out.println("not getting response :(");
+
+    }
+
+
+  //System.out.println(httpCon.getResponseCode());
+//  System.out.println(httpCon.getResponseMessage());
  // out.close();
  }
 
