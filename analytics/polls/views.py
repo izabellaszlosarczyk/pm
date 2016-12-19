@@ -17,10 +17,17 @@ def index(request):
 
     # body_unicode = request.body.decode('utf-8')
     # body_data = json.loads(request.POST)
-    myDict = request.POST['param1']
-    print myDict
+    #myDict = request.POST['param1']
+    #fileData = request.POST['data']
+    #fileDesc = request.POST['desc']
+    #print myDict
+    #print fileDesc
+    #print fileData
     myDict = dict(request.POST.iterlists())
+    #fileDesc = dict(request.POST.iterlists())
     print myDict
+    print "------------\n\n\n\n\n\n"
+    print request.POST['data']
     # data_csv  = body_unicode['txt']
     # data_csv = data_csv.split('\n')
     # data_csv = [x.split(",") for x in data_csv]

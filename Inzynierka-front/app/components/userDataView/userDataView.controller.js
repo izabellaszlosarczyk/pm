@@ -82,10 +82,11 @@ export default class UserDataViewController {
         console.log(this.$scope.fileNew);
         console.log(this.$scope.fileNew2);
         //save file to database through backend
-        this.usersService.saveNewFileBackend(this.$scope.fileNew,this.$scope.fileNew2, this.newFileType);
-        //     .then(function successCallback(response, status, headers, config) {
-        //     console.log(response.data);
-        // }.bind(this));
+        this.usersService.saveNewFileBackend(this.$scope.fileNew,this.$scope.fileNew2, this.newFileType).then(function successCallback(response, status, headers, config) {
+            console.log(response.data);
+            console.log(status);
+            console.log(headers);
+        }.bind(this));
         // let fileEntity = {
         //     type : this.newFileType,
         //     title : this.newFileName

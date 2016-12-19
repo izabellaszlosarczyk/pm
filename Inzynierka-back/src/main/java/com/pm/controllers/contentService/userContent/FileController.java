@@ -7,6 +7,7 @@ import com.pm.database.ReadFromDatabase;
 import com.pm.database.SaveUpdateDatabase;
 import com.pm.model.File;
 import com.pm.model.User;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
@@ -25,6 +26,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Created by izabella on 07.09.16.
@@ -169,6 +172,8 @@ public class FileController {
 //
 //        return null;
 //    }
+
+
     @RequestMapping(value = "/uploadNew",  headers = "content-type=multipart/*", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> uploadFileHandlerOld(@ModelAttribute("nameData") String nameData, @ModelAttribute("fileData") MultipartFile fileData, @ModelAttribute("nameDesc") String nameDesc, @ModelAttribute("fileDesc") MultipartFile fileDesc, @ModelAttribute("type") String type) {
@@ -182,31 +187,34 @@ public class FileController {
         System.out.println("FILEFILEFILE2");
         System.out.println(fileDesc);
         System.out.println(fileData);
-        String FILENAME = "//home//izabella//Pulpit//index.txt";
-        String file = "param1=";
+        String fileDataString = "data=";
+        String fileDescString = "desc=";
+        StringBuilder sb= new StringBuilder();
+        ByteArrayInputStream stream = null;
+        ByteArrayInputStream stream2 = null;
+        try {
+            stream = new ByteArrayInputStream(fileData.getBytes());
+            stream2 = new   ByteArrayInputStream(fileDesc.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(FILENAME))) {
-
-            String sCurrentLine;
-
-            while ((sCurrentLine = br.readLine()) != null) {
-                file = file.concat(sCurrentLine + "\n");
-                //System.out.println(sCurrentLine);
-            }
+        try {
+            fileDataString += IOUtils.toString(stream, "UTF-8");
+            fileDescString += IOUtils.toString(stream2, "UTF-8");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
-        String urlParameters = file;
-        byte[] postData = new byte[0];
+        byte[] postDataFileDesc = new byte[0];
+        byte[] postDataFileData = new byte[0];
         try {
-            postData = urlParameters.getBytes("UTF-8");
+            postDataFileDesc = fileDescString.getBytes("UTF-8");
+            postDataFileData = fileDataString.getBytes("UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        int postDataLength = postData.length;
         URL url = null;
         try {
             url = new URL("http://127.0.0.1:8000/polls/");
@@ -229,7 +237,8 @@ public class FileController {
 
         try {
             try (DataOutputStream wr = new DataOutputStream(httpCon.getOutputStream())) {
-                wr.write(postData);
+                wr.write(postDataFileData);
+                wr.write(postDataFileDesc);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -248,15 +257,18 @@ public class FileController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String inputLine;
+
+        String inputLine = "";
         try {
             //zczytywanie responsa
-            while ((inputLine = in.readLine()) != null)
+            while ((inputLine = in.readLine()) != null){
                 System.out.println(inputLine);
+                sb.append(inputLine);
+            }
+            System.out.println(sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         System.out.println("\nSending 'POST' request to URL : " + url);
         System.out.println("Response Code : " + responseCode);
         try {
@@ -269,6 +281,7 @@ public class FileController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        httpCon.disconnect();
 
 //        //check
 //        if (!fileDesc.isEmpty()) {
@@ -306,9 +319,27 @@ public class FileController {
 //            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("ok"));
 //        } catch (JsonProcessingException e) {
 //            e.printStackTrace();
+//
+        System.out.println("while if response is empty");
+        inputLine = sb.toString();
+        System.out.println(sb.toString());
+//        while (inputLine.isEmpty()){
+//            System.out.println(1);
+//            try {
+//                sleep(1);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
 //        }
-    System.out.println("koniec funkcji");
-    return null;
+//        try {
+//            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString(inputLine));
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+
+        System.out.println("koniec funkcji");
+
+        return ResponseEntity.status(HttpStatus.OK).body(inputLine);
 }
 
 //    @RequestMapping(value = "/uploadNew",  headers = "content-type=multipart/*", method = RequestMethod.POST)
