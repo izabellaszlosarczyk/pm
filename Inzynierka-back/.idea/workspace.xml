@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c1927f2-f6ff-4233-b28c-16499d586dec" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java" />
-    </list>
+    <list default="true" id="7c1927f2-f6ff-4233-b28c-16499d586dec" name="Default" comment="" />
     <ignored path="PM.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -1304,12 +1302,12 @@
       <workItem from="1480687715775" duration="7853000" />
       <workItem from="1480723862736" duration="7320000" />
       <workItem from="1481211173562" duration="3168000" />
-      <workItem from="1482012870668" duration="21053000" />
+      <workItem from="1482012870668" duration="22042000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="319068000" />
+    <option name="totallyTimeSpent" value="320057000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="65" width="1291" height="686" extended-state="0" />
@@ -1630,8 +1628,8 @@
         <state relative-caret-position="443">
           <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
           <folding>
-            <element signature="e#1022#1023#0" expanded="true" />
-            <element signature="e#1062#1063#0" expanded="true" />
+            <element signature="e#1022#1023#0" expanded="false" />
+            <element signature="e#1062#1063#0" expanded="false" />
           </folding>
         </state>
       </provider>

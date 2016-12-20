@@ -20,6 +20,10 @@ export default class UserDataViewController {
         this.newFile2 = '';
         this.$scope.fileNew = '';
         this.$scope.fileNew2 = '';
+
+        this.jsonToVizualization = ""; //tutaj siedzi co wizualizujemy
+
+
         this.$scope.file_upload = function(element) {
             this.$scope.$apply(function(scope) {
                 //Take the first selected file
@@ -84,8 +88,8 @@ export default class UserDataViewController {
         //save file to database through backend
         this.usersService.saveNewFileBackend(this.$scope.fileNew,this.$scope.fileNew2, this.newFileType).then(function successCallback(response, status, headers, config) {
             console.log(response.data);
-            console.log(status);
-            console.log(headers);
+
+            this.jsonToVizualization = response.data;
         }.bind(this));
         // let fileEntity = {
         //     type : this.newFileType,
