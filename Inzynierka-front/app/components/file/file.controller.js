@@ -78,7 +78,7 @@ export default class FileController {
       var drag = force.drag()
           .on("dragstart", dragstart);
 
-      var svg = d3.select("body").append("svg")
+      var svg = d3.select("#straight").append("svg")
           .attr("width", width)
           .attr("height", height);
 
@@ -172,7 +172,7 @@ export default class FileController {
       var drag = force.drag()
           .on("dragstart", dragstart);
 
-      var svg = d3.select("body").append("svg")
+      var svg = d3.select("#graph").append("svg")
           .attr("width", width)
           .attr("height", height);
 
@@ -373,7 +373,7 @@ export default class FileController {
           .orient("left")
           .ticks(10);
 
-      var svg = d3.select("body").append("svg")
+      var svg = d3.select("#barChart").append("svg")
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
           .append("g")
@@ -476,7 +476,7 @@ export default class FileController {
             return [d.y, d.x];
           });
 
-      var svg = d3.select("body").append("svg")
+      var svg = d3.select("#dendo").append("svg")
           .attr("width", width)
           .attr("height", height)
           .append("g")
