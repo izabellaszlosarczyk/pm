@@ -11,6 +11,7 @@ export default class ChartsController {
     this.$scope = $scope;
     this.$http = $http;
   }
+  //barCharts
 
   $onInit() {
     this.userData = this.usersService.getUserDataValues();
@@ -22,7 +23,7 @@ export default class ChartsController {
       console.log(this.filesDetails);
     }.bind(this));
     for (var i in this.filesDetails) {
-      if (this.filesDetails[i].type == "chart"){
+      if (this.filesDetails[i].type == "barChart"){
         console.log(this.userData.savedFiles[i]);
         this.chartFiles.push(this.filesDetails[i]);
         console.log("MASAKRA");

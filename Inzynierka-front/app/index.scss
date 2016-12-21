@@ -7,29 +7,27 @@
 @import "~common/navbar/navbar.scss";
 
 html, body {
-  background-color: #fff;
+  background-color: #0B0B0C;
   max-width: 100%;
   max-height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .navbar {
   padding-bottom: 0;
-  //background-color: #fff;
-  background: url("assets/cream.png") repeat;
-  color:   #21211C;
+  background-color:   #060606;
   margin-bottom: 0;
-  box-shadow:inset 0 1px 2px rgba(0,0,0,0.3);
-  border:1px solid #CBD5DD;
-  border-radius:2px;
+  box-shadow:inset 0 2px 2px rgba(0,0,0,0.3);
 }
 
 .navbar-default .navbar-nav > li > a, .navbar-default .navbar-brands {
-  color: black;
+  color: whitesmoke;
 }
 
 #navbar {
   .navbar-default .navbar-nav > li > a, .navbar-default .navbar-brands {
-    color: black;
+    color: whitesmoke;
   }
   ul.navbar-nav {
     li {
@@ -50,15 +48,13 @@ html, body {
 }
 .footer {
   position: fixed;
-  background-color:   #fff;
+  background-color:   #060606;
   //position: absolute;
   bottom: 0;
   width: 100%;
   height: 25px;
   text-align: center;
   box-shadow:inset 0 1px 2px rgba(0,0,0,0.3);
-  border:1px solid #CBD5DD;
-  //border-radius:2px;
   color:   #21211C;
 }
 

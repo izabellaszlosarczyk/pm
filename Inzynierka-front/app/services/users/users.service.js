@@ -132,6 +132,26 @@ class UserService {
 
     }
 
+    saveNewFile(userFile, fileName, type){ //potem to zmienie, ogolna metoda na dodawnaie plikow
+        console.log("saveuje\n image");
+        var formdata = new FormData();
+        // console.log(fileName);
+        // console.log(userFile);
+        formdata.append( 'name', fileName);
+        formdata.append( 'file', userFile);
+        formdata.append( 'type', type);
+        return this.$http({
+            url: this.getUrl('file/saveNew'),
+            method: "POST",
+            data: formdata,
+            cache: false,
+            headers: {'Content-Type': undefined },
+            processData: false
+        });
+
+    }
+
+
     saveNewFileBackend(userFileData, userFileDesc, type){ //potem to zmienie, ogolna metoda na dodawnaie plikow
         console.log("saveuje\n");
         console.log(userFileData.name);

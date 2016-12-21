@@ -13,7 +13,7 @@ import newsComponent from './news/news';
 import userStuffComponent from './userStuff/userStuff'
 import subsComponent from './subs/subs'
 import fileComponent from './file/file';
-
+import logoutComponent from './logout/logout';
 
 export default app => {
   INCLUDE_ALL_MODULES([homeComponent,
@@ -30,6 +30,7 @@ export default app => {
     fileComponent,
     userStuffComponent,
     newsComponent,
-    subsComponent
+    subsComponent,
+    logoutComponent  
   ], app);
 }

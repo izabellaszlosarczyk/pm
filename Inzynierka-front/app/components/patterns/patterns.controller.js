@@ -11,7 +11,7 @@ export default class PatternsController {
     this.$scope = $scope;
     this.$http = $http;
   }
-
+  //dendograms
   $onInit() {
     console.log("PATTERNS");
     this.userData = this.usersService.getUserDataValues();
@@ -22,7 +22,7 @@ export default class PatternsController {
       console.log(this.filesDetails);
     }.bind(this));
     for (var i in this.filesDetails) {
-      if (this.filesDetails[i].type == "pattern"){
+      if (this.filesDetails[i].type == "dendogram"){
         console.log(this.userData.savedFiles[i]);
         this.patternFiles.push(this.filesDetails[i]);
       }

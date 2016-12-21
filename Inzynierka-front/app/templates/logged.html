@@ -1,29 +1,22 @@
 <div class="col-md-12">
     <div class="row row-eq-height">
-        <div class="col-md-2" style="background-image:url('../assets/cream.png'); background-repeat:repeat;">
-            <img src="./assets/PMlogo.jpeg"  id="PMLogo" class="img-responsive" style="background-color:transparent;">
+        <div class="col-md-2" style="background-color: #0F0F0F; height:100vh;">
+            <img src="./assets/brain.png"  id="PMLogo" class="img-responsive" style="background-color:transparent;">
             <h2 id="h21"></h2>
-            <div style="border-bottom: 2px solid #CBD5DD;"><p style="color: #1c1c1c; padding-bottom:20px; text-align:center;">Our stuff for you</p></div>
+            <div style="border-bottom: 2.5px solid #2F2933;"><p style="color: #1c1c1c; padding-bottom:20px; text-align:center;">Our stuff for you</p></div>
             <div class="list-group table-of-contents" id="mainMenu">
-                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;"> <a href="/#/logged/subscriptions">Your subscriptions</a></div>
+                <div style="border-bottom: 2px solid #1A1A1C; margin-top: 20px; padding-bottom: 20px;"> <a href="/#/logged/subscriptions">Your subscriptions</a></div>
 
-                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;" > <a href="" ng-click="userDataViewCtrl.randomFile()">Random file!</a></div>
-                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;"> <a href="/#/logged/news">News!</a> </div>
-                <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px;"> <a href="/#/logged">Upload file</a><br></div>
+                <div style="border-bottom: 2px solid #1A1A1C; margin-top: 20px; padding-bottom: 20px;" > <a href="" ng-click="userDataViewCtrl.randomFile()">Random file!</a></div>
+                <div style="border-bottom: 2px solid #1A1A1C; margin-top: 20px; padding-bottom: 20px;"> <a href="/#/logged/news">News!</a> </div>
+                <div style="border-bottom: 2px solid #1A1A1C; margin-top: 20px; padding-bottom: 20px;"> <a href="/#/logged">Upload file</a><br></div>
             </div>
         </div>
 
         <div class="col-md-7" ui-view id="infoMiddle">
             <div id="desc">
                 <p >PatternMoves WebApp Project</p>
-                <div class="col-md-8" style="background-color:#F7F7F3;">
-                    <img src="./assets/wykres1.png"  class="img-responsive" style="background-color:transparent;">
-                </div>
-                <div class="col-md-4" style="background-color:#F7F7F3;">
-                    <img src="./assets/wykres2.png"  class="img-responsive" style="background-color:transparent;">
-                    <img src="./assets/wykres4.png" style="padding-top: 10px;" class="img-responsive" style="background-color:transparent;">
-                </div>
-                <div id="uploadFiles" style="background-color:#F7F7F3;">
+                <div id="uploadFiles" style="">
                     <p>Upload some stuff - we will analyze for you </p>
                     <div  class="col-md-6" id="uploading" style="font-size: 14px;">
                         <input ng-model="userDataViewCtrl.newFile" onchange="angular.element(this).scope().file_upload(this)" type="file" /><p>CSV with data</p>
@@ -31,12 +24,24 @@
                     <div class="col-md-6" id="uploading2" style="font-size: 14px;">
                         <input ng-model="userDataViewCtrl.newFile2" onchange="angular.element(this).scope().file_upload2(this)" type="file" /><p>JSON with description</p>
                     </div>
-
-                    <select name="typeSelect" id="typeSelect" ng-model="userDataViewCtrl.newFileType">
-                        <option value="" disabled selected>file type</option>
-                        <option value="labyrinth">labyrinth</option>
-                        <option value="multiple">multiple answers</option>
-                    </select><br>
+                    <div  class="col-md-6"  style="font-size: 14px;">
+                        <select name="typeOfAnalysesSelect" id="analysesSelect" ng-model="userDataViewCtrl.analysesType">
+                            <option value="" disabled selected>analyses type</option>
+                            <option value="barChart">bar chart</option>
+                            <option value="dendo">dendogram</option>
+                            <option value="graph">graph</option>
+                            <option value="radial">radial</option>
+                            <option value="straight">straight graph</option>
+                        </select><br>
+                    </div>
+                    <div  class="col-md-6"  style="font-size: 14px;">
+                        <select name="typeSelect" id="typeSelect" ng-model="userDataViewCtrl.newFileType">
+                            <option value="" disabled selected>file type</option>
+                            <option value="labyrinth">labyrinth</option>
+                            <option value="multiple">multiple answers</option>
+                        </select><br>
+                    </div>
+                    <input class="form-control" id="inputName" placeholder="filename"  ng-model="userDataViewCtrl.fileName">
                     <div id="type" style="font-size: 15px;">
                         <!--<input type="radio" name="type" value="other" ng-change="userDataViewCtrl.recordSelected('other')" ng-model="userDataViewCtrl">other
                         <input type="radio" name="type" value="chart">chart
@@ -49,22 +54,22 @@
             </div>
         </div>
 
-        <div class="col-md-2"  id="yourFiles" style="background-color:#F7F7F3;">
-            <div style="border-bottom: 2px solid #CBD5DD; margin-top: 20px; padding-bottom:20px">
+        <div class="col-md-2"  id="yourFiles" style="background-color: #0F0F0F; height:100vh;">
+            <div style="border-bottom: 2.5px solid #2F2933; margin-top: 20px; padding-bottom:20px">
                 <p style="color:#1c1c1c; text-align: center">Your uploaded <br> /saved files</p>
             </div>
             <!-- charts -> bar Charts, images -> graph, patterns -> dendo, cvs -> radial, others -> ? straight graphs
             -->
-            <div style="text-align: center; padding-top:20px"><a  href="/#/logged/yourStuff">Your stuff</a></div>
+            <div style="text-align: center; padding-top:20px; padding-bottom: 20px;"><a  href="/#/logged/yourStuff">Your stuff</a></div>
             <div  style="text-align: center; padding-top:20px; padding-bottom:20px;"><p style="color:#1c1c1c;">Types of content</p></div>
-            <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px; text-align: center"><a  href="/#/logged/charts" >Saved bar charts</a></div>
-            <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px; text-align: center"><a  href="/#/logged/images" style="text-align: center">Uploaded graphs</a></div>
-            <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px; text-align: center"><a  href="/#/logged/patterns" style="text-align: center">Saved dendograms</a></div>
-            <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px; text-align: center"><a  href="/#/logged/cvs">Uploaded radial graphs</a></div>
-            <div style="border-bottom: 0.5px solid #CBD5DD; margin-top: 20px; text-align: center"><a  href="/#/logged/others">Other / straight graphs</a></div>
+            <div style="border-bottom: 0.5px solid #1A1A1C; padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/charts" >Saved bar charts</a></div>
+            <div style="border-bottom: 0.5px solid #1A1A1C;  padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/images" style="text-align: center">Uploaded graphs</a></div>
+            <div style="border-bottom: 0.5px solid #1A1A1C; padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/patterns" style="text-align: center">Saved dendograms</a></div>
+            <div style="border-bottom: 0.5px solid #1A1A1C;  padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/cvs">Uploaded radial graphs</a></div>
+            <div style="border-bottom: 0.5px solid #1A1A1C;  padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/others">Other / straight graphs</a></div>
         </div>
 
-        <div class="col-md-2" id="uiV" style="background-image:url('../assets/cream.png'); background-repeat:repeat;">
+        <div class="col-md-2" id="uiV" style="background-image:url('../assets/dash.png'); background-repeat:repeat;">
             <img ng-src="{{userDataViewCtrl.avatar}}" id="photoUser" class="img-responsive">
             <form class="form-horizontal" id="informacje">
                 <fieldset>

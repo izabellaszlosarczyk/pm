@@ -6,7 +6,8 @@ export default class NavbarController {
     this.$rootScope = $rootScope;
     this.logged = false;
     this.user = '';
-
+    this.userName = '';
+    this.userLastName = '';
     this.logout = () => {
       console.log('logout');
       this.tokenService.removeToken();
@@ -16,6 +17,14 @@ export default class NavbarController {
 
     this.$rootScope.$on('user-login', () => {
       this.logged = true;
+      this.userLastName = usersService.userData.email;
+
     });
+  }
+  logout(){
+    console.log('logout');
+    this.tokenService.removeToken();
+    this.usersService.removeUserSessionData();
+    this.usersService.removeUserDataValues();
   }
 }

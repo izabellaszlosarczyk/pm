@@ -11,7 +11,7 @@ export default class CvsController {
     this.$scope = $scope;
     this.$http = $http;
   }
-
+  //radial
   $onInit() {
     this.userData = this.usersService.getUserDataValues();
     console.log(this.userData.savedFiles);
@@ -22,7 +22,7 @@ export default class CvsController {
       console.log(this.filesDetails);
     }.bind(this));
     for (var i in this.filesDetails) {
-      if (this.filesDetails[i].type == "cv"){
+      if (this.filesDetails[i].type == "radial"){
         console.log(this.userData.savedFiles[i]);
         this.cvsFiles.push(this.filesDetails[i]);
       }

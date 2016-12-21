@@ -15,8 +15,10 @@ export default class UserDataViewController {
         this.avatar = '';
         this.requestedFile ='';
         this.newFileType = '';
+        this.analysesType = '';
         this.newFile = '';
 
+        this.fileName = '';
         this.newFile2 = '';
         this.$scope.fileNew = '';
         this.$scope.fileNew2 = '';
@@ -90,16 +92,21 @@ export default class UserDataViewController {
             console.log(response.data);
 
             this.jsonToVizualization = response.data;
+            //zmienic to nazwa
+            this.usersService.saveNewFile( this.jsonToVizualization, this.fileName, this.analysesType).then(function successCallback(response2, status2, headers2, config2) {
+                console.log(response2.data);
+            }.bind(this));
+            let fileEntity = {
+                type : this.analysesType,
+                title : this.fileName
+            };
+            this.usersService.addFileEntity(fileEntity).then(function successCallback(response3, status3, headers3, config3) {
+                console.log(response3);
+                console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            }.bind(this));
+            //save details
         }.bind(this));
-        // let fileEntity = {
-        //     type : this.newFileType,
-        //     title : this.newFileName
-        // }
-        // this.usersService.addFileEntity(fileEntity).then(function successCallback(response2, status2, headers2, config2) {
-        //     console.log(response2);
-        //     console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        // }.bind(this));
-        // //save details
+
     }
 
 }

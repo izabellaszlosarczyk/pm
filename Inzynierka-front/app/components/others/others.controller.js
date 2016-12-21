@@ -11,7 +11,7 @@ export default class OthersController {
     this.$scope = $scope;
     this.$http = $http;
   }
-
+  //straight
   $onInit() {
     this.userData = this.usersService.getUserDataValues();
     console.log(this.userData.savedFiles);
@@ -22,7 +22,7 @@ export default class OthersController {
       console.log(this.filesDetails);
     }.bind(this));
     for (var i in this.filesDetails) {
-      if (this.filesDetails[i].type == "other"){
+      if (this.filesDetails[i].type == "straight"){
         console.log(this.userData.savedFiles[i]);
         this.otherFiles.push(this.filesDetails[i]);
       }
