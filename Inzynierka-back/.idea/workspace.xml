@@ -2,15 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c1927f2-f6ff-4233-b28c-16499d586dec" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/edit/EditPhotoRequest.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/config.properties" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eFftVT3.jpg" afterPath="$PROJECT_DIR$/eFftVT3.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/SpringConfig/WebSecurityConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/SpringConfig/WebSecurityConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/register/RegisterController.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/register/RegisterController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/model/DataGenerator.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/model/DataGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileOperations.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileOperations.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/LoadSaveContent.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/LoadSaveContent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/edit/EditController.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/edit/EditController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/components/editUser/userDataEdit.controller.js" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/components/editUser/userDataEdit.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/services/users/users.service.js" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/services/users/users.service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/templates/app/editUser.html" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/templates/app/editUser.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/templates/app/editUser.scss" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/templates/app/editUser.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/templates/login.html" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/templates/register.html" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/templates/register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/templates/register.scss" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/templates/register.scss" />
     </list>
     <ignored path="PM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,28 +35,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DataGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/model/DataGenerator.java">
+      <file leaf-file-name="FileController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
+            <state relative-caret-position="349">
+              <caret line="388" column="56" selection-start-line="388" selection-start-column="56" selection-end-line="388" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileOperations.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileOperations.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1602">
-              <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserTypeRequest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/UserTypeRequest.java">
+      <file leaf-file-name="FileRequest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileRequest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
               <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
@@ -63,21 +55,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegisterController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/user/register/RegisterController.java">
+      <file leaf-file-name="UserStuff.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/UserStuff.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+            <state relative-caret-position="108">
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReadFromDatabase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/database/ReadFromDatabase.java">
+      <file leaf-file-name="LoadSaveContent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/LoadSaveContent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="32" />
+            <state relative-caret-position="871">
+              <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileOperations.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileOperations.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataGenerator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/model/DataGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="152" column="52" selection-start-line="151" selection-start-column="24" selection-end-line="152" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -105,7 +117,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/user/DetailsRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/repository/UserRepositoryCustom.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/repository/UserRepositoryImpl.java" />
@@ -116,7 +127,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/pm/repository/FileRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/repository/UserRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/login/LoginResponse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/LoadSaveContent.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/DeleteSubsRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/SubsRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/statisticService/ScoreRequest.kt" />
@@ -128,10 +138,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/databaseControllers/TestController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/edit/EditRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FilesRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileOperations.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/model/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/edit/EditController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/UserStuff.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/SpringConfig/Initializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/SpringConfig/HttpSessionConfig.java" />
@@ -152,10 +160,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/statisticService/FileStats.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/statisticService/AppContent.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/statisticService/PythonContent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/SpringConfig/WebSecurityConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/register/RegisterController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pm/model/DataGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/edit/EditPhotoRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/edit/EditController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/LoadSaveContent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileOperations.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java" />
       </list>
     </option>
   </component>
@@ -178,7 +190,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="75" />
-    <option name="y" value="82" />
+    <option name="y" value="52" />
     <option name="width" value="1291" />
     <option name="height" value="686" />
   </component>
@@ -1342,15 +1354,15 @@
       <workItem from="1481211173562" duration="3168000" />
       <workItem from="1482012870668" duration="26641000" />
       <workItem from="1482361664811" duration="1234000" />
-      <workItem from="1482380117973" duration="3003000" />
+      <workItem from="1482380117973" duration="15745000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="328893000" />
+    <option name="totallyTimeSpent" value="341635000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="75" y="82" width="1291" height="686" extended-state="0" />
+    <frame x="75" y="52" width="1291" height="686" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1369,6 +1381,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30828816" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.101341285" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1380,7 +1393,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935917" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.101341285" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1435,52 +1447,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/statisticService/file.py" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/statisticService/PythonContent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/statisticService/CommentRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/statisticService/ScoreRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/SpringConfig/NewJythonServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/SpringConfig/WebSecurityConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="32" column="54" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/SpringConfig/WebConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1673,22 +1639,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="332" column="11" selection-start-line="332" selection-start-column="11" selection-end-line="332" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/SpringConfig/WebSecurityConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
@@ -1769,14 +1719,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1602">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/database/ReadFromDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -1785,18 +1727,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/model/DataGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/user/edit/EditController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
+        <state relative-caret-position="439">
+          <caret line="91" column="34" selection-start-line="91" selection-start-column="34" selection-end-line="91" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/user/edit/EditPhotoRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+          <folding>
+            <element signature="e#198#199#0" expanded="false" />
+            <element signature="e#226#227#0" expanded="false" />
+            <element signature="e#268#269#0" expanded="false" />
+            <element signature="e#302#303#0" expanded="false" />
+            <element signature="e#335#336#0" expanded="false" />
+            <element signature="e#363#364#0" expanded="false" />
+            <element signature="e#405#406#0" expanded="false" />
+            <element signature="e#439#440#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/user/edit/EditRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43">
+          <caret line="9" column="25" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/user/register/RegisterController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        <state relative-caret-position="828">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/111.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/model/DataGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="152" column="52" selection-start-line="151" selection-start-column="24" selection-end-line="152" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/UserStuff.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eFftVT3.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/LoadSaveContent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="871">
+          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="388" column="56" selection-start-line="388" selection-start-column="56" selection-end-line="388" selection-end-column="56" />
           <folding />
         </state>
       </provider>

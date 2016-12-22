@@ -37,7 +37,9 @@ public class FileOperations {
             //ctx2 = new AnnotationConfigApplicationContext(DatabaseConfig.class);
             GridFsOperations gridOperations2 = (GridFsOperations) ctx2.getBean("gridFsTemplate");
             //TODO: poprawić!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            System.out.println(filename);
             result = gridOperations2.findOne(new Query().addCriteria(Criteria.where("filename").is(filename)));
+            System.out.println("result");
             System.out.println(result);
         } finally {
             ctx2.destroy();

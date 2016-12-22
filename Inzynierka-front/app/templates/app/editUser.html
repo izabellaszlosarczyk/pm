@@ -28,9 +28,9 @@
             <div class="photoUpload edit" style="padding-bottom: 20px">
                 <input ng-model="userDataEditCtrl.newImage" onchange="angular.element(this).scope().file_changed(this)" type="file" accept="image/*" />
                 <img data-ng-src="data:image/png;base64,{{userDataViewCtrl.$scope.newImage}}"  ng-show="userDataViewCtrl.$scope.newImage" id="photo-id"/>
-                <img ng-src="{{userDataViewCtrl.newImage}}" ng-show="userDataViewCtrl.newImage" class="img-responsive">
-                <input  type="text"  id="fileTypeInput2" placeholder="file name" ng-model="userDataEditCtrl.newFileName">
-                <a> <button class="btn btn-success" ng-click="userDataEditCtrl.getImage()">Change photo</button></a>
+                <div><img ng-src="{{userDataViewCtrl.newImage}}" ng-show="userDataViewCtrl.newImage" class="img-responsive">
+                    <a> <button class="btn btn-success" ng-click="userDataEditCtrl.getImage()">Change photo</button></a>
+                </div>
             </div>
         </fieldset>
     </form>

@@ -19,19 +19,24 @@ export default class UserDataEditController {
         this.$scope = $scope;
         this.$scope.newImage = '';
         this.$scope.newFile = '';
+        this.$scope.newName ='';
+        //this.$scope.photoChanged = 0;
         this.$scope.file_changed = function(element) {
             this.$scope.$apply(function(scope) {
                 var photofile = element.files[0];
+                $scope.newName = photofile.name;
                 $scope.newFile = photofile;
+                console.log($scope.newName);
+                //this.$scope.photoChanged = 1;
                 var reader = new FileReader();
                 reader.onload = function(e) {
 
                     // handle onload
                     var image = new Object();
+                    console.log("IMAGE");
                     image.src = reader.result;
                     $scope.newImage = image.src;
-                    console.log("DUPPPPPPPPPPPPPPPPPPA");
-                    console.log($scope.newImage);
+                    console.log("DUPPPPPPPPPPPPPPPPPPA");;
                 };
                 reader.readAsDataURL(photofile);
             });
@@ -51,17 +56,26 @@ export default class UserDataEditController {
 
 
     getImage(){
-        console.log(this.$scope.newFile);
-        console.log("UPLOADOWANIE UPLOADOWANIE");
-        
-        this.usersService.saveNewImage(userFile,this.newFileName).then(function successCallback(response, status, headers, config) {
-            console.log(response.data);
-            console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-            let fileEntity = {
-                type : "avatar",
-                name : this.newFileName
-            }
-        }.bind(this));
+        // if ( this.$scope.photoChanged == 1){
+            console.log(this.$scope.newFile);
+            console.log("UPLOADOWANIE UPLOADOWANIE");
+
+            this.usersService.saveNewImage(this.$scope.newFile,this.$scope.newName).then(function successCallback(response, status, headers, config) {
+                console.log(response.data);
+                console.log("obrazek");
+                let userData = {
+                    email : this.userData.email,
+                    title : this.$scope.newName
+                };
+                this.usersService.editPhoto(userData).then(function successCallback(response2, status2, headers2, config2) {
+                    console.log(response2.data);
+                    console.log("Uzytkownik update");
+                }.bind(this));
+
+            }.bind(this));
+
+        //}
+
         // var files = element.files;
         // var l = files.length;
         // var namesArr = [];

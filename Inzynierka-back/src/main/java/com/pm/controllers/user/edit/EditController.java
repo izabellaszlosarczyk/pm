@@ -81,4 +81,19 @@ public class EditController {
         editClass.saveUser(user);
        return  ResponseEntity.status(HttpStatus.OK).body("{\"value\":\"OK\"}");
     }
+    @RequestMapping(value = "/saveEditedPhoto", method=RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> saveEditedPhoto(@RequestBody EditPhotoRequest editedUser){
+        System.out.println(editedUser.getTitle());
+        User user = readClass.searchOneByEmail(editedUser.getEmail());
+        System.out.println(user.getEmail());
+        System.out.println(user.getProfilePhoto());
+        if (user == null)return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"value\":\"NOPE\"}");
+        if (!editedUser.getTitle().isEmpty()) user.setProfilePhoto(editedUser.getTitle());
+
+        editClass.saveUser(user);
+        System.out.println(user.getProfilePhoto());
+        return  ResponseEntity.status(HttpStatus.OK).body("{\"value\":\"OK\"}");
+    }
+
 }

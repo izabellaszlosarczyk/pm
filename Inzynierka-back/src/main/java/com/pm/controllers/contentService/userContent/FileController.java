@@ -1,6 +1,8 @@
 package com.pm.controllers.contentService.userContent;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.pm.SpringConfig.DataBaseConfig;
 import com.pm.database.ReadFromDatabase;
@@ -10,6 +12,8 @@ import com.pm.model.User;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -342,32 +346,58 @@ public class FileController {
         return ResponseEntity.status(HttpStatus.OK).body(inputLine);
 }
 
+
+
+
+
     @RequestMapping(value = "/saveNew",  headers = "content-type=multipart/*", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<String> saveFileHandler(@ModelAttribute("name") String name, @ModelAttribute("file") MultipartFile file, @ModelAttribute("type") String type) {
-        System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
-        FileInputStream fis = null;
+       FileInputStream fis = null;
+        System.out.println("CZO TU SIE DZIEJE");
+        file.getSize();
         ObjectMapper ob = new ObjectMapper();
         AnnotationConfigApplicationContext ctx = null;
         System.out.println("CZO TU SIE DZIEJE");
-        System.out.println(name);
-        System.out.println("FILEFILEFILE");
-        System.out.println(file);
         //check
+        StringBuilder sb= new StringBuilder();
+        ByteArrayInputStream stream = null;
+        try {
+            stream = new ByteArrayInputStream(file.getBytes());
+            String fileDataString = IOUtils.toString(stream, "UTF-8");
+            System.out.println(fileDataString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        InputStream inputStream = null;
         if (!file.isEmpty()) {
             try {
-                System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
                 ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
+                System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
                 GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
-                java.io.File convFile = new java.io.File(file.getOriginalFilename());
-                convFile.createNewFile();
+                //inputStream = new FileInputStream("//home/izabella/Pulpit/eFftVT3.jpg");
+                //DBObject metaData = new BasicDBObject();
+                //metaData.put("extra1", "anything 1");
+                //metaData.put("extra2", "anything 2");
+                //gridOperations.store(inputStream, "testing22.png", "image/png", metaData);
+                java.io.File convFile = new  java.io.File( file.getOriginalFilename());
+                file.transferTo(convFile);
+                inputStream = new FileInputStream(convFile);
+                DBObject metaData = new BasicDBObject();
+                metaData.put("extra1", "anything 1");
+                metaData.put("extra2", "anything 2");
+                gridOperations.store(inputStream, name, "image/png", metaData);
+//                java.io.File convFile = new java.io.File(file.getOriginalFilename());
+//                convFile.createNewFile();
 //	            FileOutputStream fos = new FileOutputStream(convFile);
 //	            fos.write(file.getBytes());
+//                //System.out.println(fos);
 //	            fos.close();
-                fis = new FileInputStream(convFile);
-                System.out.println(name);
-                gridOperations.store(fis, name, type);
+//                fis = new FileInputStream(convFile);
+//                //System.out.println(fis);
+                //gridOperations.store(fis, name, type);
 //	            return convFile.toString();
+
 
             } catch (Exception e) {
                 try {
@@ -383,6 +413,23 @@ public class FileController {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
+            }
+        }
+        System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
+        ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
+        GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
+        List<GridFSDBFile> result = gridOperations.find(
+                new Query().addCriteria(Criteria.where("filename").is(name)));
+
+        for (GridFSDBFile file1 : result) {
+            try {
+                System.out.println(file1.getFilename());
+                System.out.println(file.getContentType());
+
+                //save as another image
+                file1.writeTo("//home/izabella/Pulpit/rrrr/"+name);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         try {

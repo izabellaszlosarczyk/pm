@@ -121,8 +121,9 @@ class UserService {
         // console.log(userFile);
         formdata.append( 'name', fileName);
         formdata.append( 'file', userFile);
+        formdata.append( 'type', 'profilePic/jpg');
         return this.$http({
-            url: this.getUrl('file/uploadNew'),
+            url: this.getUrl('file/saveNew'),
             method: "POST",
             data: formdata,
             cache: false,
@@ -228,6 +229,16 @@ class UserService {
         console.log(userData);
         return this.$http({
             url: this.getUrl(`edit/saveEdited`),
+            method: "POST",
+            data: userData
+        });
+    }
+
+
+    editPhoto(userData) {
+        console.log(userData);
+        return this.$http({
+            url: this.getUrl(`edit/saveEditedPhoto`),
             method: "POST",
             data: userData
         });
