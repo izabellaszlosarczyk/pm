@@ -1,6 +1,5 @@
 #login {
   text-align: center;
-  background-color: #fff;
   //background-image: url("/app/assets/d.png");
 
   #loginH1 {
@@ -45,10 +44,10 @@
     padding-bottom: 50px;
   }
 
-  .myButton.login{
+  .btn.btn-success{
     margin-top: 100px;
   }
-  .myButton.confirm{
+  .btn.btn-success{
     display:block;
     margin: 0 auto;
   }

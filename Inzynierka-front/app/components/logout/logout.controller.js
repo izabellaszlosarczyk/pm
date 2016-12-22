@@ -1,4 +1,4 @@
-export default class ImagesController {
+export default class LogoutController {
   constructor(infoService, usersService,$state, $http,$scope, $stateParams) {
     this.state = $state;
     this.stateParams = $stateParams;

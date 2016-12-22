@@ -1,13 +1,15 @@
 <div class="col-md-12" id="stuff">
-    <img src="./assets/wykres5a1.png" class="img-responsive" style="background-color:transparent;">
-    <h1>Generated materials for your uploaded files</h1>
-    <h1>CHARTS</h1>
+    <div style="border-bottom: 0.5px solid #2F2933; padding-bottom: 30px;">
+        <img src="./assets/wykres5a1.png" class="img-responsive" style="background-color:transparent;">
+        <h1>Generated materials for your uploaded files</h1>
+        <h1>CHARTS</h1>
+    </div>
     <div ng-if="chartsCtrl.loading" style="text-align: center; transform: scale(2)">
 
     </div>
     <table class="table"  id="imageTable" ng-if="!chartsCtrl.loading" style="font-size: 70%; color:grey;">
         <thead>
-        <tr id="labels" style="color:black;">
+        <tr id="labels" style="color:grey;">
             <th>.</th>
             <th>title</th>
             <th>comments</th>
@@ -24,8 +26,8 @@
             <td><div ng-repeat="comment in image.comments" style="width: 250px">{{$index+1 + ' ' + comment +'\n'}}</div></td>
             <td>{{image.average}}</td>
             <td>{{image.creationDate}}</td>
-            <td ><button type="myButton" ng-click="chartsCtrl.viewFile(image)" id="view" style="color:black;">view</button></td>
-            <td ><button type="myButton" ng-click="chartsCtrl.deleteFromSubs(image)" id="deleteSub" style="color:black">x</button></td>
+            <td ><button class="btn btn-success" ng-click="chartsCtrl.viewFile(image)" id="view" >view</button></td>
+            <td ><button class="btn btn-success" ng-click="chartsCtrl.deleteFromSubs(image)" id="deleteSub" >x</button></td>
         </tr>
         </tbody>
     </table>

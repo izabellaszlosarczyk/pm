@@ -1,9 +1,12 @@
 <div class="col-md-12">
     <div class="row row-eq-height">
         <div class="col-md-2" style="background-color: #0F0F0F; height:100vh;">
-            <img src="./assets/brain.png"  id="PMLogo" class="img-responsive" style="background-color:transparent;">
+            <h2 id="h21" style="background-color: #00bc8c; margin-bottom: 20px;"></h2>
+            <h2 id="h21" style="background-color: #00bc8c; margin-bottom: 20px;"></h2>
+
+            <div></div>
             <h2 id="h21"></h2>
-            <div style="border-bottom: 2.5px solid #2F2933;"><p style="color: #1c1c1c; padding-bottom:20px; text-align:center;">Our stuff for you</p></div>
+            <div style="border-bottom: 2.5px solid #2F2933;"><p style="color: #B0B0B0; padding-bottom:20px; text-align:center;">Our stuff for you</p></div>
             <div class="list-group table-of-contents" id="mainMenu">
                 <div style="border-bottom: 2px solid #1A1A1C; margin-top: 20px; padding-bottom: 20px;"> <a href="/#/logged/subscriptions">Your subscriptions</a></div>
 
@@ -49,19 +52,19 @@
                         <input type="radio" name="type" value="pattern">pattern
                         <input type="radio" name="type" value="cv">cv -->
                     </div>
-                    <button class="myButton editUser" ng-click="userDataViewCtrl.addNewFile()">Upload</button>
+                    <button class="btn btn-success" ng-click="userDataViewCtrl.addNewFile()">Upload</button>
                 </div>
             </div>
         </div>
 
         <div class="col-md-2"  id="yourFiles" style="background-color: #0F0F0F; height:100vh;">
             <div style="border-bottom: 2.5px solid #2F2933; margin-top: 20px; padding-bottom:20px">
-                <p style="color:#1c1c1c; text-align: center">Your uploaded <br> /saved files</p>
+                <p style="color:#B0B0B0; text-align: center">Your uploaded <br> /saved files</p>
             </div>
             <!-- charts -> bar Charts, images -> graph, patterns -> dendo, cvs -> radial, others -> ? straight graphs
             -->
             <div style="text-align: center; padding-top:20px; padding-bottom: 20px;"><a  href="/#/logged/yourStuff">Your stuff</a></div>
-            <div  style="text-align: center; padding-top:20px; padding-bottom:20px;"><p style="color:#1c1c1c;">Types of content</p></div>
+            <div  style="text-align: center; padding-top:20px; padding-bottom:20px;"><p style="color:#B0B0B0;">Types of content</p></div>
             <div style="border-bottom: 0.5px solid #1A1A1C; padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/charts" >Saved bar charts</a></div>
             <div style="border-bottom: 0.5px solid #1A1A1C;  padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/images" style="text-align: center">Uploaded graphs</a></div>
             <div style="border-bottom: 0.5px solid #1A1A1C; padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/patterns" style="text-align: center">Saved dendograms</a></div>
@@ -71,27 +74,13 @@
 
         <div class="col-md-2" id="uiV" style="background-image:url('../assets/dash.png'); background-repeat:repeat;">
             <img ng-src="{{userDataViewCtrl.avatar}}" id="photoUser" class="img-responsive">
-            <form class="form-horizontal" id="informacje">
-                <fieldset>
-                    <div class="form-group">
-                        <div class="col-xs-6">
-                            <input type="text" class="field left" readonly id="input-name" placeholder="FirstName" ng-model="userDataViewCtrl.userData.firstName">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-6">
-                            <input type="text" class="field left" readonly id="input-surname" placeholder="Surname" ng-model="userDataViewCtrl.userData.lastName">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-6">
-                            <input type="text"  class="field left" readonly id="input-email" placeholder="Email" ng-model="userDataViewCtrl.userData.email">
-                        </div>
-                    </div>
-                </fieldset>
+            <form class="form-horizontal" id="informacje" style="padding-top: 50px;">
+                <input type="text" style="border-top: 0.5px solid #1A1A1C; padding-top: 30px" class="field left" readonly id="input-name" placeholder="FirstName" ng-model="userDataViewCtrl.userData.firstName">
+                <input type="text" class="field left" readonly id="input-surname" placeholder="Surname" ng-model="userDataViewCtrl.userData.lastName">
+                <input type="text"  style="border-bottom: 0.5px solid #1A1A1C; padding-bottom: 30px" class="field left" readonly id="input-email" placeholder="Email" ng-model="userDataViewCtrl.userData.email">
                 <div id="err_msg"><p>{{userDataViewCtrl.msg}}</p></div>
             </form>
-            <div id="editTextButton" style="display: inline-block; margin-left: 20px;">
+            <div id="editTextButton">
                 <a href="/#/logged/editUser"><img src="./assets/12b.png" width="34" height="auto" /></a><p style="color: #5e5e5e ; font-size: 10px">Edit your data</p>
             </div>
             <p class="text-muted"  id="fot"><a href="/#/logged/privacy">Privacy</a> · <a href="#/logged/terms">Terms</a> · <a href="#/logged/terms">Advertising</a> · <a href="#/logged/choices">Ad Choices</a> · <a href="#/logged/cookies">Cookies More</a> </p>

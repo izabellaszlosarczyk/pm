@@ -27,7 +27,7 @@
             <td><div ng-repeat="comment in image.comments" style="width: 250px">{{$index+1 + ' ' + comment +'\n'}}</div></td>
             <td>{{image.average}}</td>
             <td>{{image.creationDate}}</td>
-            <td ><button type="myButton" ng-click="userStuffCtrl.viewFile(image)" id="view" style="color:black;">view</button></td>
+            <td ><button class="btn btn-success" ng-click="userStuffCtrl.viewFile(image)" id="view" style="color:black;">view</button></td>
         </tr>
         </tbody>
     </table>

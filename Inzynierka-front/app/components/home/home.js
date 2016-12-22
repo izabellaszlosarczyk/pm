@@ -54,6 +54,10 @@ export default app => {
                 url: '/others',
                 template: '<t-others></t-others>'
             })
+            .state('info', {
+                url: '/info',
+                template: '<t-info></t-info>'
+            })
             .state('logged.charts', {
                 url: '/charts',
                 template: '<t-charts></t-charts>'

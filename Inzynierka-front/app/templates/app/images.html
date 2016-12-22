@@ -28,8 +28,8 @@
             <td><div ng-repeat="comment in image.comments" style="width: 250px">{{$index+1 + ' ' + comment +'\n'}}</div></td>
             <td>{{image.average}}</td>
             <td>{{image.creationDate}}</td>
-            <td ><button type="myButton" ng-click="imagesCtrl.viewFile(image)" id="view" style="color:black;">view</button></td>
-            <td ><button type="myButton" ng-click="imagesCtrl.deleteFromSubs(image)" id="deleteSub" style="color:black">x</button></td>
+            <td ><button class="btn btn-success" ng-click="imagesCtrl.viewFile(image)" id="view" style="color:black;">view</button></td>
+            <td ><button class="btn btn-success" ng-click="imagesCtrl.deleteFromSubs(image)" id="deleteSub" style="color:black">x</button></td>
         </tr>
         </tbody>
     </table>

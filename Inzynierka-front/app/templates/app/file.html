@@ -1,6 +1,6 @@
 <div class="col-md-12" id="fileDetails">
     <div style="border-bottom: 1px solid #CBD5DD;" id="details">
-        <a href="/#/logged"><button class="button" id="x" style="margin-right: auto">x</button></a>
+        <a href="/#/logged"><button class="btn btn-success" id="x" style="margin-right: auto">x</button></a>
         <h2 id="hFile">Chosen file details</h2>
         <div class="col-md-8">
             <p>Title: {{fileCtrl.fileDetails.title}}</p>
@@ -38,11 +38,11 @@
 
     <div id="score" style="border-bottom: 1px solid #CBD5DD;">
         <p>Rate this file!</p>
-        <button class="myButton score" ng-click="fileCtrl.addScore(1)">1</button>
-        <button class="myButton score" ng-click="fileCtrl.addScore(2)">2</button>
-        <button class="myButton score" ng-click="fileCtrl.addScore(3)">3</button>
-        <button class="myButton score" ng-click="fileCtrl.addScore(4)">4</button>
-        <button class="myButton score" ng-click="fileCtrl.addScore(5)">5</button>
+        <button class="btn btn-success" ng-click="fileCtrl.addScore(1)">1</button>
+        <button class="btn btn-success" ng-click="fileCtrl.addScore(2)">2</button>
+        <button class="btn btn-success" ng-click="fileCtrl.addScore(3)">3</button>
+        <button class="btn btn-success" ng-click="fileCtrl.addScore(4)">4</button>
+        <button class="btn btn-success" ng-click="fileCtrl.addScore(5)">5</button>
     </div>
     <div id="comment" style="padding-top: 10px">
         <!--<p>Comments : {{fileCtrl.fileDetails.comments}}</p>-->
@@ -51,7 +51,7 @@
         </ul>
 
         <input class="form-control" id="inputComment" placeholder="write a comment"  ng-model="fileCtrl.comment">
-        <button class="commentButton" ng-click="fileCtrl.addComment()">add comment</button>
+        <button class="btn btn-success" ng-click="fileCtrl.addComment()">add comment</button>
     </div>
     <div id="d3ContainerDivID">
     </div>

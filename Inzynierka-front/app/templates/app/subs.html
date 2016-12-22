@@ -23,8 +23,8 @@
             <td><div ng-repeat="comment in file.comments" style="width: 250px">{{$index+1 + ' ' + comment +'\n'}}</div></td>
             <td>{{file.average}}</td>
             <td>{{file.creationDate}}</td>
-            <td ><button type="myButton" ng-click="subsCtrl.viewFile(file)" id="view" style="color:black;">view</button></td>
-            <td ><button type="myButton" ng-click="subsCtrl.deleteFromSubs(file)" id="deleteSub" style="color:black">x</button></td>
+            <td ><button class="btn btn-success" ng-click="subsCtrl.viewFile(file)" id="view" style="color:black;">view</button></td>
+            <td ><button class="btn btn-success" ng-click="subsCtrl.deleteFromSubs(file)" id="deleteSub" style="color:black">x</button></td>
         </tr>
         </tbody>
     </table>
