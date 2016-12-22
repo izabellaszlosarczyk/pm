@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/database/generate").permitAll() //TODO: usunąć!
                 .antMatchers(HttpMethod.GET,"/test/test").permitAll() //TODO: usunąć!
                 .antMatchers(HttpMethod.GET,"/register/new").permitAll()
-                .antMatchers(HttpMethod.GET,"/register/new").permitAll()
+                .antMatchers(HttpMethod.POST,"/register/new").permitAll()
                 .antMatchers(HttpMethod.POST,"/file/uploadNew").permitAll()
                 .antMatchers(HttpMethod.GET,"/file/uploadNew").permitAll()
                 .antMatchers(HttpMethod.GET,"/python/a").permitAll()

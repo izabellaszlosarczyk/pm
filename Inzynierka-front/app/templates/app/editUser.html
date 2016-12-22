@@ -1,13 +1,13 @@
 <div class="col-md-12" >
-    <a href="/#/logged"><button class="btn btn-success" id="x" style="margin-right: auto">x</button></a>
-    <p style="padding-top: 15px; color: #181818">Here you can edit your profile data - like email, password, photos, </p>
+    <a href="/#/logged"><button class="btn btn-success" id="x" style="padding: 5px 10px; margin-right: auto">x</button></a>
+    <p style="padding-top: 15px; color: dimgray">Here you can edit your profile data - like email, password, photos, </p>
     <p style="color: grey">For more information chceck our <a href="/#/logged/privacy">Privacy</a>/<a href="/#/logged/terms">Terms</a> Policy 27 october 2016</p>
     <form class="form-horizontal">
         <fieldset id="inputs">
             <div class="edit" style="padding-bottom: 20px">
                 <div class="form-group">
                     <input type="text"  class="field left" readonly id="input-name" placeholder="FirstName" ng-model="userDataEditCtrl.userData.firstName">
-                    <input type="text" class="field left" id="input-nameEdit" placeholder="New FirstName" ng-model="userDataEditCtrl.userNewData.name">
+                    <input type="text" class="field right " id="input-nameEdit" placeholder="New FirstName" ng-model="userDataEditCtrl.userNewData.name">
                 </div>
                 <div class="form-group">
                     <input type="text"  class="field left" readonly id="input-surname" placeholder="Surname" ng-model="userDataEditCtrl.userData.lastName">
@@ -24,7 +24,7 @@
                 <input  class="field left"  id="input-password" type="password"  placeholder="Password">
                 <input  class="field left"  id="input-passwordEdit" type="password" placeholder="Repeat Password" ng-model="userDataEditCtrl.userNewData.password">
             </div>
-            <a href="/#/logged"><button class="btn btn-success" ng-click="userDataEditCtrl.editUser()">Change</button></a>
+            <a href="/#/logged"><button class="btn btn-success" ng-click="userDataEditCtrl.editUser()" style="display:block; margin:0 auto;">Change</button></a>
             <div class="photoUpload edit" style="padding-bottom: 20px">
                 <input ng-model="userDataEditCtrl.newImage" onchange="angular.element(this).scope().file_changed(this)" type="file" accept="image/*" />
                 <img data-ng-src="data:image/png;base64,{{userDataViewCtrl.$scope.newImage}}"  ng-show="userDataViewCtrl.$scope.newImage" id="photo-id"/>

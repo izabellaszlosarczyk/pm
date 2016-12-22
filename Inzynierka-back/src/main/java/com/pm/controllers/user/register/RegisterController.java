@@ -2,9 +2,13 @@ package com.pm.controllers.user.register;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pm.controllers.contentService.userContent.FileOperations;
 import com.pm.model.User;
 import com.pm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -25,6 +30,10 @@ public class RegisterController {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    private ResourceLoader resourceLoader;
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     @ResponseBody
@@ -48,6 +57,12 @@ public class RegisterController {
         u.setLastName(registerRequest.getSurname());
         u.setLastLog((new Date().toString()));
         u.setProfilePhoto("image69"); //zdjecie domyslne
+        System.out.println("dupa");
+//        String name = "file.py";
+//        Resource resource = resourceLoader.getResource("classpath:/static/"+name);
+
+        u.setProfilePhoto("zbEebNB.jpg");
+
         userRepository.save(u);
         try {
             return ResponseEntity.status(HttpStatus.OK).body(objectMapper.writeValueAsString("ok"));

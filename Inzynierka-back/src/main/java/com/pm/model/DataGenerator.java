@@ -147,6 +147,8 @@ public class DataGenerator {
 		user.setLastLog(dateFormat.format(date));
 		System.out.println("dupa");
 		try {
+			FileOperations.saveFileToDatabaseWithName("http://i.imgur.com/", "zbEebNB.jpg" , "zbEebNB.jpg");
+
 			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/4/42/", "Jonwalker.jpg" , "image1");
 			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/7/71/", "Germ%C3%A1n_Lux.jpg" , "image2");
 			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/c/ca/", "Sk%C5%99%C3%ADpov_kostel.JPG" , "image3");
