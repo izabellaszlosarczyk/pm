@@ -18,9 +18,9 @@
 
         <div class="col-md-7" ui-view id="infoMiddle">
             <div id="desc">
-                <p >PatternMoves WebApp Project</p>
-                <div id="uploadFiles" style="">
-                    <p>Upload some stuff - we will analyze for you </p>
+                <p style="color: #B0B0B0" >PatternMoves WebApp Project</p>
+                <div id="uploadFiles" style="color: #B0B0B0">
+                    <p style="padding-bottom: 10px;">Upload some stuff - we will analyze for you </p>
                     <div  class="col-md-6" id="uploading" style="font-size: 14px;">
                         <input ng-model="userDataViewCtrl.newFile" onchange="angular.element(this).scope().file_upload(this)" type="file" /><p>CSV with data</p>
                     </div>
@@ -53,6 +53,43 @@
                         <input type="radio" name="type" value="cv">cv -->
                     </div>
                     <button class="btn btn-success" ng-click="userDataViewCtrl.addNewFile()">Upload</button>
+                    <div  class="col-md-6" id="graphs1" style="">
+                        <img src="./assets/barcharts.png" class="img-responsive" style="background-color:transparent; width: 70%; height: auto; display:block; margin: 0 auto; padding-bottom: 20px;">
+                        <img src="./assets/radial.png" class="img-responsive" style="background-color:transparent;width: 70%;  height: auto; display:block; margin: 0 auto;  padding-bottom: 20px;">
+                    </div>
+                    <div  class="col-md-6" id="graphs2" style="">
+                        <img src="./assets/dendo" class="img-responsive" style="background-color:transparent;width: 70%;  height: auto; display:block; margin: 0 auto;  padding-bottom: 20px;">
+                        <img src="./assets/straight.png" class="img-responsive" style="background-color:transparent;width: 70%; height: auto; display:block; margin: 0 auto;  padding-bottom: 20px;">
+                        <img src="./assets/graph.png" class="img-responsive" style="background-color:transparent;width: 70%; height: auto; display:block; margin: 0 auto;  padding-bottom: 20px;">
+                    </div>
+                    <!--<div>-->
+                        <!--<div  class="col-md-6" id="graphs1" style="">-->
+                            <!--<img src="./assets/barcharts.png" class="img-responsive" style="background-color:transparent; height: auto; display:block; margin: 0 auto;">-->
+                        <!--</div>-->
+                        <!--<div  class="col-md-6" id="description1" style="">-->
+                            <!--<p>DUUUUPA</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<div  class="col-md-6" id="graphs2" style="">-->
+                            <!--<img src="./assets/dendo" class="img-responsive" style="background-color:transparent; width: 70%; height: auto; display:block; margin: 0 auto;">-->
+                        <!--</div>-->
+                        <!--<div  class="col-md-6" id="description2" style="">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div  class="col-md-6" id="graphs3" style="">-->
+                        <!--<img src="./assets/graph.png" class="img-responsive" style="background-color:transparent; width: 30%; height: auto; display:block; margin: 0 auto;">-->
+                    <!--</div>-->
+                    <!--<div  class="col-md-6" id="description3" style="">-->
+                    <!--</div>-->
+                    <!--<div  class="col-md-6" id="graphs4" style="">-->
+                        <!--<img src="./assets/radial.png" class="img-responsive" style="background-color:transparent; width: 30%; height: auto; display:block; margin: 0 auto;">-->
+                    <!--</div>-->
+                    <!--<div  class="col-md-6" id="description4" style="">-->
+                    <!--</div>-->
+                    <!--<div  class="col-md-6" id="graphs5" style="">-->
+                        <!--<img src="./assets/straight.png" class="img-responsive" style="background-color:transparent; width: 30%; height: auto; display:block; margin: 0 auto;">-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>

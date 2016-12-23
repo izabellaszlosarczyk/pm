@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c1927f2-f6ff-4233-b28c-16499d586dec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/edit/EditPhotoRequest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config.properties" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eFftVT3.jpg" afterPath="$PROJECT_DIR$/eFftVT3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileOperations.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileOperations.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/LoadSaveContent.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/LoadSaveContent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/edit/EditController.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/user/edit/EditController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/components/editUser/userDataEdit.controller.js" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/components/editUser/userDataEdit.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/services/users/users.service.js" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/services/users/users.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/templates/app/editUser.html" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/templates/app/editUser.html" />
     </list>
     <ignored path="PM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,8 +28,8 @@
       <file leaf-file-name="FileController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="388" column="56" selection-start-line="388" selection-start-column="56" selection-end-line="388" selection-end-column="56" />
+            <state relative-caret-position="2167">
+              <caret line="328" column="0" selection-start-line="328" selection-start-column="0" selection-end-line="328" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -189,7 +179,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="75" />
+    <option name="x" value="-1291" />
     <option name="y" value="52" />
     <option name="width" value="1291" />
     <option name="height" value="686" />
@@ -1354,15 +1344,15 @@
       <workItem from="1481211173562" duration="3168000" />
       <workItem from="1482012870668" duration="26641000" />
       <workItem from="1482361664811" duration="1234000" />
-      <workItem from="1482380117973" duration="15745000" />
+      <workItem from="1482380117973" duration="17114000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="341635000" />
+    <option name="totallyTimeSpent" value="343004000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="75" y="52" width="1291" height="686" extended-state="0" />
+    <frame x="-1291" y="52" width="1291" height="686" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1820,8 +1810,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="388" column="56" selection-start-line="388" selection-start-column="56" selection-end-line="388" selection-end-column="56" />
+        <state relative-caret-position="2167">
+          <caret line="328" column="0" selection-start-line="328" selection-start-column="0" selection-end-line="328" selection-end-column="0" />
           <folding />
         </state>
       </provider>

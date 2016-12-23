@@ -286,7 +286,8 @@ public class FileController {
             e.printStackTrace();
         }
         httpCon.disconnect();
-
+        inputLine = sb.toString();
+        System.out.println(sb.toString());
 //        //check
 //        if (!fileDesc.isEmpty()) {
 //            try {
@@ -324,17 +325,8 @@ public class FileController {
 //        } catch (JsonProcessingException e) {
 //            e.printStackTrace();
 //
-        System.out.println("while if response is empty");
-        inputLine = sb.toString();
-        System.out.println(sb.toString());
-//        while (inputLine.isEmpty()){
-//            System.out.println(1);
-//            try {
-//                sleep(1);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
+
+
 //        try {
 //            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString(inputLine));
 //        } catch (JsonProcessingException e) {
@@ -375,11 +367,6 @@ public class FileController {
                 ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
                 System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
                 GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
-                //inputStream = new FileInputStream("//home/izabella/Pulpit/eFftVT3.jpg");
-                //DBObject metaData = new BasicDBObject();
-                //metaData.put("extra1", "anything 1");
-                //metaData.put("extra2", "anything 2");
-                //gridOperations.store(inputStream, "testing22.png", "image/png", metaData);
                 java.io.File convFile = new  java.io.File( file.getOriginalFilename());
                 file.transferTo(convFile);
                 inputStream = new FileInputStream(convFile);
