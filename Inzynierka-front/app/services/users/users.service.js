@@ -151,9 +151,26 @@ class UserService {
         });
 
     }
+    saveNewEntity(userFile, fileName, type){ //potem to zmienie, ogolna metoda na dodawnaie plikow
+        console.log("saveuje\n image");
+        var formdata = new FormData();
+        // console.log(fileName);
+        // console.log(userFile);
+        formdata.append( 'name', fileName);
+        formdata.append( 'file', userFile);
+        formdata.append( 'type', type);
+        return this.$http({
+            url: this.getUrl('file/saveNewEntity'),
+            method: "POST",
+            data: formdata,
+            cache: false,
+            headers: {'Content-Type': undefined },
+            processData: false
+        });
 
+    }
 
-    saveNewFileBackend(userFileData, userFileDesc, type){ //potem to zmienie, ogolna metoda na dodawnaie plikow
+    saveNewFileBackend(userFileData, userFileDesc, fileType, analysesType, nameOfOutputFile){ //potem to zmienie, ogolna metoda na dodawnaie plikow
         console.log("saveuje\n");
         console.log(userFileData.name);
         console.log(userFileDesc.name);
@@ -163,7 +180,9 @@ class UserService {
         formdata.append( 'fileData', userFileData);
         formdata.append( 'nameDesc', userFileDesc.name);
         formdata.append( 'fileDesc', userFileDesc);
-        formdata.append( 'type', userFileDesc);
+        formdata.append( 'type', fileType);
+        formdata.append( 'analysesType', analysesType);
+        formdata.append('name', nameOfOutputFile);
         return this.$http({
             url: this.getUrl('file/uploadNew'),
             method: "POST",

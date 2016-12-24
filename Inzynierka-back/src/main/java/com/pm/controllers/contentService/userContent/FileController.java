@@ -180,17 +180,13 @@ public class FileController {
 
     @RequestMapping(value = "/uploadNew",  headers = "content-type=multipart/*", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> uploadFileHandlerOld(@ModelAttribute("nameData") String nameData, @ModelAttribute("fileData") MultipartFile fileData, @ModelAttribute("nameDesc") String nameDesc, @ModelAttribute("fileDesc") MultipartFile fileDesc, @ModelAttribute("type") String type) {
+    public ResponseEntity<String> uploadFileHandlerOld(@ModelAttribute("nameData") String nameData, @ModelAttribute("fileData") MultipartFile fileData, @ModelAttribute("nameDesc") String nameDesc, @ModelAttribute("fileDesc") MultipartFile fileDesc, @ModelAttribute("type") String type,  @ModelAttribute("analysesType") String analysesType, @ModelAttribute("name") String name)  {
         System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
         FileInputStream fis = null;
         ObjectMapper ob = new ObjectMapper();
         AnnotationConfigApplicationContext ctx = null;
-        System.out.println("CZO TU SIE DZIEJE2");
-        System.out.println(nameDesc);
-        System.out.println(nameData);
-        System.out.println("FILEFILEFILE2");
-        System.out.println(fileDesc);
-        System.out.println(fileData);
+
+        System.out.println("PRINTUJE NAZWE : ->>>>>>>>>>>>>>>>>>" + name);
         String fileDataString = "data=";
         String fileDescString = "desc=";
         StringBuilder sb= new StringBuilder();
@@ -221,6 +217,22 @@ public class FileController {
         }
         URL url = null;
         try {
+            // tutajw znaleznosci od urli do metod beda ify sobie
+            if (analysesType.contains("dendo".toLowerCase())){
+                //jakis url
+            }
+            if (analysesType.contains("straight".toLowerCase())){
+                //jakis url
+            }
+            if (analysesType.contains("barChart".toLowerCase())){
+                //jakis url
+            }
+            if (analysesType.contains("graph".toLowerCase())){
+                //jakis url
+            }
+            if (analysesType.contains("radial".toLowerCase())){
+                //jakis url
+            }
             url = new URL("http://127.0.0.1:8000/polls/");
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -288,51 +300,29 @@ public class FileController {
         httpCon.disconnect();
         inputLine = sb.toString();
         System.out.println(sb.toString());
-//        //check
-//        if (!fileDesc.isEmpty()) {
-//            try {
-//                System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
-//                ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
-//                GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
-//                java.io.File convFile = new java.io.File(file.getOriginalFilename());
-//                convFile.createNewFile();
-////	            FileOutputStream fos = new FileOutputStream(convFile);
-////	            fos.write(file.getBytes());
-////	            fos.close();
-//                fis = new FileInputStream(convFile);
-//                System.out.println(name);
-//                gridOperations.store(fis, name, "profilePic/jpg");
-////	            return convFile.toString();
+        InputStream isTmp = new ByteArrayInputStream(inputLine.getBytes());ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
+        System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
+        GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
+        DBObject metaData = new BasicDBObject();
+        metaData.put("analysesType", analysesType);
+        gridOperations.store(isTmp, name, type, metaData);
+
+// do celow testowych czy dobrze zapisuje
+//        System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
+//        ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
+//        List<GridFSDBFile> result = gridOperations.find(
+//                new Query().addCriteria(Criteria.where("filename").is(name)));
 //
-//            } catch (Exception e) {
-//                try {
-//                    return  ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("You failed to upload " + name + " => " + e.getMessage()));
-//                } catch (JsonProcessingException e1) {
-//                    e1.printStackTrace();
-//                }
-//            } finally {
-//                if (fis != null)
-//                    try {
-//                        fis.close();
-//                    } catch (IOException e) {
-//                        // TODO Auto-generated catch block
-//                        e.printStackTrace();
-//                    }
+//        for (GridFSDBFile file1 : result) {
+//            try {
+//                System.out.println(file1.getFilename());
+//
+//                //save as another image
+//                file1.writeTo("//home/izabella/Pulpit/rrrr/"+name);
+//            } catch (IOException e) {
+//                e.printStackTrace();
 //            }
 //        }
-//        try {
-//            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("ok"));
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//
-
-
-//        try {
-//            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString(inputLine));
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
-
         System.out.println("koniec funkcji");
 
         return ResponseEntity.status(HttpStatus.OK).body(inputLine);
@@ -402,21 +392,66 @@ public class FileController {
                     }
             }
         }
-        System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
-        ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
-        GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
-        List<GridFSDBFile> result = gridOperations.find(
-                new Query().addCriteria(Criteria.where("filename").is(name)));
+//        System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
+//        ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
+//        GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
+//        List<GridFSDBFile> result = gridOperations.find(
+//                new Query().addCriteria(Criteria.where("filename").is(name)));
+//
+//        for (GridFSDBFile file1 : result) {
+//            try {
+//                System.out.println(file1.getFilename());
+//                System.out.println(file.getContentType());
+//
+//                //save as another image
+//                file1.writeTo("//home/izabella/Pulpit/rrrr/"+name);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("ok"));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
-        for (GridFSDBFile file1 : result) {
+        return null;
+    }
+
+    @RequestMapping(value = "/saveNewEntity",  headers = "content-type=multipart/*", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> saveEntityHandler(@ModelAttribute("name") String name, @ModelAttribute("file") MultipartFile file, @ModelAttribute("type") String type) {
+        System.out.println("coś sie wali lel");
+        FileInputStream fis = null;
+        ObjectMapper ob = new ObjectMapper();
+        AnnotationConfigApplicationContext ctx = null;
+        //check
+        StringBuilder sb= new StringBuilder();
+        ByteArrayInputStream stream = null;
+        InputStream inputStream = null;
+        if (!file.isEmpty()) {
             try {
-                System.out.println(file1.getFilename());
-                System.out.println(file.getContentType());
-
-                //save as another image
-                file1.writeTo("//home/izabella/Pulpit/rrrr/"+name);
-            } catch (IOException e) {
-                e.printStackTrace();
+                ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
+                GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
+                java.io.File convFile = new  java.io.File( file.getOriginalFilename());
+                file.transferTo(convFile);
+                inputStream = new FileInputStream(convFile);
+                DBObject metaData = new BasicDBObject();
+                gridOperations.store(inputStream, name, type, metaData);
+            } catch (Exception e) {
+                try {
+                    return  ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("You failed to upload " + name + " => " + e.getMessage()));
+                } catch (JsonProcessingException e1) {
+                    e1.printStackTrace();
+                }
+            } finally {
+                if (fis != null)
+                    try {
+                        fis.close();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
             }
         }
         try {
@@ -428,10 +463,14 @@ public class FileController {
         return null;
     }
 
+
+
     //TODO: metoda do testow
     @RequestMapping(value = "/addFile", method= RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<String> addFile(@RequestBody FileRequest fileRequest) {
+        System.out.println(fileRequest.getTitle());
+        System.out.println(fileRequest.getType());
         File file = new File();
         file.setCreationDate(LocalDate.now());
         file.setAverage("0");
@@ -442,7 +481,7 @@ public class FileController {
         s.add(5);
         file.setScores(s);
         file.setType(fileRequest.getType());
-
+        editClass.saveFile(file);
         return ResponseEntity.status(HttpStatus.OK).body("null");
 
     }
@@ -462,7 +501,7 @@ public class FileController {
         s.add(5);
         file.setScores(s);
         file.setType(fileRequest.getType());
-
+        editClass.saveFile(file);
         return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("ok"));
 
     }

@@ -88,22 +88,28 @@ export default class UserDataViewController {
         console.log(this.$scope.fileNew);
         console.log(this.$scope.fileNew2);
         //save file to database through backend
-        this.usersService.saveNewFileBackend(this.$scope.fileNew,this.$scope.fileNew2, this.newFileType).then(function successCallback(response, status, headers, config) {
+        this.usersService.saveNewFileBackend(this.$scope.fileNew,this.$scope.fileNew2, this.newFileType, this.analysesType, this.fileName).then(function successCallback(response, status, headers, config) {
             console.log(response.data);
-
+            console.log("koumnikacja z pythonem - ok");
             this.jsonToVizualization = response.data;
-            //zmienic to nazwa
-            this.usersService.saveNewFile( this.jsonToVizualization, this.fileName, this.analysesType).then(function successCallback(response2, status2, headers2, config2) {
-                console.log(response2.data);
-            }.bind(this));
+            // console.log(JSON.stringify(this.jsonToVizualization));
+            // var f = new File(JSON.stringify(this.jsonToVizualization), this.fileName);
+            // // console.log()
+            // //zmienic to nazwa
             let fileEntity = {
                 type : this.analysesType,
                 title : this.fileName
             };
-            this.usersService.addFileEntity(fileEntity).then(function successCallback(response3, status3, headers3, config3) {
-                console.log(response3);
-                console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            }.bind(this));
+            // this.usersService.saveNewEntity(f, this.fileName, this.analysesType).then(function successCallback(response3, status3, headers3, config3) {
+            //     console.log(response3);
+            //     console.log("zapis do bazy pliku - ok");
+                this.usersService.addFileEntity(fileEntity).then(function successCallback(response4, status4, headers4, config4) {
+                    console.log(response4);
+                    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                    console.log("zapis klasy pliku - ok");
+                }.bind(this));
+            // }.bind(this));
+
             //save details
         }.bind(this));
 
