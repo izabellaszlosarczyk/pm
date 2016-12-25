@@ -1,3 +1,11 @@
+.btn.btn-success.score {
+  display: inline-block;
+  cursor: pointer;
+  text-shadow: none;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 #fileDetails {
   color:#1a1a1a;
   h2 {
@@ -39,6 +47,10 @@
     text-shadow: none;
     margin: 0 auto;
     margin-bottom: 20px;
+  }
+  .btn.btn-success {
+    display: inline-block;
+    margin: 0 auto;
   }
 
   .commentButton {

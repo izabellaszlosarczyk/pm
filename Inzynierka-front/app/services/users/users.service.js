@@ -13,6 +13,8 @@ class UserService {
         this.userData = {};
         this.requestedFileDetails = {};
         this.stateProvider = $state;
+        this.analysesType;
+        this.jsonToVisualisation;
     }
 
     getUrl(url) {

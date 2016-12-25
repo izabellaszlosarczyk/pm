@@ -14,6 +14,7 @@ export default class PatternsController {
   //dendograms
   $onInit() {
     console.log("PATTERNS");
+    console.log();
     this.userData = this.usersService.getUserDataValues();
     console.log(this.userData.savedFiles);
     this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
@@ -45,6 +46,7 @@ export default class PatternsController {
   }
 
   viewFile(fileDetails){
+    console.log(fileDetails);
     //this.usersService.setRequestedFileDetails(fileDetails);
     this.usersService.addRequestedFileDetails(fileDetails);
     console.log(this.usersService.requestedFileDetails);

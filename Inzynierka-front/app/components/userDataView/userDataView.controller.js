@@ -23,6 +23,14 @@ export default class UserDataViewController {
         this.$scope.fileNew = '';
         this.$scope.fileNew2 = '';
 
+        this.fileDetails = {};
+        
+        this.barChart = 0;
+        this.graph = 0;
+        this.straight = 0;
+        this.dendo = 0;
+        this.radial = 0;
+
         this.jsonToVizualization = ""; //tutaj siedzi co wizualizujemy
 
 
@@ -92,25 +100,22 @@ export default class UserDataViewController {
             console.log(response.data);
             console.log("koumnikacja z pythonem - ok");
             this.jsonToVizualization = response.data;
-            // console.log(JSON.stringify(this.jsonToVizualization));
-            // var f = new File(JSON.stringify(this.jsonToVizualization), this.fileName);
-            // // console.log()
-            // //zmienic to nazwa
             let fileEntity = {
                 type : this.analysesType,
                 title : this.fileName
             };
-            // this.usersService.saveNewEntity(f, this.fileName, this.analysesType).then(function successCallback(response3, status3, headers3, config3) {
-            //     console.log(response3);
-            //     console.log("zapis do bazy pliku - ok");
-                this.usersService.addFileEntity(fileEntity).then(function successCallback(response4, status4, headers4, config4) {
-                    console.log(response4);
-                    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                    console.log("zapis klasy pliku - ok");
-                }.bind(this));
-            // }.bind(this));
+            this.usersService.jsonToVisualisation = this.jsonToVizualization;
+            this.usersService.addFileEntity(fileEntity).then(function successCallback(response4, status4, headers4, config4) {
+                console.log(response4);
+                console.log("zapis klasy pliku - ok");
+                this.fileDetails = response4.data;
+                this.usersService.addRequestedFileDetails(this.fileDetails);
+                this.usersService.analysesType = this.analysesType;
+                console.log(this.usersService.requestedFileDetails);
+                console.log(this.fileDetails);
+                this.state.go('logged.fileDetails', this.fileDetails.title);
+            }.bind(this));
 
-            //save details
         }.bind(this));
 
     }

@@ -15,10 +15,10 @@ export default class FileController {
     this.userFilesSubs = [];
     this.flagType = false; // if text - true  <--> image -false
     this.flagIs = false;
-    this.flagInteractive = false;
-    this.flagTmp = "dendo"; // flagi typu : "barChart", "dendo", "graph", "radial", "straight"
+    this.flagTmp = ""; // flagi typu : "barChart", "dendo", "graph", "radial", "straight"n
 
 
+    this.jsonToVisualisation; // w tym pliku masz tego jsona z backednu 
   }
   $onInit() {
     console.log("test dendo");
@@ -26,12 +26,9 @@ export default class FileController {
       this.flagType = true;
 
     }
-    if (this.fileDetails.type == "json"){
-      console.log("interactive");
-      //TUTAJ JEST TEN TYP NA INTERAKTYWNE
-      this.flagInteractive = true;
-    }
-
+    this.jsonToVisualisation = this.usersService.jsonToVisualisation;
+    console.log(this.jsonToVisualisation);
+    this.flagTmp = this.usersService.analysesType;
     //obrazek
     var tmp = new Object();
     //this.fileDetails = this.usersService.requestedFileDetails;

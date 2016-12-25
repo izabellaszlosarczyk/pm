@@ -469,6 +469,7 @@ public class FileController {
     @RequestMapping(value = "/addFile", method= RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<String> addFile(@RequestBody FileRequest fileRequest) {
+        ObjectMapper ob = new ObjectMapper();
         System.out.println(fileRequest.getTitle());
         System.out.println(fileRequest.getType());
         File file = new File();
@@ -482,8 +483,12 @@ public class FileController {
         file.setScores(s);
         file.setType(fileRequest.getType());
         editClass.saveFile(file);
-        return ResponseEntity.status(HttpStatus.OK).body("null");
-
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString(file));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @RequestMapping(value = "/addFileDetails", method= RequestMethod.POST)
@@ -502,7 +507,12 @@ public class FileController {
         file.setScores(s);
         file.setType(fileRequest.getType());
         editClass.saveFile(file);
-        return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("ok"));
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString(file));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
 
     }
 
