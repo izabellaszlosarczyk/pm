@@ -18,7 +18,7 @@ export default class FileController {
     this.flagTmp = ""; // flagi typu : "barChart", "dendo", "graph", "radial", "straight"n
 
 
-    this.jsonToVisualisation; // w tym pliku masz tego jsona z backednu 
+    this.jsonToVisualisation; // w tym pliku masz tego jsona z backednu
   }
   $onInit() {
     console.log("test dendo");
@@ -79,6 +79,8 @@ export default class FileController {
           .attr("width", width)
           .attr("height", height);
 
+      //TODO: tutaj bedzie
+      //d3.json(this.jsonToVisualisation, function(error, graph)
       d3.json("./assets/graph.json", function(error, graph) {
         if (error) throw error;
         var nodes = graph.nodes,

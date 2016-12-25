@@ -37,22 +37,21 @@
                             <option value="straight">straight graph</option>
                         </select><br>
                     </div>
-                    <div  class="col-md-6"  style="font-size: 14px;">
+                    <div  class="col-md-6"  style="font-size: 14px; padding-bottom: 20px;">
                         <select name="typeSelect" id="typeSelect" ng-model="userDataViewCtrl.newFileType">
                             <option value="" disabled selected>file type</option>
                             <option value="labyrinth">labyrinth</option>
                             <option value="multiple">multiple answers</option>
                         </select><br>
                     </div>
-                    <input class="form-control" id="inputName" placeholder="filename"  ng-model="userDataViewCtrl.fileName">
-                    <div id="type" style="font-size: 15px;">
-                        <!--<input type="radio" name="type" value="other" ng-change="userDataViewCtrl.recordSelected('other')" ng-model="userDataViewCtrl">other
-                        <input type="radio" name="type" value="chart">chart
-                        <input type="radio" name="type" value="image">image
-                        <input type="radio" name="type" value="pattern">pattern
-                        <input type="radio" name="type" value="cv">cv -->
+                    <div style="padding-top: 20px;">
+                        <div  class="col-md-6">
+                            <p style="font-size: 14px">Name of output file</p>
+                        </div>
+                        <input class="form-control" id="inputName" placeholder="filename"  ng-model="userDataViewCtrl.fileName">
                     </div>
                     <button class="btn btn-success" ng-click="userDataViewCtrl.addNewFile()">Upload</button>
+
                     <div  class="col-md-6" id="graphs1" style="">
                         <img src="./assets/barcharts.png" class="img-responsive" style="background-color:transparent; width: 70%; height: auto; display:block; margin: 0 auto; padding-bottom: 20px;">
                         <img src="./assets/radial.png" class="img-responsive" style="background-color:transparent;width: 70%;  height: auto; display:block; margin: 0 auto;  padding-bottom: 20px;">
@@ -62,34 +61,7 @@
                         <img src="./assets/straight.png" class="img-responsive" style="background-color:transparent;width: 70%; height: auto; display:block; margin: 0 auto;  padding-bottom: 20px;">
                         <img src="./assets/graph.png" class="img-responsive" style="background-color:transparent;width: 70%; height: auto; display:block; margin: 0 auto;  padding-bottom: 20px;">
                     </div>
-                    <!--<div>-->
-                        <!--<div  class="col-md-6" id="graphs1" style="">-->
-                            <!--<img src="./assets/barcharts.png" class="img-responsive" style="background-color:transparent; height: auto; display:block; margin: 0 auto;">-->
-                        <!--</div>-->
-                        <!--<div  class="col-md-6" id="description1" style="">-->
-                            <!--<p>DUUUUPA</p>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<div  class="col-md-6" id="graphs2" style="">-->
-                            <!--<img src="./assets/dendo" class="img-responsive" style="background-color:transparent; width: 70%; height: auto; display:block; margin: 0 auto;">-->
-                        <!--</div>-->
-                        <!--<div  class="col-md-6" id="description2" style="">-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div  class="col-md-6" id="graphs3" style="">-->
-                        <!--<img src="./assets/graph.png" class="img-responsive" style="background-color:transparent; width: 30%; height: auto; display:block; margin: 0 auto;">-->
-                    <!--</div>-->
-                    <!--<div  class="col-md-6" id="description3" style="">-->
-                    <!--</div>-->
-                    <!--<div  class="col-md-6" id="graphs4" style="">-->
-                        <!--<img src="./assets/radial.png" class="img-responsive" style="background-color:transparent; width: 30%; height: auto; display:block; margin: 0 auto;">-->
-                    <!--</div>-->
-                    <!--<div  class="col-md-6" id="description4" style="">-->
-                    <!--</div>-->
-                    <!--<div  class="col-md-6" id="graphs5" style="">-->
-                        <!--<img src="./assets/straight.png" class="img-responsive" style="background-color:transparent; width: 30%; height: auto; display:block; margin: 0 auto;">-->
-                    <!--</div>-->
+
                 </div>
             </div>
         </div>
