@@ -1,0 +1,38 @@
+<div class="col-md-12" id="stuff">
+    <div style="border-bottom: 0.5px solid #2F2933; padding-top: 20px;">
+        <div class="col-md-8">
+            <img src="./assets/radialN.png" class="img-responsive" style="background-color:transparent; height: 80%; display:block; margin: 0 auto;">
+        </div>
+        <div class="col-md-4" style="color: #B0B0B0;">
+            <h4 style="padding-top: 10px; ">Generated materials</h4>
+            <h4>for your uploaded files</h4>
+        </div>
+    </div>
+    <div ng-if="allCtrl.loading" style="text-align: center; transform: scale(2)">
+
+    </div>
+    <table class="table"  id="imageTable" ng-if="!allCtrl.loading" style="font-size: 70%; color:grey;">
+        <thead>
+        <tr id="labels" style="color:grey;">
+            <th>.</th>
+            <th>title</th>
+            <th>comments</th>
+            <th>rate</th>
+            <th>date of creation</th>
+            <th>view file</th>
+            <th>delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="file in allCtrl.filesDetails">
+            <td>{{$index+1}}</td>
+            <td>{{file.title}}</td>
+            <td><div ng-repeat="comment in file.comments" style="width: 250px">{{$index+1 + ' ' + comment +'\n'}}</div></td>
+            <td>{{file.average}}</td>
+            <td>{{file.creationDate.year + ":"+ file.creationDate.monthValue + ":" + file.creationDate.dayOfMonth}}</td>
+            <td ><button class="btn btn-success" ng-click="allCtrl.viewFile(file)" id="view" >view</button></td>
+            <td ><button class="btn btn-success" ng-click="allCtrl.deleteFromSubs(file)" id="deleteSub" >x</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

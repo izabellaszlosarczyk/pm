@@ -135,6 +135,14 @@ class UserService {
 
     }
 
+    loadFiles(){
+        console.log("all");
+        return this.$http({
+            url: this.getUrl(`/mainContent/allDetails`),
+            method: "GET"
+        });
+    }
+
     saveNewFile(userFile, fileName, type){ //potem to zmienie, ogolna metoda na dodawnaie plikow
         console.log("saveuje\n image");
         var formdata = new FormData();

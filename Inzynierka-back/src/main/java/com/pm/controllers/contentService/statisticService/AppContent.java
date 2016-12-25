@@ -88,6 +88,20 @@ public class AppContent {
         for (String t : tmp) { files.add(FileOperations.loadFileFromDatabase(t)); }
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
+    @RequestMapping(value = "/allDetails", method= RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<String> allDetails() {
+        System.out.println("wszedlem -all");
+        List<File> fileNames = readClass.searchAllFiles();
+        ObjectMapper ob = new ObjectMapper();
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString(fileNames));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     //TODO: wiele plikow zwracamy, zmienic to
     @RequestMapping(value = "/all/{fileType:.+}", method= RequestMethod.GET)

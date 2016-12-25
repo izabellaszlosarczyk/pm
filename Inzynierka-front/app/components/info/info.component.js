@@ -3,7 +3,7 @@ import controller from './info.controller.js';
 export default {
   restrict: 'E',
   scope: {},
-  template: 'templates/app/info.html',
+  templateUrl: 'templates/info.html',
   controller,
   controllerAs: 'infoCtrl',
   bindToController: true

@@ -42,6 +42,10 @@ export default app => {
                 url: '/patterns',
                 template: '<t-patterns></t-patterns>'
             })
+            .state('logged.all', {
+                url: '/all',
+                template: '<t-all></t-all>'
+            })
             .state('logged.cvs', {
                 url: '/cvs',
                 template: '<t-cvs></t-cvs>'

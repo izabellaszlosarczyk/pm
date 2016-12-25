@@ -15,6 +15,7 @@ import subsComponent from './subs/subs'
 import fileComponent from './file/file';
 import logoutComponent from './logout/logout';
 import infoComponent from './info/info';
+import allComponent from './allFiles/all';
 
 export default app => {
   INCLUDE_ALL_MODULES([homeComponent,
@@ -33,6 +34,7 @@ export default app => {
     newsComponent,
     subsComponent,
     infoComponent,
+    allComponent,
     logoutComponent  
   ], app);
 }

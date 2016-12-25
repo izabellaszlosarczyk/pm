@@ -13,10 +13,11 @@
                 <div style="border-bottom: 2px solid #1A1A1C; margin-top: 20px; padding-bottom: 20px;" > <a href="" ng-click="userDataViewCtrl.randomFile()">Random file!</a></div>
                 <div style="border-bottom: 2px solid #1A1A1C; margin-top: 20px; padding-bottom: 20px;"> <a href="/#/logged/news">News!</a> </div>
                 <div style="border-bottom: 2px solid #1A1A1C; margin-top: 20px; padding-bottom: 20px;"> <a href="/#/logged">Upload file</a><br></div>
+                <div style="border-bottom: 2px solid #1A1A1C; margin-top: 20px; padding-bottom: 20px;"> <a href="/#/logged/all">All files</a><br></div>
             </div>
         </div>
 
-        <div class="col-md-7" ui-view id="infoMiddle">
+        <div class="col-md-7" ui-view id="infoMiddle" style=" height:100vh;">
             <div id="desc">
                 <p style="color: #B0B0B0" >PatternMoves WebApp Project</p>
                 <div id="uploadFiles" style="color: #B0B0B0">
@@ -27,7 +28,7 @@
                     <div class="col-md-6" id="uploading2" style="font-size: 14px;">
                         <input ng-model="userDataViewCtrl.newFile2" onchange="angular.element(this).scope().file_upload2(this)" type="file" /><p>JSON with description</p>
                     </div>
-                    <div  class="col-md-6"  style="font-size: 14px;">
+                    <div  class="col-md-6"  style="font-size: 14px; ">
                         <select name="typeOfAnalysesSelect" id="analysesSelect" ng-model="userDataViewCtrl.analysesType">
                             <option value="" disabled selected>analyses type</option>
                             <option value="barChart">bar chart</option>
