@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c1927f2-f6ff-4233-b28c-16499d586dec" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/SpringConfig/WebSecurityConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/SpringConfig/WebSecurityConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/statisticService/AppContent.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/statisticService/AppContent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/components/editUser/userDataEdit.controller.js" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/components/editUser/userDataEdit.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/components/news/news.controller.js" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/components/news/news.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/components/userDataView/userDataView.controller.js" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/components/userDataView/userDataView.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/index.js" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/services/users/users.service.js" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/services/users/users.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/templates/app/all.html" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/templates/app/all.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/templates/app/news.html" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/templates/app/news.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/templates/info.html" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/templates/info.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/templates/info.scss" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/templates/info.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/templates/logged.html" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/templates/logged.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/4e31e5320031be79246b5bbe340d44f1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dziadek.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/eFftVT3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/erni1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mainF.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/misiu.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pjoGRvo.jpg" afterPath="" />
     </list>
     <ignored path="PM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -167,7 +160,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
+    <option name="x" value="-1301" />
     <option name="y" value="52" />
     <option name="width" value="1301" />
     <option name="height" value="716" />
@@ -1333,15 +1326,15 @@
       <workItem from="1482012870668" duration="26641000" />
       <workItem from="1482361664811" duration="1234000" />
       <workItem from="1482380117973" duration="40134000" />
-      <workItem from="1482708050069" duration="599000" />
+      <workItem from="1482708050069" duration="618000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="366623000" />
+    <option name="totallyTimeSpent" value="366642000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="52" width="1301" height="716" extended-state="0" />
+    <frame x="-1301" y="52" width="1301" height="716" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
