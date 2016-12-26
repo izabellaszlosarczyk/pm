@@ -14,11 +14,13 @@ export default class NavbarController {
       this.usersService.removeUserSessionData();
       this.usersService.removeUserDataValues();
     };
+    this.$rootScope.isLogged = function() {
+
+    };
 
     this.$rootScope.$on('user-login', () => {
       this.logged = true;
       this.userLastName = usersService.userData.email;
-
     });
   }
   logout(){
@@ -27,4 +29,7 @@ export default class NavbarController {
     this.usersService.removeUserSessionData();
     this.usersService.removeUserDataValues();
   }
+  // isLogged(){
+  //
+  // }
 }

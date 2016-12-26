@@ -70,9 +70,11 @@ class UserService {
 
 
     getNewsFiles(userEmail) {
+        console.log(userEmail);
         return this.$http({
-            url: this.getUrl(`mainContent/newsDetails/${userEmail}`),
-            method: "GET"
+            url: this.getUrl(`mainContent/news`),
+            method: "POST",
+            data: userEmail
         });
     }
 
@@ -323,6 +325,7 @@ class UserService {
     setUserSessionData(userSessionData){
         this.userSessionData = userSessionData;
         this.$storage.userSessionData = this.userSessionData;
+        this.$storage.logged = true;
     }
 
     getUserSessionData(){
@@ -346,6 +349,7 @@ class UserService {
     setUserDataValues(userData){
         this.userData = userData;
         this.$storage.userData = this.userData;
+        this.$storage.logged = true;
     }
 
     removeUserDataValues(){

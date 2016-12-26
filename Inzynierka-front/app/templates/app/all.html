@@ -1,13 +1,15 @@
 <div class="col-md-12" id="stuff">
-    <div style="border-bottom: 0.5px solid #2F2933; padding-top: 20px;">
-        <div class="col-md-8">
-            <img src="./assets/radialN.png" class="img-responsive" style="background-color:transparent; height: 80%; display:block; margin: 0 auto;">
-        </div>
-        <div class="col-md-4" style="color: #B0B0B0;">
-            <h4 style="padding-top: 10px; ">Generated materials</h4>
-            <h4>for your uploaded files</h4>
+    <div class="col-md-6" style="color:#B0B0B0;">
+        <h4 style="padding-top: 10px; ">Generated materials</h4>
+        <h4>for your uploaded files</h4>
+        <div ng-if="patternsCtrl.loading" style="text-align: center; transform: scale(2)">
+
         </div>
     </div>
+    <div class="col-md-6">
+        <img src="./assets/radialN.png" class="img-responsive" style="background-color:transparent;">
+    </div>
+
     <div ng-if="allCtrl.loading" style="text-align: center; transform: scale(2)">
 
     </div>

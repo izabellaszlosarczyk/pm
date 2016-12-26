@@ -1,25 +1,24 @@
 export default class NewsController {
-  constructor(infoService, usersService) {
+  constructor(infoService, usersService, $state, $http,$scope, $stateParams) {
     this.infoService = infoService;
     this.usersService = usersService;
-    this.userData;
-    this.filesDetails = [];
     this.loading = true;
+    this.state = $state;
+    this.stateParams = $stateParams;
+    this.$scope = $scope;
+    this.$http = $http;
+
+
+    this.filesDetails = [];
   }
 
   $onInit() {
-    this.userData = this.usersService.getUserDataValues();
-    console.log(this.userData.savedFiles);
-    this.filesDetails.push(this.usersService.getNewsFiles(this.userData.email));
-    // this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
-    //   this.loading = false;
-    //   this.filesDetails= response.data;
-    //   console.log(this.filesDetails);
-    // }.bind(this));
-    // this.filesDetails.push(response.data);
-    //this.usersService.getFileDetails()
-    //this.userNewData = this.userData;
-    //console.log(this.userNewData);
+    console.log("NEWS");
+    console.log(this.usersService.userData.email);
+    this.usersService.getNewsFiles(this.usersService.userData.email).then(function successCallback(response, status, headers, config) {
+      this.loading = false;
+      this.filesDetails= response.data;
+    }.bind(this));
   }
 
   deleteFromSubs(fileDetails){
@@ -27,16 +26,23 @@ export default class NewsController {
     console.log(this.usersService.userData);
     console.log(fileDetails);
     let data = {
-      userEmail: this.usersService.userData.email,
-      fileName: fileDetails.title
+      email: this.usersService.userData.email,
+      title: fileDetails.title
     };
     this.usersService.deleteFileFromSubs(data);
   }
 
+
   viewFile(fileDetails){
-    //this.usersService.setRequestedFileDetails(fileDetails);
+    this.usersService.addRequestedFileDetails(fileDetails);
+    console.log(this.usersService.requestedFileDetails);
     console.log(fileDetails);
+    this.state.go('logged.fileDetails', fileDetails.title);
   }
+
+
 }
+
+
 
 

@@ -37,7 +37,7 @@ public class AppContent {
     @Autowired
     SaveUpdateDatabase editClass;
 
-    @RequestMapping(value = "/news", method= RequestMethod.POST)
+    @RequestMapping(value = "/newsContent/", method= RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<List<GridFSDBFile>> newContent(@RequestBody int numberOfDaysFromToday) {
         LocalDate currentDate = LocalDate.now();
@@ -115,25 +115,45 @@ public class AppContent {
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
 
-    //TODO: wiele plikow zwracamy, zmienic to
-    @RequestMapping(value = "/news/{userEmail:.+}", method= RequestMethod.GET)
+    @RequestMapping(value = "/news", method= RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<List<GridFSDBFile>> newsForUser(@PathVariable String email) {
+    public ResponseEntity<String> newsForUser(@RequestBody String email) {
+        System.out.println("wyszukuję dla emaila:"+email);
         User user = readClass.searchOneByEmail(email);
         String lastLog = user.getLastLog();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
-        formatter = formatter.withLocale(Locale.ENGLISH);  // Locale specifies human language for translating, and cultural norms for lowercase/uppercase and abbreviations and such. Example: Locale.US or Locale.CANADA_FRENCH
-        LocalDate dateOfLog = LocalDate.parse(lastLog, formatter);
+        System.out.println(lastLog);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+//        formatter = formatter.withLocale(Locale.ENGLISH);  // Locale specifies human language for translating, and cultural norms for lowercase/uppercase and abbreviations and such. Example: Locale.US or Locale.CANADA_FRENCH
+//        LocalDate dateOfLog = LocalDate.parse(lastLog, formatter);
+        String year = lastLog.substring(0, 4);
+        String month = lastLog.substring(5, 7);
+        String day = lastLog.substring(8, 10);
+        LocalDate dateOfLog = LocalDate.of(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
+        System.out.println(dateOfLog);
+
         List<File> fileNames = readClass.searchAllFiles();
-        List<String> tmp = new ArrayList<>();
+        System.out.println(fileNames.size());
+        List<File> tmp = new ArrayList<>();
         for (File f: fileNames){
-            if (f.getCreationDate().isAfter(dateOfLog)){
-                tmp.add(f.getTitle());
+            if (f.getCreationDate() != null){
+                System.out.println("plik:" + f.getCreationDate());
+                if (f.getCreationDate().isAfter(dateOfLog)){
+                    tmp.add(f);
+                }else {
+                    System.out.println("jednak po");
+                }
+            }else{
+                System.out.println(f.getTitle());
             }
         }
-        List<GridFSDBFile> files = new ArrayList<>();
-        for (String t : tmp) { files.add(FileOperations.loadFileFromDatabase(t)); }
-        return ResponseEntity.status(HttpStatus.OK).body(files);
+        System.out.println(tmp.size());
+        ObjectMapper ob = new ObjectMapper();
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString(tmp));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

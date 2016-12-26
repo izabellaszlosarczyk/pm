@@ -1,6 +1,6 @@
 export default class UserDataEditController {
 
-    constructor(usersService , $scope) {
+    constructor(usersService , $scope, $state, $http, tokenService, $rootScope, $stateParams) {
         this.usersService = usersService;
         this.userData = {
             name: "",
@@ -14,6 +14,11 @@ export default class UserDataEditController {
             email: "",
             password: ""
         };
+        this.$state = $state;
+        this.$http = $http;
+        this.$stateParams = $stateParams;
+        this.tokenService = tokenService;
+        this.$rootScope = $rootScope;
         this.newFileName;
         this.loadingFlag = 0;
         this.$scope = $scope;
@@ -51,6 +56,7 @@ export default class UserDataEditController {
     editUser(){
         this.userNewData.oldemail = this.userData.email;
         this.usersService.edit(JSON.stringify(this.userNewData));
+        this.$state.go('logged');
     }
 
 
@@ -69,20 +75,11 @@ export default class UserDataEditController {
                 };
                 this.usersService.editPhoto(userData).then(function successCallback(response2, status2, headers2, config2) {
                     console.log(response2.data);
+                    this.usersService.userData.profilePhoto = this.$scope.newName;
+                    console.log(this.usersService.userData);
                     console.log("Uzytkownik update");
+                    this.$state.go('logged');
                 }.bind(this));
-
             }.bind(this));
-
-        //}
-
-        // var files = element.files;
-        // var l = files.length;
-        // var namesArr = [];
-        //
-        // for (var i = 0; i < l; i++) {
-        //     namesArr.push(files[i].name);
-        // }
-        // console.log(namesArr);
     }
 }

@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.time.LocalDate;
+
 /**
  * Created by izabella on 30.07.16.
  */
@@ -32,6 +34,8 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
                 User user = userRepository.findOneByEmail(username);
+//                String lastLog = (LocalDate.now()).toString();
+//                user.setLastLog(lastLog);
                 if(user != null) {
                     return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), true, true, true, true,
                             AuthorityUtils.createAuthorityList("USER"));

@@ -38,7 +38,7 @@
                             <option value="straight">straight graph</option>
                         </select><br>
                     </div>
-                    <div  class="col-md-6"  style="font-size: 14px; padding-bottom: 20px;">
+                    <div  class="col-md-6"  style="font-size: 14px; padding-bottom: 30px;">
                         <select name="typeSelect" id="typeSelect" ng-model="userDataViewCtrl.newFileType">
                             <option value="" disabled selected>file type</option>
                             <option value="labyrinth">labyrinth</option>
@@ -47,9 +47,8 @@
                     </div>
                     <div style="padding-top: 20px;">
                         <div  class="col-md-6">
-                            <p style="font-size: 14px">Name of output file</p>
                         </div>
-                        <input class="form-control" id="inputName" placeholder="filename"  ng-model="userDataViewCtrl.fileName">
+                        <input class="form-control" id="inputName" placeholder="Name of output file"  ng-model="userDataViewCtrl.fileName">
                     </div>
                     <button class="btn btn-success" ng-click="userDataViewCtrl.addNewFile()">Upload</button>
 

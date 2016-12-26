@@ -364,16 +364,7 @@ public class FileController {
                 metaData.put("extra1", "anything 1");
                 metaData.put("extra2", "anything 2");
                 gridOperations.store(inputStream, name, "image/png", metaData);
-//                java.io.File convFile = new java.io.File(file.getOriginalFilename());
-//                convFile.createNewFile();
-//	            FileOutputStream fos = new FileOutputStream(convFile);
-//	            fos.write(file.getBytes());
-//                //System.out.println(fos);
-//	            fos.close();
-//                fis = new FileInputStream(convFile);
-//                //System.out.println(fis);
-                //gridOperations.store(fis, name, type);
-//	            return convFile.toString();
+
 
 
             } catch (Exception e) {
@@ -392,6 +383,8 @@ public class FileController {
                     }
             }
         }
+        //zapisanie - testowanie
+
 //        System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
 //        ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
 //        GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
@@ -409,11 +402,11 @@ public class FileController {
 //                e.printStackTrace();
 //            }
 //        }
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("ok"));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("ok"));
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
 
         return null;
     }

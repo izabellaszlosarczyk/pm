@@ -31,6 +31,8 @@ export default class UserDataViewController {
         this.dendo = 0;
         this.radial = 0;
 
+        this.update = 0;
+
         this.jsonToVizualization = ""; //tutaj siedzi co wizualizujemy
 
 
@@ -38,7 +40,6 @@ export default class UserDataViewController {
             this.$scope.$apply(function(scope) {
                 //Take the first selected file
                 var photofile = element.files[0];
-                console.log("dupa111111111111111111111111111111111111111111111111111111");
                 console.log(element.files);
                 var reader = new FileReader();
                 $scope.fileNew = photofile;
@@ -54,7 +55,6 @@ export default class UserDataViewController {
         this.$scope.file_upload2 = function(element) {
             this.$scope.$apply(function(scope) {
                 var photofile = element.files[0];
-                console.log("dupa222222222222222222222222222222222222222222222222222222222");
                 console.log(element.files);
                 var reader = new FileReader();
                 $scope.fileNew2 = photofile;
@@ -70,7 +70,11 @@ export default class UserDataViewController {
 
     $onInit() {
         console.log("INIT");
+        console.log(this.usersService.$storage.userData);
+        console.log("INIT FINISH");
+
         this.userData = this.usersService.getUserDataValues();
+
         console.log(this.userData.profilePhoto);
         this.avatar = this.usersService.getUrl(`/content/load/${this.userData.profilePhoto}`);
         console.log(this.userData);
@@ -82,7 +86,6 @@ export default class UserDataViewController {
     }
 
     randomFile(){
-        console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDUPA");
         this.usersService.getRandomFile().then(function successCallback(response, status, headers, config) {
             console.log(response.data);
             this.requestedFile = response.data;
