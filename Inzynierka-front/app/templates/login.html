@@ -10,6 +10,7 @@
             <p ng-switch-when="WRONG_EMAIL">User doesn't exist</p>
             <p ng-switch-default></p>
         </div>
+        <p ng-if="loginCtrl.errorLogin" style="color: #CD3E3A; font-size: 25px">Wrong email or password!</p>
         <div class="form-group">
             <label for="inputEmail" class="control-label">E-mail:</label>
             <input class="form-control" id="inputEmail" placeholder="Email" type="email" ng-model="loginCtrl.email">

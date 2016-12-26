@@ -28,6 +28,9 @@ export default class NavbarController {
     this.tokenService.removeToken();
     this.usersService.removeUserSessionData();
     this.usersService.removeUserDataValues();
+    this.usersService.$storage.logged = false;
+    this.$rootScope.$broadcast('user-login', false);
+    this.usersService.logout();
   }
   // isLogged(){
   //

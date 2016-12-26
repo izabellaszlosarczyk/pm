@@ -332,11 +332,15 @@ class UserService {
         if (!this.userSessionData && this.$storage.userSessionData) {
             this.userSessionData = this.$storage.userSessionData;
         }
+
         return this.userSessionData;
     }
     removeUserSessionData() {
         delete this.userSessionData;
         delete this.$storage.userSessionData;
+        delete this.$storage.userData;
+        this.$storage.logged = false;
+        this.stateProvider.go('login');
     }
 
     getUserDataValues(){
