@@ -2,8 +2,8 @@ import json
 
 import networkx as nx
 import pickle
-import matplotlib.pyplot as plt
-import pylab
+#import matplotlib.pyplot as plt
+#import pylab
 from networkx.readwrite import json_graph
 import xml.etree.ElementTree as ET
 

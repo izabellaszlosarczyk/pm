@@ -43,18 +43,18 @@ def decision_tree(data,desc):
     graph = pydotplus.graph_from_dot_data(dot_data)
     img = Image(graph.create_png())
     graph.write_png("file.png")
-    import matplotlib.pyplot as plt
-    import matplotlib.image as mpimg
-    img = mpimg.imread('file.png')
-    imgplot = plt.imshow(img)
+    #import matplotlib.pyplot as plt
+    #import matplotlib.image as mpimg
+    #img = mpimg.imread('file.png')
+    #imgplot = plt.imshow(img)
     #json.dumps({'picture': img.encode('base64')})
     return img
 
 
-f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/decision.json','rb')
-desc = f.read()
+#f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/decision.json','rb')
+#desc = f.read()
 
-f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/decision_data.csv', 'rb')
-data = f.read()
+#f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/decision_data.csv', 'rb')
+#data = f.read()
 
-decision_tree(data,desc)
+#decision_tree(data,desc)

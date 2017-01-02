@@ -6,7 +6,7 @@ import scipy.spatial
 import scipy.cluster
 import numpy as np
 import json
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import pickle
 import networkx as nx
 from scipy.cluster.hierarchy import linkage
