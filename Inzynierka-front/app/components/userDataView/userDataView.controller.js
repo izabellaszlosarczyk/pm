@@ -69,6 +69,9 @@ export default class UserDataViewController {
     }
 
     $onInit() {
+        if (!this.usersService.$storage.logged){
+            this.state.go('login');
+        }
         console.log("INIT");
         console.log(this.usersService.$storage.userData);
         console.log("INIT FINISH");

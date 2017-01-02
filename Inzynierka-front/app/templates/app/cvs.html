@@ -11,7 +11,7 @@
     </div>
     <table class="table"  id="imageTable" ng-if="!cvsCtrl.loading" style="font-size: 70%; color:grey;">
         <thead>
-        <tr id="labels" style="color:black;">
+        <tr id="labels" style="color : lightgrey;">
             <th>.</th>
             <th>title</th>
             <th>comments</th>
@@ -28,8 +28,8 @@
             <td><div ng-repeat="comment in file.comments" style="width: 250px">{{$index+1 + ' ' + comment +'\n'}}</div></td>
             <td>{{file.average}}</td>
             <td>{{file.creationDate}}</td>
-            <td ><button class="btn btn-success" ng-click="cvsCtrl.viewFile(file)" id="view" style="color:black;">view</button></td>
-            <td ><button class="btn btn-success" ng-click="cvsCtrl.deleteFromSubs(file)" id="deleteSub" style="color:black">x</button></td>
+            <td ><button class="btn btn-success" ng-click="cvsCtrl.viewFile(file)" id="view">view</button></td>
+            <td ><button class="btn btn-success" ng-click="cvsCtrl.deleteFromSubs(file)" id="deleteSub" >x</button></td>
         </tr>
         </tbody>
     </table>

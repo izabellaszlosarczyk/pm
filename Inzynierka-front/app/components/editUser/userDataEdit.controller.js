@@ -56,6 +56,8 @@ export default class UserDataEditController {
     editUser(){
         this.userNewData.oldemail = this.userData.email;
         this.usersService.edit(JSON.stringify(this.userNewData));
+        console.log(this.usersService.userData);
+        console.log("Uzytkownik update");
         this.$state.go('logged');
     }
 

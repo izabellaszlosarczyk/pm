@@ -8,6 +8,7 @@ export default class LoginController {
     this.$state = $state;
     this.$http = $http;
     this.token = '';
+    this.errorLogin =  false;
 
     if(this.usersService.getUserSessionData() && this.tokenService.getToken()) {
       // init data from local storage
@@ -34,7 +35,10 @@ export default class LoginController {
         this.$state.go('logged');
       }.bind(this));
     }.bind(this), function errorCallback(response) {
-      console.log(response);
+      console.log(response.data);
+      if (response.data.error = "Unauthorized"){
+        this.errorLogin =  true;
+      }
       /*this.token = response.data.token;
       console.log(response.data)*/
     }.bind(this));

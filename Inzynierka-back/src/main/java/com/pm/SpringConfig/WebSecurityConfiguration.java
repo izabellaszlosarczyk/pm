@@ -1,5 +1,6 @@
 package com.pm.SpringConfig;
 
+import com.pm.database.SaveUpdateDatabase;
 import com.pm.model.User;
 import com.pm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,10 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
     @Autowired
     UserRepository userRepository;
 
+    @SuppressWarnings("SpringJavaAutowiringInspection")
+    @Autowired
+    SaveUpdateDatabase editClass;
+
     @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService());
@@ -36,6 +41,7 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
                 User user = userRepository.findOneByEmail(username);
 //                String lastLog = (LocalDate.now()).toString();
 //                user.setLastLog(lastLog);
+//                editClass.saveUser(user);
                 if(user != null) {
                     return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), true, true, true, true,
                             AuthorityUtils.createAuthorityList("USER"));
