@@ -188,7 +188,7 @@ public class FileController {
 
         System.out.println("PRINTUJE NAZWE : ->>>>>>>>>>>>>>>>>>" + name);
         String fileDataString = "data=";
-        String fileDescString = "desc=";
+        String fileDescString = "&desc=";
         StringBuilder sb= new StringBuilder();
         ByteArrayInputStream stream = null;
         ByteArrayInputStream stream2 = null;
@@ -217,23 +217,32 @@ public class FileController {
         }
         URL url = null;
         try {
+        System.out.println(analysesType);
             // tutajw znaleznosci od urli do metod beda ify sobie
             if (analysesType.contains("dendo".toLowerCase())){
-                //jakis url
+                url = new URL("https://morning-citadel-80511.herokuapp.com/dendo/");
             }
             if (analysesType.contains("straight".toLowerCase())){
-                //jakis url
+                url = new URL("http://127.0.0.1:8000/polls/straight/");
             }
-            if (analysesType.contains("barChart".toLowerCase())){
-                //jakis url
+            if (analysesType.contains("barChart")){
+                url = new URL("http://127.0.0.1:8000/polls/bar/");
             }
             if (analysesType.contains("graph".toLowerCase())){
-                //jakis url
+                url = new URL("http://127.0.0.1:8000/polls/graph/");
             }
             if (analysesType.contains("radial".toLowerCase())){
-                //jakis url
+                url = new URL("http://127.0.0.1:8000/polls/radial/");
             }
-            url = new URL("http://127.0.0.1:8000/polls/");
+            if (analysesType.contains("decision".toLowerCase())){
+                url = new URL("http://127.0.0.1:8000/polls/decision/");
+            }
+            if (analysesType.contains("apriori".toLowerCase())){
+                url = new URL("http://127.0.0.1:8000/polls/apriori/");
+            }
+            //else{
+            //url = new URL("http://127.0.0.1:8000/polls/");
+            //}
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

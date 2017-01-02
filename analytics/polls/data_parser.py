@@ -41,7 +41,7 @@ def data_parsing(rows):
     users_movements = []
     time_stamp = int(rows[0][5])
     movement = TreeMove(rows[0][2], rows[0][4], 0)
-    for idx in range(1,len(rows)):
+    for idx in range(1,len(rows)-1):
         if rows[idx][4] not in quantity_nodes:
             quantity_nodes[rows[idx][4]] = 0
         else:

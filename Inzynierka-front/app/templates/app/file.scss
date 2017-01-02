@@ -107,12 +107,13 @@
 
   .axis {
     font: 10px sans-serif;
+    fill: #fff;
   }
 
   .axis path,
   .axis line {
     fill: none;
-    stroke: #000;
+    stroke: #fff;
     shape-rendering: crispEdges;
   }
   div.tooltip {
@@ -177,7 +178,9 @@
   .text {
     fill: #07dfff;
   }
-
+  .texts {
+    fill: #07dfff;
+  }
   div.tooltip {
     position: absolute;
     text-align: center;

@@ -46,7 +46,7 @@ export default class UserDataViewController {
                 console.log($scope.fileNew);
                 reader.onload = function(e) {
                     $scope.prev_img = e.target.result;
-                    console.log(reader.result);
+                    //console.log(reader.result);
                 };
                 console.log($scope.fileNew.data);
                 reader.readAsDataURL($scope.fileNew);
@@ -60,7 +60,7 @@ export default class UserDataViewController {
                 $scope.fileNew2 = photofile;
                 reader.onload = function(e) {
                     $scope.prev_img = e.target.result;
-                    console.log(reader.result);
+                    //console.log(reader.result);
                 };
                 console.log($scope.fileNew2.data);
                 reader.readAsDataURL($scope.fileNew2);

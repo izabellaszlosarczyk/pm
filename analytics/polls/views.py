@@ -4,39 +4,110 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from networkx.readwrite import json_graph
 
 from polls.data_parser import data_parsing
 from polls.histogram_gen import histogram_data
+from polls.to_graph import make_graph
+from polls.dendro_normal import normal_dendrogram
 
+from polls.radial_dendro import radial_dendrogram
+
+from polls.decision import decision_tree
+from polls.apriori import apriori_rules
 
 @csrf_exempt
 def index(request):
     print "Request received"
-    # body_unicode = request.body
-    #  print request.GET['tekst']
+    return HttpResponse("Wrong url")
 
-    # body_unicode = request.body.decode('utf-8')
-    # body_data = json.loads(request.POST)
-    #myDict = request.POST['param1']
-    #fileData = request.POST['data']
-    #fileDesc = request.POST['desc']
-    #print myDict
-    #print fileDesc
-    #print fileData
+
+@csrf_exempt
+def dendo(request):
+    print "Request received"
     myDict = dict(request.POST.iterlists())
-    #fileDesc = dict(request.POST.iterlists())
-    print myDict
-    print "------------\n\n\n\n\n\n"
-    print request.POST['data']
-    # data_csv  = body_unicode['txt']
-    # data_csv = data_csv.split('\n')
-    # data_csv = [x.split(",") for x in data_csv]
-    # average, quantity = data_parsing(data_csv)
-    # output = histogram_data(quantity)
-    # print output
-    print "ustawiam responsa"
-    a = HttpResponse(json.dumps({"c": 0, "b": 0, "a": 0}, sort_keys=True), content_type="application/json")
-    return a
+    data_csv  = myDict['data'][0]
+    desc = myDict['desc'][0]
+    data_csv = data_csv.split('\n')
+    data_csv = [x.split(",") for x in data_csv]
+    average, quantity = data_parsing(data_csv)
+    graph_data = make_graph(desc, average, quantity)
+    dendrogram = normal_dendrogram(desc,graph_data)
+    return HttpResponse(dendrogram)
+
+
+@csrf_exempt
+def straight(request):
+    print "Request received"
+    myDict = dict(request.POST.iterlists())
+    data_csv  = myDict['data'][0]
+    desc = myDict['desc'][0]
+    data_csv = data_csv.split('\n')
+    data_csv = [x.split(",") for x in data_csv]
+    average, quantity = data_parsing(data_csv)
+    graph_data = make_graph(desc, average, quantity)
+    json_data = json_graph.node_link_data(graph_data)
+    return HttpResponse(json_data)
+
+
+@csrf_exempt
+def bar(request):
+    print "Request received"
+    myDict = dict(request.POST.iterlists())
+    data_csv  = myDict['data'][0]
+    desc = myDict['desc'][0]
+    data_csv = data_csv.split('\n')
+    data_csv = [x.split(",") for x in data_csv]
+    average, quantity = data_parsing(data_csv)
+    output = histogram_data(quantity)
+    output = ''.join(map(str, output))
+    return HttpResponse(json.dumps({"file":output}))
+
+
+@csrf_exempt
+def graph(request):
+    print "Request received"
+    myDict = dict(request.POST.iterlists())
+    data_csv  = myDict['data'][0]
+    desc = myDict['desc'][0]
+    data_csv = data_csv.split('\n')
+    data_csv = [x.split(",") for x in data_csv]
+    average, quantity = data_parsing(data_csv)
+    graph_data = make_graph(desc, average, quantity)
+    json_data = json_graph.node_link_data(graph_data)
+    return HttpResponse(json.dumps(json_data))
+
+@csrf_exempt
+def radial(request):
+    print "Request received"
+    myDict = dict(request.POST.iterlists())
+    data_csv  = myDict['data'][0]
+    desc = myDict['desc'][0]
+    data_csv = data_csv.split('\n')
+    data_csv = [x.split(",") for x in data_csv]
+    average, quantity = data_parsing(data_csv)
+    graph_data = make_graph(desc, average, quantity)
+    dendrogram  = radial_dendrogram(desc, graph_data)
+    output = ''.join(map(str, dendrogram))
+    return HttpResponse(json.dumps({"file":output}))
+
+@csrf_exempt
+def decision(request):
+    print "Request received"
+    myDict = dict(request.POST.iterlists())
+    data  = myDict['data'][0]
+    desc = myDict['desc'][0]
+    output = decision_tree(data,desc)
+    return HttpResponse(json.dumps({"file":output}))
+
+@csrf_exempt
+def apriori(request):
+    print "Request received"
+    myDict = dict(request.POST.iterlists())
+    data  = myDict['data'][0]
+    desc = myDict['desc'][0]
+    output = apriori_rules(data,desc)
+    return HttpResponse(json.dumps({"file":output}))
 
 def detail(request, question_id):
     return HttpResponse("You're looking at question %s." % question_id)

@@ -70,7 +70,7 @@
                 .enter().append("line")
                 .attr("class", "link")
                 .attr("stroke-width", function(d) {
-                    return (d.quantity)/5;
+                    return (d.quantity);
                 });
 
         node = svg.selectAll(".node")
