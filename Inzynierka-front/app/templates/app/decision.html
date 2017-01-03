@@ -7,10 +7,10 @@
             <h4>for your uploaded files</h4>
         </div>
     </div>
-    <div ng-if="chartsCtrl.loading" style="text-align: center; transform: scale(2)">
+    <div ng-if="decisionCtrl.loading" style="text-align: center; transform: scale(2)">
 
     </div>
-    <table class="table"  id="imageTable" ng-if="!chartsCtrl.loading" style="font-size: 70%; color:grey;">
+    <table class="table"  id="imageTable" ng-if="!decisionCtrl.loading" style="font-size: 70%; color:grey;">
         <thead>
         <tr id="labels" style="color:lightgrey;">
             <th>.</th>
@@ -23,14 +23,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="image in chartsCtrl.chartFiles">
+        <tr ng-repeat="image in decisionCtrl.chartFiles">
             <td>{{$index+1}}</td>
             <td>{{image.title}}</td>
             <td><div ng-repeat="comment in image.comments" style="width: 250px">{{$index+1 + ' ' + comment +'\n'}}</div></td>
             <td>{{image.average}}</td>
             <td>{{image.creationDate.year + ":"+ image.creationDate.monthValue + ":" + image.creationDate.dayOfMonth}}</td>
-            <td ><button class="btn btn-success" ng-click="chartsCtrl.viewFile(image)" id="view" >view</button></td>
-            <td ><button class="btn btn-success" ng-click="chartsCtrl.deleteFromSubs(image)" id="deleteSub" >x</button></td>
+            <td ><button class="btn btn-success" ng-click="decisionCtrl.viewFile(image)" id="view" >view</button></td>
+            <td ><button class="btn btn-success" ng-click="decisionCtrl.deleteFromSubs(image)" id="deleteSub" >x</button></td>
         </tr>
         </tbody>
     </table>

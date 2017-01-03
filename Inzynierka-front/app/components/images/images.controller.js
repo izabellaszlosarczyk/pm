@@ -52,17 +52,17 @@ export default class ImagesController {
   viewFile(fileDetails){
     this.usersService.addRequestedFileDetails(fileDetails);
     console.log(this.usersService.requestedFileDetails);
-    console.log(fileDetails);
-    console.log(fileDetails.title);
     this.usersService.getFile(fileDetails.title).then(function successCallback(response, status, headers, config) {
-      this.jsonToVizualization = response.data;
-    //   var decoder = new TextDecoder("utf-8");
-    //  // decoder.decode(new Uint8Array(response.data));
-    //
-    //   console.log(JSON.stringify(decoder.decode(new Uint8Array(response.data))));
-    // //console.log(JSON.stringify(this.jsonToVizualization));
+      var decoder = new TextDecoder("utf-8");
+     //decoder.decode(new Uint8Array(response.data));
+      this.jsonToVizualization = decoder.decode(new Uint8Array(response.data));
+      console.log(decoder.decode(new Uint8Array(response.data)));
+      this.usersService.jsonToVisualisation = this.jsonToVizualization;
+      this.usersService.analysesType = fileDetails.type;
+      this.state.go('logged.fileDetails', fileDetails.title);
+    //console.log(this.jsonToVizualization);
     }.bind(this));
-    //
+    // //
     // this.jsonToVizualization = this.usersService.getUrl(`/content/load/${fileDetails.title}`);
     // console.log(this.jsonToVizualization);
     // this.usersService.jsonToVisualisation = this.jsonToVizualization;
