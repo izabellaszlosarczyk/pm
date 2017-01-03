@@ -97,8 +97,9 @@ export default class FileController {
 
       //TODO: tutaj bedzie
       //d3.json(this.jsonToVisualisation, function(error, graph)
-      d3.json("./assets/graph.json", function(error, graph) {
-        if (error) throw error;
+      // d3.json("./assets/graph.json", function(error, graph) {
+      //   if (error) throw error;
+       var graph = this.jsonToVisualisation;
         var nodes = graph.nodes,
             nodeById = d3.map(nodes, function(d) { return d.id; }),
             links = graph.links,
@@ -146,7 +147,7 @@ export default class FileController {
             .links(graph.links)
             .start();
 
-      });
+      // });
 
       function tick() {
         link.attr("x1", function(d) { return d.source.x; })
@@ -156,7 +157,7 @@ export default class FileController {
         node.attr("cx", function(d) { return d.x; })
             .attr("cy", function(d) { return d.y; });
 
-        text.attr("transform", positionText);
+        // text.attr("transform", positionText);
       }
 
       function positionText(d) {
@@ -191,8 +192,9 @@ export default class FileController {
           .attr("width", width)
           .attr("height", height);
 
-      d3.json("../assets/graph.json", function(error, graph) {
-        if (error) throw error;
+      // d3.json("../assets/graph.json", function(error, graph) {
+      //   if (error) throw error;
+      var graph = this.jsonToVisualisation;
         var nodes = graph.nodes,
             nodeById = d3.map(nodes, function(d) { return d.id; }),
             links = graph.links,
@@ -258,7 +260,7 @@ export default class FileController {
             .links(graph.links)
             .start();
 
-      });
+      // });
 
       function tick() {
 //        link.attr("x1", function(d) { return d.source.x; })
