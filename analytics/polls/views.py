@@ -98,7 +98,13 @@ def decision(request):
     data  = myDict['data'][0]
     desc = myDict['desc'][0]
     output = decision_tree(data,desc)
-    return HttpResponse(json.dumps({"file":output}))
+    json_output = json.dumps({"file":output})
+    print json_output
+    print {"file":output}
+    h = HttpResponse(json_output)
+    return h
+
+
 
 @csrf_exempt
 def apriori(request):
@@ -107,8 +113,7 @@ def apriori(request):
     data  = myDict['data'][0]
     desc = myDict['desc'][0]
     output = apriori_rules(data,desc)
-    return HttpResponse(json.dumps({"file":output}))
-
+    return HttpResponse(json.dumps({"file": output}))
 def detail(request, question_id):
     return HttpResponse("You're looking at question %s." % question_id)
 
