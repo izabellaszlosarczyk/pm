@@ -17,14 +17,10 @@
     </div>
 
     <div id="contentApriori" ng-if="fileCtrl.flagApriori">
-        <p>Description</p>
-        <textarea  ng-model="fileCtrl.jsonToVisualisation.file.description"></textarea>
-        <p>Question</p>
-        <textarea  ng-model="fileCtrl.jsonToVisualisation.file.question" ></textarea>
-        <p>All answers</p>
-        <textarea  ng-model="fileCtrl.jsonToVisualisation.file.answers" ></textarea>
-        <p>Correct answers</p>
-        <textarea  ng-model="fileCtrl.jsonToVisualisation.file.correct" ></textarea>
+        <p>Description {{fileCtrl.jsonToVisualisation.file.description}}</p>
+        <p>Question {{fileCtrl.jsonToVisualisation.file.question}}</p>
+        <p>All answers {{fileCtrl.jsonToVisualisation.file.answers}}</p>
+        <p>Correct answers {{fileCtrl.jsonToVisualisation.file.correct}}</p>
         <table class="table"  id="aprioriTable" style="font-size: 70%; color:grey;">
             <thead>
             <tr id="labels" style="color:lightgrey;">
@@ -57,6 +53,20 @@
 
 
     <div id="contentDecision" ng-if="fileCtrl.flagDecision">
+        <p>Description: {{fileCtrl.jsonToVisualisation.file.description}}</p>
+        <p>Question: {{fileCtrl.jsonToVisualisation.file.question}}</p>
+        <!--<p>All answers: {{fileCtrl.jsonToVisualisation.file.answers}}</p>-->
+        <p>All answers:</p>
+        <ul>
+            <li ng-repeat="com in fileCtrl.jsonToVisualisation.file.answers" style=" font-size: 15px;">{{com}}</li>
+        </ul>
+        <p>Examination:</p>
+        <!--<p>Examination: {{fileCtrl.jsonToVisualisation.file.examination}}</p>-->
+        <ul>
+            <li ng-repeat="com in fileCtrl.jsonToVisualisation.file.examination" style=" font-size: 15px;">{{com}}</li>
+        </ul>
+        <p>Correct answers: {{fileCtrl.jsonToVisualisation.file.correct}}</p>
+
         <img data-ng-src="data:image/png;base64,{{fileCtrl.jsonToVisualisation.file.file}}"  id="imageDecision"/>
 
 

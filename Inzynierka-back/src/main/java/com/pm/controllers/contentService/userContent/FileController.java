@@ -12,10 +12,12 @@ import com.pm.model.User;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -471,7 +473,46 @@ public class FileController {
         return null;
     }
 
+    @RequestMapping(value = "/loadFile", method= RequestMethod.POST)
+    @ResponseBody
+    public byte[] addFile(@RequestBody String fileName) {
+        System.out.println(fileName);
+        ObjectMapper ob = new ObjectMapper();
+        GridFSDBFile gridFsFile = FileOperations.loadFileFromDatabase(fileName);
+        System.out.println("funkcja ładowania plików");
+        System.out.println(gridFsFile);
+        //return ResponseEntity.ok().contentLength(gridFsFile.getLength()).contentType(MediaType.parseMediaType(gridFsFile.getContentType())).body(new InputStreamResource(gridFsFile.getInputStream()));
+        byte[] file = null;
+        ByteArrayOutputStream bao = null;
+        try {
+            bao = new ByteArrayOutputStream();
+            gridFsFile.writeTo(bao);
+            file = bao.toByteArray();
+        } catch (IOException e) {
 
+        } finally{
+            IOUtils.closeQuietly(bao);
+        }
+        try {
+            System.out.println(new String(file, "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return file;
+    }
+
+//    @RequestMapping(value =  "/load",  headers = "content-type=multipart/*", method = RequestMethod.POST)
+//    @ResponseBody
+//    public ResponseEntity<InputStreamResource> addFile(@ModelAttribute("name") String name) {
+//        System.out.println(name);
+//
+//        GridFSDBFile gridFsFile = FileOperations.loadFileFromDatabase(name);
+//        System.out.println("funkcja ładowania plików");
+//        System.out.println(gridFsFile);
+//        return ResponseEntity.ok().contentLength(gridFsFile.getLength()).contentType(MediaType.parseMediaType(gridFsFile.getContentType())).body(new InputStreamResource(gridFsFile.getInputStream()));
+//
+//    }
 
     //TODO: metoda do testow
     @RequestMapping(value = "/addFile", method= RequestMethod.GET)

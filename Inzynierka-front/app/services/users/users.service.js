@@ -63,8 +63,10 @@ class UserService {
     }
     getFile(fileName) {
         return this.$http({
-            url: this.getUrl(`file/load/${fileName}`),
-            method: "GET"
+            url: this.getUrl(`file/loadFile`),
+            method: "POST",
+            data: fileName,
+            responseType: 'arraybuffer'
         });
     }
 
@@ -195,7 +197,7 @@ class UserService {
         formdata.append( 'type', fileType);
         formdata.append( 'analysesType', analysesType);
         formdata.append('name', nameOfOutputFile);
-        formdata.append( 'email', email);
+        formdata.append( '', fileType);
         return this.$http({
             url: this.getUrl('file/uploadNew'),
             method: "POST",

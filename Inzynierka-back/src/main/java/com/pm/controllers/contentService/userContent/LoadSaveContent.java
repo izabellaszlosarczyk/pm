@@ -39,6 +39,7 @@ public class LoadSaveContent {
         System.out.println(fileName);
         System.out.println("==========================================");
         GridFSDBFile gridFsFile = FileOperations.loadFileFromDatabase(fileName);
+        System.out.println("wTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTFFFFFFFFFFFFFFFFFFF");
         System.out.println("wyszedlem z funkcji");
         System.out.println(gridFsFile);
         return ResponseEntity.ok().contentLength(gridFsFile.getLength()).contentType(MediaType.parseMediaType(gridFsFile.getContentType())).body(new InputStreamResource(gridFsFile.getInputStream()));
