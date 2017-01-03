@@ -182,7 +182,7 @@ class UserService {
 
     }
 
-    saveNewFileBackend(userFileData, userFileDesc, fileType, analysesType, nameOfOutputFile){ //potem to zmienie, ogolna metoda na dodawnaie plikow
+    saveNewFileBackend(userFileData, userFileDesc, fileType, analysesType, nameOfOutputFile, email){ //potem to zmienie, ogolna metoda na dodawnaie plikow
         console.log("saveuje\n");
         console.log(userFileData.name);
         console.log(userFileDesc.name);
@@ -195,6 +195,7 @@ class UserService {
         formdata.append( 'type', fileType);
         formdata.append( 'analysesType', analysesType);
         formdata.append('name', nameOfOutputFile);
+        formdata.append( 'email', email);
         return this.$http({
             url: this.getUrl('file/uploadNew'),
             method: "POST",

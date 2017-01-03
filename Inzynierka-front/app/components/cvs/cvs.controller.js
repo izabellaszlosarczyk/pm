@@ -20,13 +20,14 @@ export default class CvsController {
       this.filesDetails= response.data;
       console.log("duuuuuuuuuuuuuuuupa");
       console.log(this.filesDetails);
-    }.bind(this));
-    for (var i in this.filesDetails) {
-      if (this.filesDetails[i].type == "radial"){
-        console.log(this.userData.savedFiles[i]);
-        this.cvsFiles.push(this.filesDetails[i]);
+      for (var i in this.filesDetails) {
+        if (this.filesDetails[i].type == "radial"){
+          console.log(this.userData.savedFiles[i]);
+          this.cvsFiles.push(this.filesDetails[i]);
+        }
       }
-    }
+    }.bind(this));
+
 
     // this.filesDetails.push(response.data);
     //this.usersService.getFileDetails()

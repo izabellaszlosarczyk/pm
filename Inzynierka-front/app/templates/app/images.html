@@ -22,12 +22,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="image in imagesCtrl.filesDetails">
+        <tr ng-repeat="image in imagesCtrl.imageFiles">
             <td>{{$index+1}}</td>
             <td>{{image.title}}</td>
             <td><div ng-repeat="comment in image.comments" style="width: 250px">{{$index+1 + ' ' + comment +'\n'}}</div></td>
             <td>{{image.average}}</td>
-            <td>{{image.creationDate}}</td>
+            <td>{{image.creationDate.year + ":"+ image.creationDate.monthValue + ":" + image.creationDate.dayOfMonth}}</td>
             <td ><button class="btn btn-success" ng-click="imagesCtrl.viewFile(image)" id="view">view</button></td>
             <td ><button class="btn btn-success" ng-click="imagesCtrl.deleteFromSubs(image)" id="deleteSub">x</button></td>
         </tr>

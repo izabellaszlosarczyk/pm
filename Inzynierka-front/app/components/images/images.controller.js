@@ -20,13 +20,14 @@ export default class ImagesController {
       this.loading = false;
       this.filesDetails= response.data;
       console.log(this.filesDetails);
-    }.bind(this));
-    for (var i in this.filesDetails) {
-      if (this.filesDetails[i].type == "graph"){
-        console.log(this.userData.savedFiles[i]);
-        this.imageFiles.push(this.filesDetails[i]);
+      for (var i in this.filesDetails) {
+        if (this.filesDetails[i].type == "graph"){
+          console.log(this.userData.savedFiles[i]);
+          this.imageFiles.push(this.filesDetails[i]);
+        }
       }
-    }
+    }.bind(this));
+
     // this.filesDetails.push(response.data);
     //this.usersService.getFileDetails()
     //this.userNewData = this.userData;

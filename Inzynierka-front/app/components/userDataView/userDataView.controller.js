@@ -102,7 +102,9 @@ export default class UserDataViewController {
         console.log(this.$scope.fileNew);
         console.log(this.$scope.fileNew2);
         //save file to database through backend
-        this.usersService.saveNewFileBackend(this.$scope.fileNew,this.$scope.fileNew2, this.newFileType, this.analysesType, this.fileName).then(function successCallback(response, status, headers, config) {
+        console.log("SPRAWDZAM MAIL");
+        console.log(this.userData.email);
+        this.usersService.saveNewFileBackend(this.$scope.fileNew,this.$scope.fileNew2, this.newFileType, this.analysesType, this.fileName, this.userData.email).then(function successCallback(response, status, headers, config) {
             console.log(response.data);
             console.log("koumnikacja z pythonem - ok");
             this.jsonToVizualization = response.data;

@@ -21,13 +21,14 @@ export default class PatternsController {
       this.loading = false;
       this.filesDetails= response.data;
       console.log(this.filesDetails);
-    }.bind(this));
-    for (var i in this.filesDetails) {
-      if (this.filesDetails[i].type == "dendogram"){
-        console.log(this.userData.savedFiles[i]);
-        this.patternFiles.push(this.filesDetails[i]);
+      for (var i in this.filesDetails) {
+        if (this.filesDetails[i].type == "dendogram"){
+          console.log(this.userData.savedFiles[i]);
+          this.patternFiles.push(this.filesDetails[i]);
+        }
       }
-    }
+    }.bind(this));
+
     // this.filesDetails.push(response.data);
     //this.usersService.getFileDetails()
     //this.userNewData = this.userData;

@@ -28,7 +28,7 @@
             <td>{{file.title}}</td>
             <td><div ng-repeat="comment in file.comments" style="width: 250px">{{$index+1 + ' ' + comment +'\n'}}</div></td>
             <td>{{file.average}}</td>
-            <td>{{file.creationDate}}</td>
+            <td>{{file.creationDate.year + ":"+ file.creationDate.monthValue + ":" + file.creationDate.dayOfMonth}}</td>
             <td ><button class="btn btn-success" ng-click="subsCtrl.viewFile(file)" id="view" >view</button></td>
             <td ><button class="btn btn-success" ng-click="subsCtrl.deleteFromSubs(file)" id="deleteSub" >x</button></td>
         </tr>

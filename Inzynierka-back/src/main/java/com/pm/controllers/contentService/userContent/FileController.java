@@ -180,7 +180,7 @@ public class FileController {
 
     @RequestMapping(value = "/uploadNew",  headers = "content-type=multipart/*", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> uploadFileHandlerOld(@ModelAttribute("nameData") String nameData, @ModelAttribute("fileData") MultipartFile fileData, @ModelAttribute("nameDesc") String nameDesc, @ModelAttribute("fileDesc") MultipartFile fileDesc, @ModelAttribute("type") String type,  @ModelAttribute("analysesType") String analysesType, @ModelAttribute("name") String name)  {
+    public ResponseEntity<String> uploadFileHandlerOld(@ModelAttribute("nameData") String nameData, @ModelAttribute("fileData") MultipartFile fileData, @ModelAttribute("nameDesc") String nameDesc, @ModelAttribute("fileDesc") MultipartFile fileDesc, @ModelAttribute("type") String type,  @ModelAttribute("analysesType") String analysesType, @ModelAttribute("name") String name,  @ModelAttribute("email") String email)  {
         System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
         FileInputStream fis = null;
         ObjectMapper ob = new ObjectMapper();
@@ -316,6 +316,13 @@ public class FileController {
         metaData.put("analysesType", analysesType);
         gridOperations.store(isTmp, name, type, metaData);
 
+        User user = readClass.searchOneByEmail(email);
+        if (user == null) {
+            System.out.println("nie znalazłem");
+        }else {
+            user.addFileToSaved(name);
+            editClass.saveUser(user);
+        }
 // do celow testowych czy dobrze zapisuje
 //        System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
 //        ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);

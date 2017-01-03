@@ -15,26 +15,22 @@ export default class ChartsController {
 
   $onInit() {
     this.userData = this.usersService.getUserDataValues();
-    console.log(this.userData.savedFiles);
     this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
       this.loading = false;
+      console.log("MASAKRACJA");
       this.filesDetails= response.data;
-      console.log("duuuuuuuuuuuuuuuupa");
       console.log(this.filesDetails);
-    }.bind(this));
-    for (var i in this.filesDetails) {
-      if (this.filesDetails[i].type == "barChart"){
-        console.log(this.userData.savedFiles[i]);
-        this.chartFiles.push(this.filesDetails[i]);
-        console.log("MASAKRA");
-
+      for (var i in this.filesDetails) {
+        console.log(i);
+        if (this.filesDetails[i].type == "barChart") {
+          console.log(this.userData.savedFiles[i]);
+          this.chartFiles.push(this.filesDetails[i]);
+          console.log("MASAKRA");
+        }
       }
-    }
-    console.log(this.chartFiles);
-    // this.filesDetails.push(response.data);
-    //this.usersService.getFileDetails()
-    //this.userNewData = this.userData;
-    //console.log(this.userNewData);
+    }.bind(this));
+
+
   }
 
   deleteFromSubs(fileDetails){

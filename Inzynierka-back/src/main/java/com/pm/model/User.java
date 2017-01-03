@@ -84,7 +84,7 @@ public class User extends AbstractModel {
 	public void setSavedFiles(List<String> savedFiles) {
 		this.savedFiles = savedFiles;
 	}
-
+	public void addFileToSaved(String file){ this.savedFiles.add(file); }
 	public List<String> getSubscribedFiles() {
 		return subscribedFiles;
 	}
