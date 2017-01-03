@@ -53,9 +53,11 @@ export default class ImagesController {
     this.usersService.addRequestedFileDetails(fileDetails);
     console.log(this.usersService.requestedFileDetails);
     console.log(fileDetails);
+    console.log(fileDetails.title);
     this.jsonToVizualization = this.usersService.getUrl(`/content/load/${fileDetails.title}`);
-    this.usersService.jsonToVisualisation = this.jsonToVizualization;
-    this.state.go('logged.fileDetails', fileDetails.title);
+    console.log(this.jsonToVizualization);
+    // this.usersService.jsonToVisualisation = this.jsonToVizualization;
+    // this.state.go('logged.fileDetails', fileDetails.title);
   }
 
 }
