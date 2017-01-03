@@ -26,16 +26,15 @@ def apriori_rules(data,desc_json):
     rules = []
     for item in order:
         if len(item.items_base)>0:
-            js_dumps =json.dumps({'items_base':[x for x in item.items_base], 'items_add':[x for x in item.items_add],'confidence':item.confidence,'lift':item.lift})
-            rules.append(js_dumps)
+            rules.append({'items_base':[x for x in item.items_base], 'items_add':[x for x in item.items_add],'confidence':item.confidence,'lift':item.lift})
     desc_json['rules']=rules
     return desc_json
 
-#
-# f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/apriori.json','rb')
-# desc = f.read()
-#
-# f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/apriori.csv', 'rb')
-# data = f.read()
-#
-# apriori_rules(data,desc)
+
+f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/apriori.json','rb')
+desc = f.read()
+
+f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/apriori.csv', 'rb')
+data = f.read()
+
+apriori_rules(data,desc)
