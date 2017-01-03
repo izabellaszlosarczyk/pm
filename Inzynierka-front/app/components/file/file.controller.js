@@ -16,7 +16,8 @@ export default class FileController {
     this.flagType = false; // if text - true  <--> image -false
     this.flagIs = false;
     this.flagTmp = ""; // flagi typu : "barChart", "dendo", "graph", "radial", "straight"n
-
+    this.flagDecision = 0;
+    this.flagApriori = 0;
 
     this.jsonToVisualisation; // w tym pliku masz tego jsona z backednu
   }
@@ -60,6 +61,20 @@ export default class FileController {
     //   }.bind(this));}.bind(this));
     console.log("Jaka flaga")
     console.log(this.flagTmp);
+
+    if (this.flagTmp == "apriori") {
+      this.flagApriori = 1;
+      // console.log(this.jsonToVisualisation);
+      // console.log(this.jsonToVisualisation.file.rules);
+      // console.log(this.jsonToVisualisation.file.rules[0]);
+      // console.log(this.jsonToVisualisation.file.rules[0]["items_add"]);
+    }
+
+
+    if (this.flagTmp == "decision") {
+      this.flagDecision = 1;
+    }
+    
     if (this.flagTmp == "straight") {
       var div = d3.select("body").append("div")
           .attr("class", "tooltip")
@@ -560,6 +575,7 @@ export default class FileController {
 
       d3.select(self.frameElement).style("height", height + "px");
     }
+    
   }
 
   addComment(){

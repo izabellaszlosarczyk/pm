@@ -1,0 +1,37 @@
+<div class="col-md-12" id="stuff">
+    <div style="border-bottom: 0.5px solid #2F2933; padding-top: 20px;">
+        <div class="col-md-8">
+        </div>
+        <div class="col-md-4" style="color: #B0B0B0;">
+            <h4 style="padding-top: 10px; ">Generated materials</h4>
+            <h4>for your uploaded files</h4>
+        </div>
+    </div>
+    <div ng-if="chartsCtrl.loading" style="text-align: center; transform: scale(2)">
+
+    </div>
+    <table class="table"  id="imageTable" ng-if="!chartsCtrl.loading" style="font-size: 70%; color:grey;">
+        <thead>
+        <tr id="labels" style="color:lightgrey;">
+            <th>.</th>
+            <th>title</th>
+            <th>comments</th>
+            <th>rate</th>
+            <th>date of creation</th>
+            <th>view file</th>
+            <th>delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="image in chartsCtrl.chartFiles">
+            <td>{{$index+1}}</td>
+            <td>{{image.title}}</td>
+            <td><div ng-repeat="comment in image.comments" style="width: 250px">{{$index+1 + ' ' + comment +'\n'}}</div></td>
+            <td>{{image.average}}</td>
+            <td>{{image.creationDate.year + ":"+ image.creationDate.monthValue + ":" + image.creationDate.dayOfMonth}}</td>
+            <td ><button class="btn btn-success" ng-click="chartsCtrl.viewFile(image)" id="view" >view</button></td>
+            <td ><button class="btn btn-success" ng-click="chartsCtrl.deleteFromSubs(image)" id="deleteSub" >x</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

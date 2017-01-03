@@ -1,41 +1,40 @@
-export default class ImagesController {
-  constructor(infoService, usersService,$state, $http,$scope, $stateParams) {
-    this.state = $state;
-    this.stateParams = $stateParams;
-    this.$scope = $scope;
+export default class DecisionController {
+  constructor(infoService, usersService, $state, $http,$scope, $stateParams) {
     this.infoService = infoService;
     this.usersService = usersService;
     this.userData;
     this.filesDetails = [];
-    this.imageFiles = [];
     this.loading = true;
+    this.chartFiles = [];
+    this.state = $state;
+    this.stateParams = $stateParams;
+    this.$scope = $scope;
     this.$http = $http;
-    this.jsonToVizualization = ""
   }
-  //graph
+  //barCharts
+
   $onInit() {
     this.userData = this.usersService.getUserDataValues();
-    console.log(this.userData.savedFiles);
-    
     this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
       this.loading = false;
+      console.log("MASAKRACJA");
       this.filesDetails= response.data;
       console.log(this.filesDetails);
       for (var i in this.filesDetails) {
-        if (this.filesDetails[i].type == "graph"){
+        console.log(i);
+        if (this.filesDetails[i].type == "barChart") {
           console.log(this.userData.savedFiles[i]);
-          this.imageFiles.push(this.filesDetails[i]);
+          this.chartFiles.push(this.filesDetails[i]);
+          console.log("MASAKRA");
         }
       }
     }.bind(this));
 
-    // this.filesDetails.push(response.data);
-    //this.usersService.getFileDetails()
-    //this.userNewData = this.userData;
-    //console.log(this.userNewData);
+
   }
 
   deleteFromSubs(fileDetails){
+    //this.usersService.setRequestedFileDetails(fileDetails);
     console.log(this.usersService.userData);
     console.log(fileDetails);
     let data = {
@@ -44,19 +43,15 @@ export default class ImagesController {
     };
     this.usersService.deleteFileFromSubs(data);
   }
-  html_creator(fileDetails){
-    var sref_name =  "home(logged/fileDetails/{id:" +fileDetails.title+"})"
-    return sref_name
-  }
+
 
   viewFile(fileDetails){
     this.usersService.addRequestedFileDetails(fileDetails);
     console.log(this.usersService.requestedFileDetails);
     console.log(fileDetails);
-    this.jsonToVizualization = this.usersService.getUrl(`/content/load/${fileDetails.title}`);
-    this.usersService.jsonToVisualisation = this.jsonToVizualization;
     this.state.go('logged.fileDetails', fileDetails.title);
   }
+
 
 }
 

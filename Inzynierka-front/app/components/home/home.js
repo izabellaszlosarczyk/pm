@@ -34,6 +34,14 @@ export default app => {
                 url: '/news',
                 template: '<t-news></t-news>'
             })
+            .state('logged.decision', {
+                url: '/decision',
+                template: '<t-decision></t-decision>'
+            })
+            .state('logged.apriori', {
+                url: '/apriori',
+                template: '<t-apriori></t-apriori>'
+            })
             .state('logged.yourStuff', {
                 url: '/yourStuff',
                 template: '<t-user-stuff></t-user-stuff>'

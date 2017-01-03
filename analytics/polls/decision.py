@@ -1,7 +1,10 @@
 from sklearn import tree
 from sklearn import tree
 from sklearn.datasets import load_iris
+import sys  
 
+reload(sys)  
+sys.setdefaultencoding('utf8')
 import json
 import csv
 def decision_tree(data,desc_data):
@@ -22,15 +25,16 @@ def decision_tree(data,desc_data):
         classes[x] = class_names.index(classes[x])
     clf = clf.fit(features,classes)
     import pydotplus
-    from IPython.display import Image
+    #from IPython.display import Image
     dot_data = tree.export_graphviz(clf, out_file=None,
                             max_depth=6,
                              feature_names=desc[:-1],
                              class_names=class_names,
                              filled=True, rounded=False,
                              special_characters=True)
+    #dot_data = dot_data.decode('utf-8') 
     graph = pydotplus.graph_from_dot_data(dot_data)
-    img = Image(graph.create_png())
+    #img = Image(graph.create_png())
     graph.write_png("file.png")
     with open("file.png", "rb") as imageFile:
         f = imageFile.read()
@@ -40,10 +44,10 @@ def decision_tree(data,desc_data):
     return desc_data
 
 
-# f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/decision.json','rb')
-# desc = f.read()
+f = open('/home/izabella/inz/pm/analytic_module/input_data/decision.json','rb')
+desc = f.read()
 #
-# f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/decision_data.csv', 'rb')
-# data = f.read()
+f = open('/home/izabella/inz/pm/analytic_module/input_data/decision_data.csv','rb')
+data = f.read()
 #
-# decision_tree(data,desc)
+decision_tree(data,desc)

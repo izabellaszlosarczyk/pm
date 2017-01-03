@@ -16,6 +16,8 @@ import fileComponent from './file/file';
 import logoutComponent from './logout/logout';
 import infoComponent from './info/info';
 import allComponent from './allFiles/all';
+import aprioriComponent from './apriori/apriori';
+import decisoinComponent from './decision/decision';
 
 export default app => {
   INCLUDE_ALL_MODULES([homeComponent,
@@ -35,6 +37,8 @@ export default app => {
     subsComponent,
     infoComponent,
     allComponent,
+    decisoinComponent,
+    aprioriComponent,
     logoutComponent  
   ], app);
 }

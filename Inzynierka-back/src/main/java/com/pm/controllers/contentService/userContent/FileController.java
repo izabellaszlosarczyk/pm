@@ -315,7 +315,6 @@ public class FileController {
         DBObject metaData = new BasicDBObject();
         metaData.put("analysesType", analysesType);
         gridOperations.store(isTmp, name, type, metaData);
-
         User user = readClass.searchOneByEmail(email);
         if (user == null) {
             System.out.println("nie znalazłem");

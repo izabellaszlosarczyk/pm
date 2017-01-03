@@ -16,15 +16,49 @@
         </div>
     </div>
 
-
-    <div id="content" ng-if="!fileCtrl.loading">
+    <div id="contentApriori" ng-if="fileCtrl.flagApriori">
+        <p>Description</p>
+        <textarea  ng-model="fileCtrl.jsonToVisualisation.file.description"></textarea>
+        <p>Question</p>
+        <textarea  ng-model="fileCtrl.jsonToVisualisation.file.question" ></textarea>
+        <p>All answers</p>
+        <textarea  ng-model="fileCtrl.jsonToVisualisation.file.answers" ></textarea>
+        <p>Correct answers</p>
+        <textarea  ng-model="fileCtrl.jsonToVisualisation.file.correct" ></textarea>
+        <table class="table"  id="aprioriTable" style="font-size: 70%; color:grey;">
+            <thead>
+            <tr id="labels" style="color:lightgrey;">
+                <th>.</th>
+                <th>items base</th>
+                <th>items add</th>
+                <th>confidence</th>
+                <th>lift</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="rule in fileCtrl.jsonToVisualisation.file.rules">
+                <td>{{$index+1}}</td>
+                <td>{{rule["items_base"]}}</td>
+                <td>{{rule["items_add"]}}</td>
+                <td>{{rule["confidence"]}}</td>
+                <td>{{rule["lift"]}}</td>
+            </tr>
+            </tbody>
+        </table>
         <!--<img ng-src="{{fileCtrl.content}}" class="img-responsive" ng-if="fileCtrl.flagType">-->
         <!--<p ng-if="!fileCtrl.flagType">{{fileCtrl.content}}</p>-->
+        <!--<input class="form-control" id="inputName" placeholder="Name of output file"  ng-model="fileCtrl.jsonToVisualisation">-->
+
 
         <!--&lt;!&ndash; TUTAJ JEST DIV DLA TYCH INTERAKTYWNYCH KTORE CHCESZ GENEROWAC NA BIEZACO&ndash;&gt;-->
         <!--<div ng-if="fileCtrl.flagInteractive">-->
 
-        </div>
+    </div>
+
+
+    <div id="contentDecision" ng-if="fileCtrl.flagDecision">
+        <img data-ng-src="data:image/png;base64,{{fileCtrl.jsonToVisualisation.file.file}}"  id="imageDecision"/>
+
 
     </div>
     <div id="score" style="border-bottom: 1px solid #CBD5DD;">

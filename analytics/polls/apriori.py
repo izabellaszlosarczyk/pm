@@ -31,10 +31,10 @@ def apriori_rules(data,desc_json):
     return desc_json
 
 
-f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/apriori.json','rb')
-desc = f.read()
+#f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/apriori.json','rb')
+#desc = f.read()
 
-f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/apriori.csv', 'rb')
-data = f.read()
+#f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/apriori.csv', 'rb')
+#data = f.read()
 
-apriori_rules(data,desc)
+#apriori_rules(data,desc)
