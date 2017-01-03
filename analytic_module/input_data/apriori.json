@@ -1,0 +1,14 @@
+{
+   "description":"opis",
+   "question":"Wazne objawy",
+   "answers":[
+      "goraczka",
+      "bol brzucha",
+      "kropki na ciele",
+      "platanie sie"
+   ],
+   "correct":[
+      "goraczka",
+      "kropki na ciele"
+   ]
+}

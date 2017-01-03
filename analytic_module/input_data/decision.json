@@ -1,7 +1,7 @@
 {
-"opis": "Dziecko przyszlo do doktora z bolem brzucha",
-"pytanie":"Jakie badania zastosujesz",
+"description": "Dziecko przyszlo do doktora z bolem brzucha",
+"answers":"Jakie badania zastosujesz",
 "odpowiedzi":["badanie_temperatury","RTG","EKG","cukier"],
-"badania":["100 stopni C","ciemnosc","100ml","10000ml/g"],
-"poprawne_odpowiedzi":"Powinno zastosować się badanie temperatury i podjecie decyzji o zapaleniu woreczka zolciowego"
+"examination":["100 stopni C","ciemnosc","100ml","10000ml/g"],
+"correct":"Powinno zastosować się badanie temperatury i podjecie decyzji o zapaleniu woreczka zolciowego"
 }
