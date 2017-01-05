@@ -197,7 +197,7 @@ class UserService {
         formdata.append( 'type', fileType);
         formdata.append( 'analysesType', analysesType);
         formdata.append('name', nameOfOutputFile);
-        formdata.append( '', fileType);
+        formdata.append( 'email', email);
         return this.$http({
             url: this.getUrl('file/uploadNew'),
             method: "POST",

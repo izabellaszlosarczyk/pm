@@ -2,6 +2,7 @@ package com.pm.SpringConfig;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
@@ -20,11 +21,16 @@ public class DataBaseConfig extends AbstractMongoConfiguration {
 
     @Override
     protected String getDatabaseName() {
-        return "PMdatabase";
+        return "pmdatabase";
     }
 
+//    @Override
+//    public Mongo mongo() throws Exception {
+//        return new MongoClient("127.0.0.1", 27017);
+//    }
     @Override
-    public Mongo mongo() throws Exception {
-        return new MongoClient("127.0.0.1", 27017);
+    public Mongo mongo() throws Exception{
+        return new MongoClient(
+            new MongoClientURI("mongodb://pmuser:pmdata@ds151208.mlab.com:51208/pmdatabase"));
     }
 }

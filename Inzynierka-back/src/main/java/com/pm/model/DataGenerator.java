@@ -149,20 +149,6 @@ public class DataGenerator {
 		try {
 			FileOperations.saveFileToDatabaseWithName("http://i.imgur.com/", "zbEebNB.jpg" , "zbEebNB.jpg");
 
-			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/4/42/", "Jonwalker.jpg" , "image1");
-			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/7/71/", "Germ%C3%A1n_Lux.jpg" , "image2");
-			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/c/ca/", "Sk%C5%99%C3%ADpov_kostel.JPG" , "image3");
-			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Biplot_of_Anderson%27s_Iris_data_set.svg/", "540px-Biplot_of_Anderson%27s_Iris_data_set.svg.png" , "chart1");
-			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/3/33/Zinc-finger-dot-plot.png", "Zinc-finger-dot-plot.png" , "chart2");
-			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/c/c4/Scatter_plot.jpg", "Scatter_plot.jpg" , "chart3");
-			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/6/63/Bode_High-Pass.PNG", "Bode_High-Pass.PNG" , "other1");
-			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Biplot_of_Anderson%27s_Iris_data_set.svg/", "540px-Biplot_of_Anderson%27s_Iris_data_set.svg.png" , "other2");
-			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Biplot_of_Anderson%27s_Iris_data_set.svg/", "540px-Biplot_of_Anderson%27s_Iris_data_set.svg.png" , "other3");
-			FileOperations.saveFileToDatabaseWithName("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/", "iris.data" , "csv1");
-			FileOperations.saveFileToDatabaseWithName("http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/", "abalone.data" , "csv2");
-			FileOperations.saveFileToDatabaseWithName("http://archive.ics.uci.edu/ml/machine-learning-databases/annealing/", "anneal.data" , "csv3");
-			FileOperations.saveFileToDatabaseWithName("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Justin_Bieber_2010_5.jpg/800px-Justin_Bieber_2010_5.jpg", "800px-Justin_Bieber_2010_5.jpg" , "image69");
-
 			FileOperations.saveFileToDatabase("https://upload.wikimedia.org/wikipedia/commons/c/cc/" , "Ivan_Ukhov_Doha_2010.jpg");
 
 		} catch (IOException e) {
@@ -177,7 +163,7 @@ public class DataGenerator {
 		for (int i = 0 ; i < 20; i = i + 1){
 			usersList.add(generateUser());
 		}
-		for (int i = 0; i < 40; i = i + 1){
+		for (int i = 0; i < 10; i = i + 1){
 			movesList.add(generateMoves());
 			nodesList.add(generateNode(i));
 		}
@@ -244,8 +230,6 @@ public class DataGenerator {
 		u.setHashPreferences(sss);
 		List<String> files = new ArrayList<String>();
 		files.add("Ivan_Ukhov_Doha_2010.jpg");
-		files.add("Ivan_Ukhov_Doha_2011.jpg");
-		files.add("Ivan_Ukhov_Doha_2012.jpg");
 		u.setSavedFiles(files);
 		u.setSubscribedFiles(files);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

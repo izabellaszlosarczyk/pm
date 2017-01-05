@@ -33,7 +33,7 @@ html, body {
     li {
       a:hover {
         color: #00bc8c;
-        background-color: #262626;
+        background-color: #000000;
         box-shadow: -1px -1px 2px 0 rgba(0,0,0,0.04) inset;
       }
     }
@@ -48,7 +48,7 @@ html, body {
 }
 .footer {
   position: fixed;
-  background-color:   #060606;
+  background-color:   #000000;
   //position: absolute;
   bottom: 0;
   width: 100%;

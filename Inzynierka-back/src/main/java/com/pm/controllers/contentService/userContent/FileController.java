@@ -184,6 +184,8 @@ public class FileController {
     @ResponseBody
     public ResponseEntity<String> uploadFileHandlerOld(@ModelAttribute("nameData") String nameData, @ModelAttribute("fileData") MultipartFile fileData, @ModelAttribute("nameDesc") String nameDesc, @ModelAttribute("fileDesc") MultipartFile fileDesc, @ModelAttribute("type") String type,  @ModelAttribute("analysesType") String analysesType, @ModelAttribute("name") String name,  @ModelAttribute("email") String email)  {
         System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
+        System.out.println(email);
+        User user = readClass.searchOneByEmail(email);
         FileInputStream fis = null;
         ObjectMapper ob = new ObjectMapper();
         AnnotationConfigApplicationContext ctx = null;
@@ -311,16 +313,16 @@ public class FileController {
         httpCon.disconnect();
         inputLine = sb.toString();
         System.out.println(sb.toString());
-        InputStream isTmp = new ByteArrayInputStream(inputLine.getBytes());ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
-        System.out.println("ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPISUJE");
+        InputStream isTmp = new ByteArrayInputStream(inputLine.getBytes());
+        ctx = new AnnotationConfigApplicationContext(DataBaseConfig.class);
         GridFsOperations gridOperations = (GridFsOperations) ctx.getBean("gridFsTemplate");
         DBObject metaData = new BasicDBObject();
         metaData.put("analysesType", analysesType);
         gridOperations.store(isTmp, name, type, metaData);
-        User user = readClass.searchOneByEmail(email);
         if (user == null) {
             System.out.println("nie znalazłem");
         }else {
+            System.out.println("DODAJE DO UŻYTKOWNIKAAAAAAAAAAAAAAAAAAAAAAAA");
             user.addFileToSaved(name);
             editClass.saveUser(user);
         }
@@ -472,15 +474,13 @@ public class FileController {
 
         return null;
     }
-
     @RequestMapping(value = "/loadFile", method= RequestMethod.POST)
     @ResponseBody
-    public byte[] addFile(@RequestBody String fileName) {
+    public byte[] load(@RequestBody String fileName) {
         System.out.println(fileName);
         ObjectMapper ob = new ObjectMapper();
         GridFSDBFile gridFsFile = FileOperations.loadFileFromDatabase(fileName);
         System.out.println("funkcja ładowania plików");
-        System.out.println(gridFsFile);
         //return ResponseEntity.ok().contentLength(gridFsFile.getLength()).contentType(MediaType.parseMediaType(gridFsFile.getContentType())).body(new InputStreamResource(gridFsFile.getInputStream()));
         byte[] file = null;
         ByteArrayOutputStream bao = null;
@@ -493,14 +493,69 @@ public class FileController {
         } finally{
             IOUtils.closeQuietly(bao);
         }
-        try {
-            System.out.println(new String(file, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            System.out.println(new String(file, "UTF-8"));
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
 
         return file;
+
+
+
     }
+//    @RequestMapping(value = "/loadFile", method= RequestMethod.POST)
+//    @ResponseBody
+//    public ResponseEntity<String> load(@RequestBody String fileName) {
+//        System.out.println(fileName);
+//        ObjectMapper ob = new ObjectMapper();
+//        GridFSDBFile gridFsFile = FileOperations.loadFileFromDatabase(fileName);
+//        System.out.println("funkcja ładowania plików");
+//        //return ResponseEntity.ok().contentLength(gridFsFile.getLength()).contentType(MediaType.parseMediaType(gridFsFile.getContentType())).body(new InputStreamResource(gridFsFile.getInputStream()));
+////        byte[] file = null;
+////        ByteArrayOutputStream bao = null;
+////        try {
+////            bao = new ByteArrayOutputStream();
+////            gridFsFile.writeTo(bao);
+////            file = bao.toByteArray();
+////        } catch (IOException e) {
+////
+////        } finally{
+////            IOUtils.closeQuietly(bao);
+////        }
+//////        try {
+//////            System.out.println(new String(file, "UTF-8"));
+//////        } catch (UnsupportedEncodingException e) {
+//////            e.printStackTrace();
+//////        }
+////
+////        return file;
+////
+//
+//        StringBuilder sb = new StringBuilder();
+//        BufferedReader in = null;
+//        in = new BufferedReader(new InputStreamReader( gridFsFile.getInputStream()));
+//
+//        String inputLine = "";
+//        try {
+//            while ((inputLine = in.readLine()) != null){
+//                //System.out.println(inputLine);
+//                sb.append(inputLine);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            System.out.println("WHAAAAT");
+//            System.out.println(inputLine);
+//            //return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString("duuuupa"));
+//            return ResponseEntity.status(HttpStatus.OK).body(ob.writeValueAsString(inputLine));
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return null;
+//    }
 
 //    @RequestMapping(value =  "/load",  headers = "content-type=multipart/*", method = RequestMethod.POST)
 //    @ResponseBody

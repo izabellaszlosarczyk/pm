@@ -30,6 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/register/new").permitAll()
                 .antMatchers(HttpMethod.POST,"/file/uploadNew").permitAll()
                 .antMatchers(HttpMethod.GET,"/file/uploadNew").permitAll()
+                .antMatchers(HttpMethod.POST,"/file/loadFile").permitAll()
                 .antMatchers(HttpMethod.GET,"/python/a").permitAll()
                 .anyRequest().authenticated()
                 .and()

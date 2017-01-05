@@ -19,52 +19,117 @@
 
         <div class="col-md-7" ui-view id="infoMiddle" style=" height:100vh;">
             <div id="desc">
-                <p style="color: #B0B0B0" >PatternMoves WebApp Project</p>
-                <div id="uploadFiles" style="color: #B0B0B0">
-                    <p style="padding-bottom: 10px;">Upload some stuff - we will analyze for you </p>
-                    <div  class="col-md-6" id="uploading" style="font-size: 14px;">
-                        <input ng-model="userDataViewCtrl.newFile" onchange="angular.element(this).scope().file_upload(this)" type="file" /><p>CSV with data</p>
+                <div style="border-bottom: 2px solid #1A1A1C; margin-top: 20px; padding-bottom: 20px;">
+                    <p style="color: #B0B0B0" >PatternMoves WebApp Project</p>
+                    <p style="color: seashell; font-size: 0.7em;" >Application for generating complex analyses of data from Virtual Patient Systems</p>
+                </div>
+                <div id="uploadFiles" style="color: #B0B0B0; border-bottom: 2px solid #1A1A1C; padding-top: 10px;">
+                    <div class="col-md-10">
+                        <p style="color: #B0B0B0; font-size: 0.85em; padding-top:10px;" >Upload some stuff - we will analyze for you</p>
                     </div>
-                    <div class="col-md-6" id="uploading2" style="font-size: 14px;">
-                        <input ng-model="userDataViewCtrl.newFile2" onchange="angular.element(this).scope().file_upload2(this)" type="file" /><p>JSON with description</p>
+                    <div class="col-md-2">
+                        <img src="./assets/logom.png" class="img-responsive" style="background-color:transparent;display:block; margin: 0 auto;">
                     </div>
-                    <div  class="col-md-6"  style="font-size: 14px; ">
-                        <select name="typeOfAnalysesSelect" id="analysesSelect" ng-model="userDataViewCtrl.analysesType">
-                            <option value="" disabled selected>analyses type</option>
-                            <option value="barChart">bar chart</option>
-                            <option value="dendo">dendogram</option>
-                            <option value="graph">graph</option>
-                            <option value="radial">radial</option>
-                            <option value="straight">straight graph</option>
-                            <option value="decision">decision tree</option>
-                            <option value="apriori">association rules</option>
-                        </select><br>
+                    <table class="table" style="font-size: 55%; color:grey; text-align: left">
+                        <thead>
+                        <tr style="color:grey;">
+                            <th width="25%"></th>
+                            <th width="25%"></th>
+                            <th width="25%"></th>
+                            <th width="25%"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input ng-model="userDataViewCtrl.newFile" onchange="angular.element(this).scope().file_upload(this)" type="file" />
+                            </td>
+                            <td><p>CSV with data</p></td>
+                            <td><input ng-model="userDataViewCtrl.newFile2" onchange="angular.element(this).scope().file_upload2(this)" type="file" />
+                            </td>
+                            <td><p>JSON with description</p></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select name="typeOfAnalysesSelect" id="analysesSelect" ng-model="userDataViewCtrl.analysesType" style="color: black">
+                                    <option value="" disabled selected>analyses type</option>
+                                    <option value="barChart">bar chart</option>
+                                    <option value="dendo">dendogram</option>
+                                    <option value="graph">graph</option>
+                                    <option value="radial">radial</option>
+                                    <option value="straight">straight graph</option>
+                                    <option value="decision">decision tree</option>
+                                    <option value="apriori">association rules</option>
+                                </select><br>
+                            </td>
+                            <td>type of analyses</td>
+                            <td>
+                                <select name="typeSelect" id="typeSelect" ng-model="userDataViewCtrl.newFileType" style="color: black">
+                                    <option value="" disabled selected>file type</option>
+                                    <option value="labyrinth">labyrinth</option>
+                                    <option value="multiple">multiple answers</option>
+                                    <option value="simulation">simulation</option>
+                                </select><br>
+                            </td>
+                            <td>type of uploaded files</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <input class="form-control" id="inputName" placeholder="Name of output file"  ng-model="userDataViewCtrl.fileName">
+                    <button class="btn btn-success" ng-click="userDataViewCtrl.addNewFile()" style="margin-bottom: 20px;">Upload</button>
+                </div>
+                <div style="border-bottom: 2px solid #1A1A1C; margin-top: 20px; padding-bottom: 20px;">
+                    <div class="col-md-5">
+                        <p style="color: #B0B0B0; font-size: 0.85em; padding-top: 30%;" >Analyses we provide in application</p>
                     </div>
-                    <div  class="col-md-6"  style="font-size: 14px; padding-bottom: 30px;">
-                        <select name="typeSelect" id="typeSelect" ng-model="userDataViewCtrl.newFileType">
-                            <option value="" disabled selected>file type</option>
-                            <option value="labyrinth">labyrinth</option>
-                            <option value="multiple">multiple answers</option>
-                            <option value="simulation">simulation</option>
-                        </select><br>
+                    <div class="col-md-7">
+                        <img src="./assets/analyses.png" class="img-responsive" style="background-color:transparent;display:block; margin: 0 auto;">
                     </div>
-                    <div style="padding-top: 20px;">
-                        <div  class="col-md-6">
-                        </div>
-                        <input class="form-control" id="inputName" placeholder="Name of output file"  ng-model="userDataViewCtrl.fileName">
-                    </div>
-                    <button class="btn btn-success" ng-click="userDataViewCtrl.addNewFile()">Upload</button>
-
-                    <div  class="col-md-6" id="graphs1" style="">
-                        <img src="./assets/barcharts.png" class="img-responsive" style="background-color:transparent; width: 70%; height: auto; display:block; margin: 0 auto; padding-bottom: 20px;">
-                        <img src="./assets/radial.png" class="img-responsive" style="background-color:transparent;width: 70%;  height: auto; display:block; margin: 0 auto;  padding-bottom: 20px;">
-                    </div>
-                    <div  class="col-md-6" id="graphs2" style="">
-                        <img src="./assets/dendo" class="img-responsive" style="background-color:transparent;width: 70%;  height: auto; display:block; margin: 0 auto;  padding-bottom: 20px;">
-                        <img src="./assets/straight.png" class="img-responsive" style="background-color:transparent;width: 70%; height: auto; display:block; margin: 0 auto;  padding-bottom: 20px;">
-                        <img src="./assets/graph.png" class="img-responsive" style="background-color:transparent;width: 70%; height: auto; display:block; margin: 0 auto;  padding-bottom: 20px;">
-                    </div>
-
+                    <table class="table" style="font-size: 70%; color:grey;">
+                        <thead>
+                        <tr style="color:grey;">
+                            <th width="20%"></th>
+                            <th width="20%"></th>
+                            <th width="40%"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><p>labirynth</p></td>
+                            <td><p>dendogram</p></td>
+                            <td><p>dengoram analyses description</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>labirynth</p></td>
+                            <td><p>graph</p></td>
+                            <td><p>graph analyses description</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>labirynth</p></td>
+                            <td><p> straight graph</p></td>
+                            <td><p>straight graph analyses description </p></td>
+                        </tr>
+                        <tr>
+                            <td><p>multiple answers</p></td>
+                            <td><p>association rules</p></td>
+                            <td><p>association rules analyses description</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>labyrinth, simulations, multiple answers</p></td>
+                            <td><p>bar chart</p></td>
+                            <td><p>bar chart analyses description</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>labirynth</p></td>
+                            <td><p>radial</p></td>
+                            <td><p>radial analyses description</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>simulation</p></td>
+                            <td><p>decision tree</p></td>
+                            <td><p>decision tree analyses description </p></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -95,11 +160,8 @@
                 <input type="text"  style="border-bottom: 0.5px solid #1A1A1C; padding-bottom: 30px" class="field left" readonly id="input-email" placeholder="Email" ng-model="userDataViewCtrl.userData.email">
                 <div id="err_msg"><p>{{userDataViewCtrl.msg}}</p></div>
             </form>
-            <div id="editTextButton">
-                <a href="/#/logged/editUser"><img src="./assets/12b.png" width="34" height="auto" /></a><p style="color: #5e5e5e ; font-size: 10px">Edit your data</p>
-            </div>
+             <a href="/#/logged/editUser"><button class="btn btn-success">Edit your data</button></a>
             <p class="text-muted"  id="fot"><a href="/#/logged/privacy">Privacy</a> · <a href="#/logged/terms">Terms</a> · <a href="#/logged/terms">Advertising</a> · <a href="#/logged/choices">Ad Choices</a> · <a href="#/logged/cookies">Cookies More</a> </p>
-            <p class="text-muted" id="stat">Some stats! - <b>TUTAJ COS BEDZIE!</b></p>
         </div>
     </div>
     <p style="visibility: hidden">tmptmp</p>
