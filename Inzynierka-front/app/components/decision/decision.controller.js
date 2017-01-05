@@ -10,6 +10,7 @@ export default class DecisionController {
     this.stateParams = $stateParams;
     this.$scope = $scope;
     this.$http = $http;
+    this.empty = 1;
   }
   //barCharts
 
@@ -25,6 +26,9 @@ export default class DecisionController {
           this.chartFiles.push(this.filesDetails[i]);
           console.log("MASAKRA");
         }
+      }
+      if (typeof this.chartFiles !== 'undefined' && this.chartFiles.length > 0) {
+        this.empty = 0;
       }
     }.bind(this));
 

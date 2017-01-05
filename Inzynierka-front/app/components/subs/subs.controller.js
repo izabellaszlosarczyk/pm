@@ -12,21 +12,23 @@ export default class SubsController {
     this.userData;
     this.filesDetails = [];
     this.loading = true;
+    this.empty = 1;
   }
 
   $onInit() {
     this.userData = this.usersService.getUserDataValues();
     console.log("sgtggeffrghghhhhhhhhhhhhtththththrththtrh");
     console.log(this.userData);
-    console.log(this.userData.savedFiles);
 
 
-    //PONIZEJ ZMIENIC NA SUBSCRIBED z SAVED
-    this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
+    this.usersService.getFilesDetails(this.userData.subscribedFiles).then(function successCallback(response, status, headers, config) {
       this.loading = false;
       this.filesDetails= response.data;
       console.log("duuuuuuuuuuuuuuuupa");
       console.log(this.filesDetails);
+      if (typeof this.filesDetails !== 'undefined' && this.filesDetails.length > 0) {
+        this.empty = 0;
+      }
     }.bind(this));
     // this.filesDetails.push(response.data);
     //this.usersService.getFileDetails()
@@ -42,7 +44,24 @@ export default class SubsController {
       userEmail: this.usersService.userData.email,
       fileName: fileDetails.title
     };
-    this.usersService.deleteFileFromSubs(data);
+    this.usersService.deleteFileFromSubs(data).then(function successCallback(response, status, headers, config) {
+      console.log("Dupahgjy7t7ti7i6i24w");
+      var index = this.usersService.userData.subscribedFiles.indexOf(this.usersService.userData.email);
+      if (index > -1) {
+        console.log("usuwam");
+        this.usersService.userData.subscribedFiles.splice(index, 1);
+      }
+      index = this.usersService.$storage.userData.subscribedFiles.indexOf(this.usersService.userData.email);
+      if (index > -1) {
+        console.log("usuwam");
+        this.usersService.$storage.userData.subscribedFiles.splice(index, 1);
+      }
+      index = this.userData.subscribedFiles;
+      if (index > -1) {
+        console.log("usuwam");
+        this.userData.subscribedFiles.splice(index, 1);
+      }
+    }.bind(this));
   }
 
   viewFile(fileDetails){

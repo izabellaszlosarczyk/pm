@@ -10,6 +10,7 @@ export default class CvsController {
     this.stateParams = $stateParams;
     this.$scope = $scope;
     this.$http = $http;
+    this.empty = 1;
   }
   //radial
   $onInit() {
@@ -25,6 +26,9 @@ export default class CvsController {
           console.log(this.userData.savedFiles[i]);
           this.cvsFiles.push(this.filesDetails[i]);
         }
+      }
+      if (typeof this.cvsFiles !== 'undefined' && this.cvsFiles.length > 0) {
+        this.empty = 0;
       }
     }.bind(this));
 

@@ -10,6 +10,7 @@ export default class AprioriController {
     this.stateParams = $stateParams;
     this.$scope = $scope;
     this.$http = $http;
+    this.empty = 1;
   }
   //apriori
 
@@ -26,6 +27,9 @@ export default class AprioriController {
           console.log(this.userData.savedFiles[i]);
           this.chartFiles.push(this.filesDetails[i]);
           console.log("MASAKRA");
+        }
+        if (typeof this.chartFiles !== 'undefined' && this.chartFiles.length > 0) {
+          this.empty = 0;
         }
       }
     }.bind(this));

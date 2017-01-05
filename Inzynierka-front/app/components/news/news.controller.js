@@ -10,6 +10,7 @@ export default class NewsController {
 
 
     this.filesDetails = [];
+    this.empty = 1;
   }
 
   $onInit() {
@@ -18,6 +19,9 @@ export default class NewsController {
     this.usersService.getNewsFiles(this.usersService.userData.email).then(function successCallback(response, status, headers, config) {
       this.loading = false;
       this.filesDetails= response.data;
+      if (typeof this.filesDetails !== 'undefined' && this.filesDetails.length > 0) {
+        this.empty = 0;
+      }
     }.bind(this));
   }
 

@@ -18,8 +18,11 @@ export default class FileController {
     this.flagTmp = ""; // flagi typu : "barChart", "dendo", "graph", "radial", "straight"n
     this.flagDecision = 0;
     this.flagApriori = 0;
-
+    this.scoreAdded = 0;
+    this.commentAdded = 0;
     this.jsonToVisualisation; // w tym pliku masz tego jsona z backednu
+    this.delFromSubs = 0;
+    this.addToSubs = 0;
   }
   $onInit() {
     console.log("test dendo");
@@ -36,6 +39,23 @@ export default class FileController {
     tmp = this.usersService.requestedFileDetails;
     this.fileDetails = tmp;
     console.log(this.fileDetails);
+    // null and undefined are "empty"
+    if (this.fileDetails == null){
+      console.log("pusty");
+      this.state.go('logged');
+    }
+    if (this.fileDetails.length === 0){
+      console.log("pusty");
+      this.state.go('logged');
+    }
+
+    if (this.jsonToVisualisation == "undefined"){
+      this.state.go('logged');
+    }
+    if(typeof this.jsonToVisualisation == 'undefined'){
+      console.log("puste");
+      this.state.go('logged');
+    }
     console.log("TERAZ CZESC UZYTKOWNIKA");
     this.userFilesSubs = this.usersService.userData.subscribedFiles;
     this.userFilesSaved = this.usersService.userData.savedFiles;
@@ -581,6 +601,7 @@ export default class FileController {
   }
 
   addComment(){
+    this.commentAdded = 1;
     console.log("dodaje komcia sdsadsfsdgsrgrg");
     let data ={
       comment: this.comment,
@@ -593,6 +614,7 @@ export default class FileController {
 
   }
   addScore(score){
+    this.scoreAdded = 1;
     let data ={
       score: score,
       fileName: this.fileDetails.title
@@ -602,22 +624,36 @@ export default class FileController {
     }.bind(this));
   }
   subscribe(){
+    console.log(this.usersService.userData);
+    console.log("subs");
     let addData = {
-    email: this.usersService.userData.email,
-    title: this.fileDetails.title
+      userEmail: this.usersService.userData.email,
+      fileName: this.fileDetails.title
   };
+    this.addToSubs = 1;
     this.usersService.addFileToSubs(addData).then(function successCallback(response, status, headers, config) {
       console.log("Dupa234235243543t542524w");
     }.bind(this));
   }
   
   delSubs(){
+    console.log(this.usersService.userData);
+    console.log("DEL subs");
     let delData = {
-      email: this.usersService.userData.email,
-      title: this.fileDetails.title
+      userEmail: this.usersService.userData.email,
+      fileName: this.fileDetails.title
     };
+    this.delFromSubs = 1;
     this.usersService.deleteFileFromSubs(delData).then(function successCallback(response, status, headers, config) {
       console.log("Dupahgjy7t7ti7i6i24w");
+      var index = this.usersService.userData.subscribedFiles.indexOf(this.fileDetails.title);
+      if (index > -1) {
+        this.usersService.userData.subscribedFiles.splice(index, 1);
+      }
+      index = this.usersService.$storage.userData.subscribedFiles.indexOf(this.fileDetails.title);
+      if (index > -1) {
+        this.usersService.$storage.userData.subscribedFiles.splice(index, 1);
+      }
     }.bind(this));
   }
 

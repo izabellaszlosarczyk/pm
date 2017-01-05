@@ -292,6 +292,7 @@ class UserService {
     }
 
    deleteFileFromSubs(deleteRequest) {
+       console.log("usuwamy");
         return this.$http({
             url: this.getUrl(`file/deleteFromSubs`),
             method: "POST",
@@ -300,8 +301,9 @@ class UserService {
     }
 
     addFileToSubs(addRequest) {
+        console.log("dodajemy");
         return this.$http({
-            url: this.getUrl(`file/addSubs"`),
+            url: this.getUrl(`file/addSubs`),
             method: "POST",
             data: addRequest
         });

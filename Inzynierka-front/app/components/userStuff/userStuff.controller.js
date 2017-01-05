@@ -11,6 +11,7 @@ export default class UserStuffController {
     this.stateParams = $stateParams;
     this.$scope = $scope;
     this.$http = $http;
+    this.empty = 1;
   }
 
   $onInit() {
@@ -22,6 +23,9 @@ export default class UserStuffController {
       this.filesDetails= response.data;
       console.log("duuuuuuuuuuuuuuuupa");
       console.log(this.filesDetails);
+      if (typeof this.filesDetails !== 'undefined' && this.filesDetails.length > 0) {
+        this.empty = 0;
+      }
     }.bind(this));
 
     // this.filesDetails.push(response.data);

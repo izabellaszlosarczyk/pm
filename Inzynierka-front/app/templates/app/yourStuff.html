@@ -31,4 +31,11 @@
         </tr>
         </tbody>
     </table>
+    <div ng-if="!userStuffCtrl.loading" >
+        <div ng-if="userStuffCtrl.empty">
+            <p style="color: #CD3E3A; font-size: 25px; text-align: center;">We are sorry =(</p>
+            <p style="color: #CD3E3A; font-size: 15px; text-align: center;">Nothing to show, nothing uploaded in this type</p>
+
+        </div>
+    </div>
 </div>

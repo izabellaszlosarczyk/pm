@@ -91,17 +91,22 @@ public class FileController {
     @ResponseBody
     public ResponseEntity<String> deleteFileFromSubs(@RequestBody SubsRequest request) {
         System.out.println(request);
-
+        System.out.println("usuwamy");
         //TODO: NULLL
         User user = readClass.searchOneByEmail(request.getUserEmail());
-        List<String> files = user.getSavedFiles();
+        System.out.println(user.getEmail());
+        List<String> files = user.getSubscribedFiles();
+        System.out.println(files.size());
         if (user == null) return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        List<String> filesNew = new ArrayList<>();
         for (String f : files){
-            if (f.equals(request.getFileName())){
-                files.remove(f);
+            if (!f.equals(request.getFileName())){
+                filesNew.add(f);
+                System.out.println("usuwam plik");
             }
         }
-        user.setSavedFiles(files);
+        user.setSubscribedFiles(filesNew);
+        editClass.saveUser(user);
         return ResponseEntity.status(HttpStatus.OK).body("{\"value\":\"OK\"}");
     }
 
@@ -109,12 +114,20 @@ public class FileController {
     @ResponseBody
     public ResponseEntity<String> addFileToSubs(@RequestBody SubsRequest request) {
         System.out.println(request);
+        System.out.println("dodajemy");
         User user = readClass.searchOneByEmail(request.getUserEmail());
-        List<String> files = user.getSavedFiles();
+        List<String> files = user.getSubscribedFiles();
         if (user == null) return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         files.add(request.getFileName());
-        user.setSavedFiles(files);
-        return ResponseEntity.status(HttpStatus.OK).body("ok");
+        user.setSubscribedFiles(files);
+        editClass.saveUser(user);
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(mapper.writeValueAsString("ok"));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @RequestMapping(value = "/subs/{email:.+}", method= RequestMethod.GET)

@@ -10,6 +10,7 @@ export default class OthersController {
     this.stateParams = $stateParams;
     this.$scope = $scope;
     this.$http = $http;
+    this.empty = 1;
   }
   //straight
   $onInit() {
@@ -25,6 +26,9 @@ export default class OthersController {
           console.log(this.userData.savedFiles[i]);
           this.otherFiles.push(this.filesDetails[i]);
         }
+      }
+      if (typeof this.otherFiles !== 'undefined' && this.otherFiles.length > 0) {
+        this.empty = 0;
       }
     }.bind(this));
 

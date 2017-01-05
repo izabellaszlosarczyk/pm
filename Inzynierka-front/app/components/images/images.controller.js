@@ -10,7 +10,8 @@ export default class ImagesController {
     this.imageFiles = [];
     this.loading = true;
     this.$http = $http;
-    this.jsonToVizualization = ""
+    this.jsonToVizualization = "";
+    this.empty = 1;
   }
   //graph
   $onInit() {
@@ -26,6 +27,9 @@ export default class ImagesController {
           console.log(this.userData.savedFiles[i]);
           this.imageFiles.push(this.filesDetails[i]);
         }
+      }
+      if (typeof this.imageFiles !== 'undefined' && this.imageFiles.length > 0) {
+        this.empty = 0;
       }
     }.bind(this));
 

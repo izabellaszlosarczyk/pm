@@ -7,15 +7,28 @@
             <p>Average score : {{fileCtrl.fileDetails.average}}</p>
         </div>
         <div class="col-md-4" ng-if="!fileCtrl.flagIs">
-            <p>delete subscription!</p>
-            <a ng-click="fileCtrl.subscribe()"><img src="./assets/10a.png" class="img-responsive" style="background-color:transparent; max-width: 50px" /></a>
+            <p>add subscription!</p>
+            <button class="btn btn-success" ng-click="fileCtrl.subscribe()">add</button>
         </div>
         <div class="col-md-4" ng-if="fileCtrl.flagIs">
             <p>delete subscription!</p>
-            <a ng-click="fileCtrl.delSubs()"><img src="./assets/10ab.png" class="img-responsive" style="background-color:transparent; max-width: 50px" /></a>
+            <button class="btn btn-success" ng-click="fileCtrl.delSubs()">delete</button>
         </div>
     </div>
-
+    <div ng-if="fileCtrl.commentAdded" >
+        <p style="color: #CD3E3A; font-size: 25px; text-align: center;">Thank you {{fileCtrl.usersService.userData.email}}!</p>
+        <p style="color: #CD3E3A; font-size: 15px; text-align: center;">Comment sent to admins, waiting for publication</p>
+    </div>
+    <div ng-if="fileCtrl.scoreAdded" >
+            <p style="color: #CD3E3A; font-size: 25px; text-align: center;">Thank you {{fileCtrl.usersService.userData.email}}!</p>
+            <p style="color: #CD3E3A; font-size: 15px; text-align: center;">Score sent to admins, waiting for publication</p>
+    </div>
+    <div ng-if="fileCtrl.addToSubs" >
+        <p style="color: #CD3E3A; font-size: 15px; text-align: center;">File added to subscription</p>
+    </div>
+    <div ng-if="fileCtrl.delFromSubs" >
+        <p style="color: #CD3E3A; font-size: 15px; text-align: center;">File removed from subscriptoin</p>
+    </div>
     <div id="contentApriori" ng-if="fileCtrl.flagApriori">
         <p>Description {{fileCtrl.jsonToVisualisation.file.description}}</p>
         <p>Question {{fileCtrl.jsonToVisualisation.file.question}}</p>
