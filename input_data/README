@@ -1,0 +1,9 @@
+data,desc,problem,analysis
+apriori_data.csv, apriori_desc.json,multiple choice,apriori
+decision_data.csv, decision_desc.json,simulation,decision
+labirynt_data.csv, labirynt_desc.xml,labirynt,graph
+labirynt_data.csv, labirynt_desc.xml,labirynt,straight_graph
+labirynt_data.csv, labirynt_desc.xml,labirynt,dendrogram
+labirynt_data.csv, labirynt_desc.xml,labirynt,radial
+apriori_data.csv, apriori_desc.json,multiple choice,bar_chart
+labirynt_data.csv, labirynt_desc.xml,labirynt,bar_chart

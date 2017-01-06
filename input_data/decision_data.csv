@@ -1,0 +1,12 @@
+badanie_temperatury,RTG,EKG,cukier,klasa
+-1,1,-1,1,"zapalenie_woreczka"
+-1,-1,1,1,"zgaga"
+-1,1,1,1,"zapalenie_woreczka"
+-1,1,-1,1,"zapalenie_woreczka"
+-1,-1,1,1,"zgaga"
+1,1,1,1,"odma"
+-1,-1,-1,1,"zgaga"
+1,1,1,1,"zapalenie_woreczka"
+-1,1,-1,1,"zapalenie_woreczka"
+-1,1,1,1,"odma"
+1,1,1,1,"odma"
