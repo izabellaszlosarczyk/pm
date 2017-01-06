@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c1927f2-f6ff-4233-b28c-16499d586dec" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java" afterPath="$PROJECT_DIR$/src/main/java/com/pm/controllers/contentService/userContent/FileController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/components/file/file.controller.js" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/components/file/file.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/templates/app/file.html" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/templates/app/file.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Inzynierka-front/app/components/subs/subs.controller.js" afterPath="$PROJECT_DIR$/../Inzynierka-front/app/components/subs/subs.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../analytics/polls/decision.py" afterPath="$PROJECT_DIR$/../analytics/polls/decision.py" />
     </list>
     <ignored path="PM.iws" />

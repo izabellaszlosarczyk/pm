@@ -24,7 +24,6 @@ export default class SubsController {
     this.usersService.getFilesDetails(this.userData.subscribedFiles).then(function successCallback(response, status, headers, config) {
       this.loading = false;
       this.filesDetails= response.data;
-      console.log("duuuuuuuuuuuuuuuupa");
       console.log(this.filesDetails);
       if (typeof this.filesDetails !== 'undefined' && this.filesDetails.length > 0) {
         this.empty = 0;
@@ -38,14 +37,11 @@ export default class SubsController {
 
   deleteFromSubs(fileDetails){
     //this.usersService.setRequestedFileDetails(fileDetails);
-    console.log(this.usersService.userData);
-    console.log(fileDetails);
     let data = {
       userEmail: this.usersService.userData.email,
       fileName: fileDetails.title
     };
     this.usersService.deleteFileFromSubs(data).then(function successCallback(response, status, headers, config) {
-      console.log("Dupahgjy7t7ti7i6i24w");
       var index = this.usersService.userData.subscribedFiles.indexOf(this.usersService.userData.email);
       if (index > -1) {
         console.log("usuwam");
@@ -66,7 +62,6 @@ export default class SubsController {
 
   viewFile(fileDetails){
     this.usersService.addRequestedFileDetails(fileDetails);
-    console.log(this.usersService.requestedFileDetails);
     this.usersService.analysesType = fileDetails.type;
     this.usersService.getFile(fileDetails.title).then(function successCallback(response, status, headers, config) {
       var decoder = new TextDecoder("utf-8");
@@ -76,7 +71,6 @@ export default class SubsController {
       }else {
         this.jsonToVizualization = decoder.decode(new Uint8Array(response.data));
       }
-      console.log(decoder.decode(new Uint8Array(response.data)));
       this.usersService.jsonToVisualisation = this.jsonToVizualization;
       this.state.go('logged.fileDetails', fileDetails.title);
       //console.log(this.jsonToVizualization);
