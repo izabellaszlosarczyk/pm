@@ -1,6 +1,6 @@
 <div class="col-md-12">
-    <div class="row row-eq-height">
-        <div class="col-md-2" style="background-color: #0F0F0F; height:100vh;">
+    <div class="row row-eq-height" style="min-height: 150%; height:100vh;">
+        <div class="col-md-2" style="background-color: #0F0F0F; height:150vh; min-height: 100%;">
             <h2 id="h21" style="background-color: #00bc8c; margin-bottom: 20px;"></h2>
             <h2 id="h21" style="background-color: #00bc8c; margin-bottom: 20px;"></h2>
 
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="col-md-7" ui-view id="infoMiddle" style=" height:100vh;">
+        <div class="col-md-7" ui-view id="infoMiddle" style=" height:100vh; min-height: 150%;">
             <div id="desc">
                 <div style="border-bottom: 2px solid #1A1A1C; margin-top: 20px; padding-bottom: 20px;">
                     <p style="color: #B0B0B0" >PatternMoves WebApp Project</p>
@@ -134,7 +134,7 @@
             </div>
         </div>
 
-        <div class="col-md-2"  id="yourFiles" style="background-color: #0F0F0F; height:100vh;">
+        <div class="col-md-2"  id="yourFiles" style="background-color: #0F0F0F; height:100vh; min-height: 150%;">
             <div style="border-bottom: 2.5px solid #2F2933; margin-top: 20px; padding-bottom:20px">
                 <p style="color:#B0B0B0; text-align: center">Your uploaded <br> /saved files</p>
             </div>
@@ -152,7 +152,7 @@
 
         </div>
 
-        <div class="col-md-2" id="uiV" style="background-image:url('../assets/dash.png'); background-repeat:repeat;">
+        <div class="col-md-2" id="uiV" style="background-image:url('../assets/dash.png'); background-repeat:repeat;min-height: 150%;">
             <img ng-src="{{userDataViewCtrl.avatar}}" id="photoUser" class="img-responsive">
             <form class="form-horizontal" id="informacje" style="padding-top: 50px;">
                 <input type="text" style="border-top: 0.5px solid #1A1A1C; padding-top: 30px" class="field left" readonly id="input-name" placeholder="FirstName" ng-model="userDataViewCtrl.userData.firstName">
