@@ -55,9 +55,30 @@ export default class UserDataEditController {
 
     editUser(){
         this.userNewData.oldemail = this.userData.email;
+
         this.usersService.edit(JSON.stringify(this.userNewData));
-        console.log(this.usersService.userData);
         console.log("Uzytkownik update");
+        console.log(this.userNewData);
+        console.log(this.usersService.userData);
+        console.log(this.usersService.$storage.userData);
+        if (this.userNewData.name.length > 1){
+            console.log(this.userNewData.name.length);
+            this.usersService.userData.firstName = this.userNewData.name;
+            this.usersService.$storage.userData.firstName = this.userNewData.name;
+            this.userData.name = this.userNewData.name;
+        }
+        if (this.userNewData.email.length > 1){
+            console.log(this.userNewData.oldemail.length);
+            this.usersService.userData.email = this.userNewData.email;
+            this.usersService.$storage.userData.email = this.userNewData.email;
+            this.userData.email = this.userNewData.email;
+        }
+        if (this.userNewData.surname.length > 1){
+            console.log(this.userNewData.surname.length);
+            this.usersService.userData.lastName = this.userNewData.surname;
+            this.usersService.$storage.userData.lastName = this.userNewData.surname;
+            this.userData.surname = this.userNewData.surname;
+        }
         this.$state.go('logged');
     }
 
