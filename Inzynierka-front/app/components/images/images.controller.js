@@ -40,14 +40,32 @@ export default class ImagesController {
   }
 
   deleteFromSubs(fileDetails){
-    console.log(this.usersService.userData);
-    console.log(fileDetails);
     let data = {
-      email: this.usersService.userData.email,
-      title: fileDetails.title
+      userEmail: this.usersService.userData.email,
+      fileName: fileDetails.title
     };
-    this.usersService.deleteFileFromSubs(data);
+    this.usersService.deleteFileFromSubs(data).then(function successCallback(response, status, headers, config) {
+      var index = this.usersService.userData.subscribedFiles.indexOf(fileDetails.title);
+      if (index > -1) {
+        console.log("usuwam");
+        this.usersService.userData.subscribedFiles.splice(index, 1);
+      }
+      console.log(this.usersService.$storage.userData.subscribedFiles);
+      index = this.usersService.$storage.userData.subscribedFiles.indexOf(fileDetails.title);
+      if (index > -1) {
+        console.log("usuwam");
+        this.usersService.$storage.userData.subscribedFiles.splice(index, 1);
+      }
+      console.log(this.userData.subscribedFiles);
+      index = this.userData.subscribedFiles.indexOf(fileDetails.title);
+      if (index > -1) {
+        console.log("usuwam");
+        this.userData.subscribedFiles.splice(index, 1);
+      }
+    }.bind(this));
   }
+
+  
   html_creator(fileDetails){
     var sref_name =  "home(logged/fileDetails/{id:" +fileDetails.title+"})"
     return sref_name

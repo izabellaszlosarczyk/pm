@@ -23,7 +23,6 @@
             <th>rate</th>
             <th>date of creation</th>
             <th>view file</th>
-            <th>delete</th>
         </tr>
         </thead>
         <tbody>
@@ -34,7 +33,6 @@
             <td>{{file.average}}</td>
             <td>{{file.creationDate.year + ":"+ file.creationDate.monthValue + ":" + file.creationDate.dayOfMonth}}</td>
             <td ><button class="btn btn-success" ng-click="allCtrl.viewFile(file)" id="view" >view</button></td>
-            <td ><button class="btn btn-success" ng-click="allCtrl.deleteFromSubs(file)" id="deleteSub" >x</button></td>
         </tr>
         </tbody>
     </table>

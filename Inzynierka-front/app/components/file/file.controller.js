@@ -634,24 +634,27 @@ export default class FileController {
     this.usersService.addFileToSubs(addData).then(function successCallback(response, status, headers, config) {
       console.log("Dupa234235243543t542524w");
     }.bind(this));
+    this.usersService.userData.subscribedFiles.push(this.fileDetails.title);
+    this.usersService.$storage.userData.subscribedFiles.push(this.fileDetails.title);
   }
   
   delSubs(){
     console.log(this.usersService.userData);
     console.log("DEL subs");
-    let delData = {
+    let data = {
       userEmail: this.usersService.userData.email,
       fileName: this.fileDetails.title
     };
-    this.delFromSubs = 1;
-    this.usersService.deleteFileFromSubs(delData).then(function successCallback(response, status, headers, config) {
-      console.log("Dupahgjy7t7ti7i6i24w");
-      var index = this.usersService.userData.subscribedFiles.indexOf(this.fileDetails.title);
+    this.usersService.deleteFileFromSubs(data).then(function successCallback(response, status, headers, config) {
+      var index = this.usersService.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
+        console.log("usuwam");
         this.usersService.userData.subscribedFiles.splice(index, 1);
       }
-      index = this.usersService.$storage.userData.subscribedFiles.indexOf(this.fileDetails.title);
+      console.log(this.usersService.$storage.userData.subscribedFiles);
+      index = this.usersService.$storage.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
+        console.log("usuwam");
         this.usersService.$storage.userData.subscribedFiles.splice(index, 1);
       }
     }.bind(this));

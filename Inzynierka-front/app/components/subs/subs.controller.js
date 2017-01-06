@@ -16,8 +16,8 @@ export default class SubsController {
   }
 
   $onInit() {
-    this.userData = this.usersService.getUserDataValues();
     console.log("sgtggeffrghghhhhhhhhhhhhtththththrththtrh");
+    this.userData = this.usersService.getUserDataValues();
     console.log(this.userData);
 
 
@@ -42,17 +42,19 @@ export default class SubsController {
       fileName: fileDetails.title
     };
     this.usersService.deleteFileFromSubs(data).then(function successCallback(response, status, headers, config) {
-      var index = this.usersService.userData.subscribedFiles.indexOf(this.usersService.userData.email);
+      var index = this.usersService.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
         console.log("usuwam");
         this.usersService.userData.subscribedFiles.splice(index, 1);
       }
-      index = this.usersService.$storage.userData.subscribedFiles.indexOf(this.usersService.userData.email);
+      console.log(this.usersService.$storage.userData.subscribedFiles);
+      index = this.usersService.$storage.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
         console.log("usuwam");
         this.usersService.$storage.userData.subscribedFiles.splice(index, 1);
       }
-      index = this.userData.subscribedFiles;
+      console.log(this.userData.subscribedFiles);
+      index = this.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
         console.log("usuwam");
         this.userData.subscribedFiles.splice(index, 1);

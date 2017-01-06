@@ -22,17 +22,6 @@ export default class ChartsController {
     }.bind(this));
   }
 
-  deleteFromSubs(fileDetails){
-    //this.usersService.setRequestedFileDetails(fileDetails);
-    console.log(this.usersService.userData);
-    console.log(fileDetails);
-    let data = {
-      email: this.usersService.userData.email,
-      title: fileDetails.title
-    };
-    this.usersService.deleteFileFromSubs(data);
-  }
-
 
   viewFile(fileDetails){
     this.usersService.addRequestedFileDetails(fileDetails);

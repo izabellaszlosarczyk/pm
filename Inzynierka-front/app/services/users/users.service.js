@@ -352,6 +352,10 @@ class UserService {
         if (this.$storage.userData) {
             this.userData = this.$storage.userData;
         }
+        console.log("data uzytko");
+        console.log(this.userData);
+        console.log("storage");
+        console.log(this.$storage)
         return this.userData;
     }
 
