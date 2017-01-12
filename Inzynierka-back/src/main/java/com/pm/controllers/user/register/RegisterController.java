@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -55,9 +56,12 @@ public class RegisterController {
         u.setPassword(registerRequest.getPassword());
         u.setFirstName(registerRequest.getName());
         u.setLastName(registerRequest.getSurname());
-        u.setLastLog((new Date().toString()));
+        u.setLastLog(LocalDate.now().toString());
+
+        u.setPreviousLog(LocalDate.now().toString());
         u.setProfilePhoto("image69"); //zdjecie domyslne
         System.out.println("dupa");
+        System.out.println(u.getLastLog());
 //        String name = "file.py";
 //        Resource resource = resourceLoader.getResource("classpath:/static/"+name);
 

@@ -4,7 +4,7 @@ __author__ = 'Zuch'
 import csv
 from anytree import Node, RenderTree, NodeMixin
 import networkx as nx
-
+import xml.etree.ElementTree as ET
 class Move(object):
     pass
 
@@ -31,12 +31,7 @@ class AverageMove(object):
 
 quantity_nodes = {}
 def data_parsing(rows):
-    # with open(rows, 'rb') as csvfile:
-    # spamreader = csv.reader(csvfile, delimiter=',')
     parent = None
-    # rows = []
-    # for row in spamreader:
-    #     rows.append(row)
     rows = rows[1:]
     users_movements = []
     time_stamp = int(rows[0][5])
@@ -68,9 +63,18 @@ def data_parsing(rows):
                     average[movement] = AverageMove(node.number,node.children[0].number,node.time)
                 else:
                     average[movement].add(node.time)
-
-    # for key, val in average.items():
-    #     val.eval()
-    # for key, val in average.items():
-    #     print(val.from_node + " --> " + val.to_node + " quantity " + str(val.quantity) + " time " +str(val.time) )
     return average, quantity_nodes
+
+
+def get_desc(desc):
+    tree = ET.fromstring(desc)
+    # root = tree.getroot()
+    patient_text = {}
+    for child in tree:
+        for grandchild in child:
+            import re
+            ids = child.attrib["id"]
+            m = re.search('v(\d+)', ids)
+            if m:
+                patient_text[m.group(1)] = grandchild.text
+    return patient_text

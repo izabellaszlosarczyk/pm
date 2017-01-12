@@ -122,6 +122,7 @@ public class AppContent {
         User user = readClass.searchOneByEmail(email);
         String lastLog = user.getLastLog();
         System.out.println(lastLog);
+//        LocalDate.parse()
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
 //        formatter = formatter.withLocale(Locale.ENGLISH);  // Locale specifies human language for translating, and cultural norms for lowercase/uppercase and abbreviations and such. Example: Locale.US or Locale.CANADA_FRENCH
 //        LocalDate dateOfLog = LocalDate.parse(lastLog, formatter);
@@ -129,6 +130,7 @@ public class AppContent {
         String month = lastLog.substring(5, 7);
         String day = lastLog.substring(8, 10);
         LocalDate dateOfLog = LocalDate.of(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
+
         System.out.println(dateOfLog);
 
         List<File> fileNames = readClass.searchAllFiles();
@@ -137,7 +139,7 @@ public class AppContent {
         for (File f: fileNames){
             if (f.getCreationDate() != null){
                 System.out.println("plik:" + f.getCreationDate());
-                if (f.getCreationDate().isAfter(dateOfLog)){
+                if (f.getCreationDate().isBefore(dateOfLog)){
                     tmp.add(f);
                 }else {
                     System.out.println("jednak po");

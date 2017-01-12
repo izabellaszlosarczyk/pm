@@ -16,22 +16,14 @@ export default class UserStuffController {
 
   $onInit() {
     this.userData = this.usersService.getUserDataValues();
-    console.log(this.userData);
     this.allFiles.push(this.userData.savedFiles);
     this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
       this.loading = false;
       this.filesDetails= response.data;
-      console.log("duuuuuuuuuuuuuuuupa");
-      console.log(this.filesDetails);
       if (typeof this.filesDetails !== 'undefined' && this.filesDetails.length > 0) {
         this.empty = 0;
       }
     }.bind(this));
-
-    // this.filesDetails.push(response.data);
-    //this.usersService.getFileDetails()
-    //this.userNewData = this.userData;
-    //console.log(this.userNewData);
   }
 
   deleteFromSubs(fileDetails){
@@ -42,19 +34,14 @@ export default class UserStuffController {
     this.usersService.deleteFileFromSubs(data).then(function successCallback(response, status, headers, config) {
       var index = this.usersService.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.userData.subscribedFiles.splice(index, 1);
       }
-      console.log(this.usersService.$storage.userData.subscribedFiles);
       index = this.usersService.$storage.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.$storage.userData.subscribedFiles.splice(index, 1);
       }
-      console.log(this.userData.subscribedFiles);
       index = this.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.userData.subscribedFiles.splice(index, 1);
       }
     }.bind(this));
@@ -62,7 +49,6 @@ export default class UserStuffController {
 
   viewFile(fileDetails){
     this.usersService.addRequestedFileDetails(fileDetails);
-    console.log(this.usersService.requestedFileDetails);
     this.usersService.analysesType = fileDetails.type;
     this.usersService.getFile(fileDetails.title).then(function successCallback(response, status, headers, config) {
       var decoder = new TextDecoder("utf-8");
@@ -72,10 +58,11 @@ export default class UserStuffController {
       }else {
         this.jsonToVizualization = decoder.decode(new Uint8Array(response.data));
       }
+      if(typeof this.jsonToVizualization !== "object")
+        this.jsonToVizualization = JSON.parse( this.jsonToVizualization );
       console.log(decoder.decode(new Uint8Array(response.data)));
       this.usersService.jsonToVisualisation = this.jsonToVizualization;
       this.state.go('logged.fileDetails', fileDetails.title);
-      //console.log(this.jsonToVizualization);
     }.bind(this));
   }
   

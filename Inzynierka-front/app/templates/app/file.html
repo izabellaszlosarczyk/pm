@@ -2,6 +2,14 @@
     <div style="border-bottom: 1px solid #CBD5DD;" id="details">
         <a href="/#/logged"><button class="btn btn-success" id="x" style="margin-right: auto">x</button></a>
         <h2 id="hFile">Chosen file details</h2>
+        <div class="col-md-12">
+            <img ng-if="fileCtrl.firstDig == 0" src="./assets/serca2.png" style="max-width: 30%; height:auto;">
+            <img ng-if="fileCtrl.firstDig == 1" src="./assets/serca3.png" style="max-width: 30%; height:auto;">
+            <img ng-if="fileCtrl.firstDig == 2" src="./assets/serca4.png" style="max-width: 30%; height:auto;">
+            <img ng-if="fileCtrl.firstDig == 3" src="./assets/serca5.png" style="max-width: 30%; height:auto;">
+            <img ng-if="fileCtrl.firstDig == 4" src="./assets/serca6.png" style="max-width: 30%; height:auto;">
+            <img ng-if="fileCtrl.firstDig == 5" src="./assets/serca7.png" style="max-width: 30%; height:auto;">
+        </div>
         <div class="col-md-8">
             <p>Title: {{fileCtrl.fileDetails.title}}</p>
             <p>Average score : {{fileCtrl.fileDetails.average}}</p>
@@ -74,7 +82,6 @@
             <li ng-repeat="com in fileCtrl.jsonToVisualisation.file.answers" style=" font-size: 15px;">{{com}}</li>
         </ul>
         <p>Examination:</p>
-        <!--<p>Examination: {{fileCtrl.jsonToVisualisation.file.examination}}</p>-->
         <ul>
             <li ng-repeat="com in fileCtrl.jsonToVisualisation.file.examination" style=" font-size: 15px;">{{com}}</li>
         </ul>

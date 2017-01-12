@@ -16,15 +16,12 @@ export default class ImagesController {
   //graph
   $onInit() {
     this.userData = this.usersService.getUserDataValues();
-    console.log(this.userData.savedFiles);
     
     this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
       this.loading = false;
       this.filesDetails= response.data;
-      console.log(this.filesDetails);
       for (var i in this.filesDetails) {
         if (this.filesDetails[i].type == "graph"){
-          console.log(this.userData.savedFiles[i]);
           this.imageFiles.push(this.filesDetails[i]);
         }
       }
@@ -33,10 +30,6 @@ export default class ImagesController {
       }
     }.bind(this));
 
-    // this.filesDetails.push(response.data);
-    //this.usersService.getFileDetails()
-    //this.userNewData = this.userData;
-    //console.log(this.userNewData);
   }
 
   deleteFromSubs(fileDetails){
@@ -47,25 +40,18 @@ export default class ImagesController {
     this.usersService.deleteFileFromSubs(data).then(function successCallback(response, status, headers, config) {
       var index = this.usersService.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.userData.subscribedFiles.splice(index, 1);
       }
-      console.log(this.usersService.$storage.userData.subscribedFiles);
       index = this.usersService.$storage.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.$storage.userData.subscribedFiles.splice(index, 1);
       }
-      console.log(this.userData.subscribedFiles);
       index = this.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.userData.subscribedFiles.splice(index, 1);
       }
     }.bind(this));
   }
-
-  
   html_creator(fileDetails){
     var sref_name =  "home(logged/fileDetails/{id:" +fileDetails.title+"})"
     return sref_name
@@ -73,22 +59,21 @@ export default class ImagesController {
 
   viewFile(fileDetails){
     this.usersService.addRequestedFileDetails(fileDetails);
-    console.log(this.usersService.requestedFileDetails);
     this.usersService.getFile(fileDetails.title).then(function successCallback(response, status, headers, config) {
       var decoder = new TextDecoder("utf-8");
-     //decoder.decode(new Uint8Array(response.data));
-      this.jsonToVizualization = decoder.decode(new Uint8Array(response.data));
+      //decoder.decode(new Uint8Array(response.data));
+      if (this.usersService.analysesType == "apriori" || this.usersService.analysesType == "decision"){
+        this.jsonToVizualization = JSON.parse(decoder.decode(new Uint8Array(response.data)));
+      }else {
+        this.jsonToVizualization = decoder.decode(new Uint8Array(response.data));
+      }
+      if(typeof this.jsonToVizualization !== "object")
+        this.jsonToVizualization = JSON.parse( this.jsonToVizualization );
       console.log(decoder.decode(new Uint8Array(response.data)));
       this.usersService.jsonToVisualisation = this.jsonToVizualization;
       this.usersService.analysesType = fileDetails.type;
       this.state.go('logged.fileDetails', fileDetails.title);
-    //console.log(this.jsonToVizualization);
     }.bind(this));
-    // //
-    // this.jsonToVizualization = this.usersService.getUrl(`/content/load/${fileDetails.title}`);
-    // console.log(this.jsonToVizualization);
-    // this.usersService.jsonToVisualisation = this.jsonToVizualization;
-    // this.state.go('logged.fileDetails', fileDetails.title);
   }
 
 }

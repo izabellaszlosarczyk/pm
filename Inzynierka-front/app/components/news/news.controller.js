@@ -14,10 +14,9 @@ export default class NewsController {
   }
 
   $onInit() {
-    console.log("NEWS");
-    console.log(this.usersService.userData.email);
     this.usersService.getNewsFiles(this.usersService.userData.email).then(function successCallback(response, status, headers, config) {
       this.loading = false;
+      console.log(this.filesDetails);
       this.filesDetails= response.data;
       if (typeof this.filesDetails !== 'undefined' && this.filesDetails.length > 0) {
         this.empty = 0;
@@ -33,13 +32,10 @@ export default class NewsController {
     this.usersService.deleteFileFromSubs(data).then(function successCallback(response, status, headers, config) {
       var index = this.usersService.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.userData.subscribedFiles.splice(index, 1);
       }
-      console.log(this.usersService.$storage.userData.subscribedFiles);
       index = this.usersService.$storage.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.$storage.userData.subscribedFiles.splice(index, 1);
       }
     }.bind(this));
@@ -48,7 +44,6 @@ export default class NewsController {
 
   viewFile(fileDetails){
     this.usersService.addRequestedFileDetails(fileDetails);
-    console.log(this.usersService.requestedFileDetails);
     this.usersService.analysesType = fileDetails.type;
     this.usersService.getFile(fileDetails.title).then(function successCallback(response, status, headers, config) {
       var decoder = new TextDecoder("utf-8");
@@ -58,10 +53,13 @@ export default class NewsController {
       }else {
         this.jsonToVizualization = decoder.decode(new Uint8Array(response.data));
       }
-      console.log(decoder.decode(new Uint8Array(response.data)));
-      this.usersService.jsonToVisualisation = this.jsonToVizualization;
+      if(typeof this.jsonToVizualization !== "object"){
+        this.usersService.jsonToVizualization = JSON.parse( this.jsonToVizualization );
+      }else{
+        this.usersService.jsonToVisualisation = this.jsonToVizualization;
+      }
+      //this.usersService.jsonToVisualisation = this.jsonToVizualization;
       this.state.go('logged.fileDetails', fileDetails.title);
-      //console.log(this.jsonToVizualization);
     }.bind(this));
   }
 

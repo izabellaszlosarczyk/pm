@@ -23,29 +23,27 @@ export default class FileController {
     this.jsonToVisualisation; // w tym pliku masz tego jsona z backednu
     this.delFromSubs = 0;
     this.addToSubs = 0;
+    this.firstDig = 0;
+    this.added = 0;
   }
   $onInit() {
-    console.log("test dendo");
+    var text;
     if (this.fileDetails.type != "image" && this.fileDetails.type != "chart") {
       this.flagType = true;
 
     }
     this.jsonToVisualisation = this.usersService.jsonToVisualisation;
-    console.log(this.jsonToVisualisation);
     this.flagTmp = this.usersService.analysesType;
     //obrazek
     var tmp = new Object();
     //this.fileDetails = this.usersService.requestedFileDetails;
     tmp = this.usersService.requestedFileDetails;
     this.fileDetails = tmp;
-    console.log(this.fileDetails);
     // null and undefined are "empty"
     if (this.fileDetails == null){
-      console.log("pusty");
       this.state.go('logged');
     }
     if (this.fileDetails.length === 0){
-      console.log("pusty");
       this.state.go('logged');
     }
 
@@ -53,18 +51,12 @@ export default class FileController {
       this.state.go('logged');
     }
     if(typeof this.jsonToVisualisation == 'undefined'){
-      console.log("puste");
       this.state.go('logged');
     }
-    console.log("TERAZ CZESC UZYTKOWNIKA");
     this.userFilesSubs = this.usersService.userData.subscribedFiles;
     this.userFilesSaved = this.usersService.userData.savedFiles;
-    console.log(this.userFilesSubs);
-    console.log(this.userFilesSaved);
-    console.log(this.fileDetails.title);
     if ((this.userFilesSaved.indexOf(this.fileDetails.title) > -1) || ( this.userFilesSubs.indexOf(this.fileDetails.title) > -1)) {
       this.flagIs = true;
-      console.log("okej");
     }
     this.content = this.usersService.getUrl(`/content/load/${this.fileDetails.title}`);
     // this.usersService.getFile(this.fileDetails.title).then(function successCallback(response, status, headers, config) {
@@ -79,22 +71,17 @@ export default class FileController {
     //     this.fileDetails= response.data;
     //     //console.log(this.filesDetails);
     //   }.bind(this));}.bind(this));
-    console.log("Jaka flaga")
-    console.log(this.flagTmp);
-
+    this.firstDig = parseInt(this.fileDetails.average[0]);
     if (this.flagTmp == "apriori") {
       this.flagApriori = 1;
-      // console.log(this.jsonToVisualisation);
-      // console.log(this.jsonToVisualisation.file.rules);
-      // console.log(this.jsonToVisualisation.file.rules[0]);
-      // console.log(this.jsonToVisualisation.file.rules[0]["items_add"]);
     }
 
 
     if (this.flagTmp == "decision") {
       this.flagDecision = 1;
     }
-    
+
+    d3.version = "3.5.17";
     if (this.flagTmp == "straight") {
       var div = d3.select("body").append("div")
           .attr("class", "tooltip")
@@ -125,6 +112,7 @@ export default class FileController {
             links = graph.links,
             bilinks = [];
 
+
         link = svg.selectAll(".link")
             .data(links)
             .enter().append("line")
@@ -145,23 +133,23 @@ export default class FileController {
                   .duration(200)
                   .style("opacity", .9);
               div.html(d.txt)
-                  .style("left", (d3.event.pageX- 100) + "px")
-                  .style("top", (d3.event.pageY - 100) + "px");
+                  .style("left", (d3.event.pageX- 50) + "px")
+                  .style("top", (d3.event.pageY - 50) + "px");
             })
             .on("mouseout", function(d) {
               div.transition()
                   .duration(500)
                   .style("opacity", 0);
-            })
+            });
 //                .attr("fill", function(d) { return color(d.group); })
 
-        // text = svg.selectAll(".text")
-        //     .data(nodes.filter(function(d) { return d.id; }))
-        //
-        //     .enter().append("text")
-        //     .attr("fill", "#07dfff")
-        //     .text(function(d) {
-        //       return d.id;  });
+        text = svg.selectAll(".text")
+            .data(nodes.filter(function(d) { return d.id; }))
+            .enter().append("text")
+            .attr("class", "text")
+            .attr("fill", "#fff")
+            .text(function(d) {
+              return d.id;  });
         force
             .nodes(graph.nodes)
             .links(graph.links)
@@ -177,7 +165,7 @@ export default class FileController {
         node.attr("cx", function(d) { return d.x; })
             .attr("cy", function(d) { return d.y; });
 
-        // text.attr("transform", positionText);
+        text.attr("transform", positionText);
       }
 
       function positionText(d) {
@@ -235,7 +223,7 @@ export default class FileController {
             .enter().append("path")
             .attr("class", "link")
             .attr("stroke-width", function(d) {
-              return (d[1].quantity)/5;
+              return (d[1].quantity)/3;
             });
 
 //        link = svg.selectAll(".link")
@@ -258,8 +246,8 @@ export default class FileController {
                   .duration(200)
                   .style("opacity", .9);
               div.html(d.txt)
-                  .style("left", (d3.event.pageX- 100) + "px")
-                  .style("top", (d3.event.pageY - 100) + "px");
+                  .style("left", (d3.event.pageX- 50) + "px")
+                  .style("top", (d3.event.pageY - 50) + "px");
             })
             .on("mouseout", function(d) {
               div.transition()
@@ -267,14 +255,14 @@ export default class FileController {
                   .style("opacity", 0);
             })
 //                .attr("fill", function(d) { return color(d.group); })
-//
-//         text = svg.selectAll(".text")
-//             .data(nodes.filter(function(d) { return d.id; }))
-//             .enter().append("text")
-//             .attr("class", "text")
-//             .attr("fill", "#07dfff")
-//             .text(function(d) {
-//               return d.id;  });
+
+        text = svg.selectAll(".text")
+            .data(nodes.filter(function(d) { return d.id; }))
+            .enter().append("text")
+            .attr("class", "text")
+            .attr("fill", "#07dfff")
+            .text(function(d) {
+              return d.id;  });
         force
             .nodes(graph.nodes)
             .links(graph.links)
@@ -291,7 +279,7 @@ export default class FileController {
         node.attr("cx", function(d) { return d.x; })
             .attr("cy", function(d) { return d.y; });
 
-       // text.attr("transform", positionText);
+       text.attr("transform", positionText);
       }
 
       function positionLink(d) {
@@ -312,6 +300,7 @@ export default class FileController {
         d3.select(this).classed("fixed", d.fixed = true);
       }
     }
+
     if (this.flagTmp == "radial") {
       var div = d3.select("body").append("div")
           .attr("class", "tooltip")
@@ -439,7 +428,7 @@ export default class FileController {
           .call(xAxis)
           .selectAll("text")
           .style("text-anchor", "end")
-          .attr("dx", "-.8em")
+          .attr("dx", "+.9em")
           .attr("dy",
               function (d) {
                 i++;
@@ -457,8 +446,8 @@ export default class FileController {
                 .duration(200)
                 .style("opacity", .9);
             div.html(d.txt)
-                .style("left", (d3.event.pageX - 100) + "px")
-                .style("top", (d3.event.pageY - 100) + "px");
+                .style("left", (d3.event.pageX - 50) + "px")
+                .style("top", (d3.event.pageY - 50) + "px");
           })
           .on("mouseout", function (d) {
             div.transition()
@@ -478,7 +467,14 @@ export default class FileController {
       svg.selectAll("bar")
           .data(data)
           .enter().append("rect")
-          .style("fill", "steelblue")
+	  .style("fill",  function (d) {
+		  if (d.color ===undefined || d.color === null){
+		      return "steelblue"
+		    }
+		    else {
+		      return d.color;
+		    }
+		  })
           .attr("x", function (d) {
             return x(d.node);
           })
@@ -495,8 +491,8 @@ export default class FileController {
                 .duration(200)
                 .style("opacity", .9);
             div.html(d.text)
-                .style("left", (d3.event.pageX - 100) + "px")
-                .style("top", (d3.event.pageY - 100) + "px");
+                .style("left", (d3.event.pageX - 50) + "px")
+                .style("top", (d3.event.pageY - 50) + "px");
           })
           .on("mouseout", function (d) {
             div.transition()
@@ -528,13 +524,11 @@ export default class FileController {
           .attr("height", height)
           .append("g")
           .attr("transform", "translate(40,0)");
-      console.log(this.jsonToVisualisation);
       // d3.json(JSON.stringify(this.jsonToVisualisation), function(error, graph){
       // d3.json("./assets/dendrogram.json", function (error, root) {
       var root = this.jsonToVisualisation;
       var nodes = cluster.nodes(root),
-          links = cluster.links(nodes)
-      console.log("inside_dendo")
+          links = cluster.links(nodes);
 
       var link = svg.selectAll(".link")
           .data(links)
@@ -557,10 +551,9 @@ export default class FileController {
               div.transition()
                   .duration(200)
                   .style("opacity", .9);
-              div.html(
-                  d.txt)
-                  .style("left", (d3.event.pageX - 100) + "px")
-                  .style("top", (d3.event.pageY - 100) + "px");
+              div.html(d.txt)
+                  .style("left", (d3.event.pageX - 50) + "px")
+                  .style("top", (d3.event.pageY - 50) + "px");
             }
           })
           .on("mouseout", function (d) {
@@ -575,6 +568,7 @@ export default class FileController {
           .attr("dx", function (d) {
             return d.children ? -10 : 10;
           })
+          .style("fill", "beige")
           .attr("dy", 3)
           .style("text-anchor", function (d) {
             return d.children ? "end" : "start";
@@ -601,12 +595,10 @@ export default class FileController {
 
   addComment(){
     this.commentAdded = 1;
-    console.log("dodaje komcia sdsadsfsdgsrgrg");
     let data ={
       comment: this.comment,
       fileName: this.fileDetails.title
     };
-    console.log(data);
     this.usersService.addCommentToFile(data).then(function successCallback(response, status, headers, config) {
       this.state.go('logged.fileDetails',this.fileDetails);
     }.bind(this));
@@ -623,37 +615,40 @@ export default class FileController {
     }.bind(this));
   }
   subscribe(){
-    console.log(this.usersService.userData);
-    console.log("subs");
     let addData = {
       userEmail: this.usersService.userData.email,
       fileName: this.fileDetails.title
-  };
+    };
     this.addToSubs = 1;
+
+
     this.usersService.addFileToSubs(addData).then(function successCallback(response, status, headers, config) {
-      console.log("Dupa234235243543t542524w");
+      console.log("ok");
     }.bind(this));
-    this.usersService.userData.subscribedFiles.push(this.fileDetails.title);
-    this.usersService.$storage.userData.subscribedFiles.push(this.fileDetails.title);
+    for (var i in  this.usersService.userData.subscribedFile) {
+      if ( this.usersService.userData.subscribedFile[i].type == addData.fileName) {
+        this.added = 1;
+      }
+    }
+    if (this.added == 0){
+      this.usersService.userData.subscribedFiles.push(this.fileDetails.title);
+      this.usersService.$storage.userData.subscribedFiles.push(this.fileDetails.title);
+    }
   }
   
   delSubs(){
-    console.log(this.usersService.userData);
-    console.log("DEL subs");
-    let data = {
+    let delData = {
       userEmail: this.usersService.userData.email,
       fileName: this.fileDetails.title
     };
-    this.usersService.deleteFileFromSubs(data).then(function successCallback(response, status, headers, config) {
-      var index = this.usersService.userData.subscribedFiles.indexOf(fileDetails.title);
+    this.delFromSubs = 1;
+    this.usersService.deleteFileFromSubs(delData).then(function successCallback(response, status, headers, config) {
+      var index = this.usersService.userData.subscribedFiles.indexOf(this.fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.userData.subscribedFiles.splice(index, 1);
       }
-      console.log(this.usersService.$storage.userData.subscribedFiles);
-      index = this.usersService.$storage.userData.subscribedFiles.indexOf(fileDetails.title);
+      index = this.usersService.$storage.userData.subscribedFiles.indexOf(this.fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.$storage.userData.subscribedFiles.splice(index, 1);
       }
     }.bind(this));

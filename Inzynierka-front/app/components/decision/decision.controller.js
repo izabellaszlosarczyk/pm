@@ -43,19 +43,14 @@ export default class DecisionController {
     this.usersService.deleteFileFromSubs(data).then(function successCallback(response, status, headers, config) {
       var index = this.usersService.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.userData.subscribedFiles.splice(index, 1);
       }
-      console.log(this.usersService.$storage.userData.subscribedFiles);
       index = this.usersService.$storage.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.$storage.userData.subscribedFiles.splice(index, 1);
       }
-      console.log(this.userData.subscribedFiles);
       index = this.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.userData.subscribedFiles.splice(index, 1);
       }
     }.bind(this));
@@ -63,20 +58,14 @@ export default class DecisionController {
 
 
   viewFile(fileDetails){
-    console.log(fileDetails);
     this.usersService.addRequestedFileDetails(fileDetails);
     this.usersService.getFile(fileDetails.title).then(function successCallback(response, status, headers, config) {
       var decoder = new TextDecoder("utf-8");
       //decoder.decode(new Uint8Array(response.data));
       this.jsonToVizualization = JSON.parse(decoder.decode(new Uint8Array(response.data)));
-      //console.log(decoder.decode(new Uint8Array(response.data)));
       this.usersService.jsonToVisualisation = this.jsonToVizualization;
       this.usersService.analysesType = fileDetails.type;
-      console.log("dupa");
-      console.log(this.usersService.requestedFileDetails);
-      console.log(this.usersService.analysesType);
       this.state.go('logged.fileDetails', fileDetails.title);
-      //console.log(this.jsonToVizualization);
     }.bind(this));
   }
 

@@ -15,18 +15,14 @@ export default class AprioriController {
   //apriori
 
   $onInit() {
+
     this.userData = this.usersService.getUserDataValues();
     this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
       this.loading = false;
-      console.log("MASAKRACJA");
       this.filesDetails= response.data;
-      console.log(this.filesDetails);
       for (var i in this.filesDetails) {
-        console.log(i);
         if (this.filesDetails[i].type == "apriori") {
-          console.log(this.userData.savedFiles[i]);
           this.chartFiles.push(this.filesDetails[i]);
-          console.log("MASAKRA");
         }
         if (typeof this.chartFiles !== 'undefined' && this.chartFiles.length > 0) {
           this.empty = 0;

@@ -1,17 +1,15 @@
 <div class="col-md-12" id="stuff">
-    <div class="col-md-6">
+    <a href="/#/logged"><button class="btn btn-success" id="x" style="padding: 5px 10px; margin-right: auto">x</button></a>
+    <div class="col-md-8">
         <p style="color:#5e5e5e; font-size: 18px ">All your files - uploaded / generated / subscribed</p>
         <p style="color:#5e5e5e; font-size: 15px ">images / charts / patterns / csv's / others</p>
         <div ng-if="userStuffCtrl.loading" style="text-align: center; transform: scale(2)">
 
         </div>
     </div>
-    <div class="col-md-6">
-        <img src="./assets/wykres2.png" class="img-responsive" style="background-color:transparent;">
-    </div>
     <table class="table"  id="imageTable" ng-if="!userStuffCtrl.loading" style="font-size: 70%; color:grey;">
         <thead>
-        <tr id="labels" style="color:black;">
+        <tr id="labels">
             <th>.</th>
             <th>title</th>
             <th>comments</th>
@@ -27,7 +25,7 @@
             <td><div ng-repeat="comment in image.comments" style="width: 250px">{{$index+1 + ' ' + comment +'\n'}}</div></td>
             <td>{{image.average}}</td>
             <td>{{image.creationDate.year + ":"+ image.creationDate.monthValue + ":" + image.creationDate.dayOfMonth}}</td>
-            <td ><button class="btn btn-success" ng-click="userStuffCtrl.viewFile(image)" id="view" style="color:black;">view</button></td>
+            <td ><button class="btn btn-success" ng-click="userStuffCtrl.viewFile(image)" id="view">view</button></td>
         </tr>
         </tbody>
     </table>

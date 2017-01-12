@@ -50,7 +50,6 @@ export default class RegisterController {
             email: this.email,
             password: this.password
         };
-        console.log(registrationData);
         if (this.validate()) {
             this.usersService.register(registrationData).then(successResponse => {
                 this.$state.go('login')

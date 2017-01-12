@@ -13,50 +13,43 @@ export default class SubsController {
     this.filesDetails = [];
     this.loading = true;
     this.empty = 1;
+    this.filesTmp = [];
   }
 
   $onInit() {
-    console.log("sgtggeffrghghhhhhhhhhhhhtththththrththtrh");
     this.userData = this.usersService.getUserDataValues();
-    console.log(this.userData);
 
 
     this.usersService.getFilesDetails(this.userData.subscribedFiles).then(function successCallback(response, status, headers, config) {
       this.loading = false;
-      this.filesDetails= response.data;
-      console.log(this.filesDetails);
+      for (var i in  response.data) {
+        if (response.data[i].type !== "image") {
+          this.filesTmp.push(response.data[i]);
+        }
+      }
+      this.filesDetails= this.filesTmp;
       if (typeof this.filesDetails !== 'undefined' && this.filesDetails.length > 0) {
         this.empty = 0;
       }
     }.bind(this));
-    // this.filesDetails.push(response.data);
-    //this.usersService.getFileDetails()
-    //this.userNewData = this.userData;
-    //console.log(this.userNewData);
   }
 
   deleteFromSubs(fileDetails){
-    //this.usersService.setRequestedFileDetails(fileDetails);
     let data = {
       userEmail: this.usersService.userData.email,
       fileName: fileDetails.title
     };
     this.usersService.deleteFileFromSubs(data).then(function successCallback(response, status, headers, config) {
-      var index = this.usersService.userData.subscribedFiles.indexOf(fileDetails.title);
+      var index = this.usersService.userData.subscribedFiles.indexOf(this.usersService.userData.email);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.userData.subscribedFiles.splice(index, 1);
       }
-      console.log(this.usersService.$storage.userData.subscribedFiles);
-      index = this.usersService.$storage.userData.subscribedFiles.indexOf(fileDetails.title);
+      index = this.usersService.$storage.userData.subscribedFiles.indexOf(this.usersService.userData.email);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.$storage.userData.subscribedFiles.splice(index, 1);
       }
-      console.log(this.userData.subscribedFiles);
-      index = this.userData.subscribedFiles.indexOf(fileDetails.title);
+      index = this.userData.subscribedFiles;
       if (index > -1) {
-        console.log("usuwam");
         this.userData.subscribedFiles.splice(index, 1);
       }
     }.bind(this));
@@ -73,7 +66,11 @@ export default class SubsController {
       }else {
         this.jsonToVizualization = decoder.decode(new Uint8Array(response.data));
       }
-      this.usersService.jsonToVisualisation = this.jsonToVizualization;
+      if(typeof this.jsonToVizualization !== "object"){
+        this.usersService.jsonToVizualization = JSON.parse( this.jsonToVizualization );
+      }else{
+        this.usersService.jsonToVisualisation = this.jsonToVizualization;
+      }
       this.state.go('logged.fileDetails', fileDetails.title);
       //console.log(this.jsonToVizualization);
     }.bind(this));

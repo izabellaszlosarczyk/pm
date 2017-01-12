@@ -33,11 +33,9 @@ class UserService {
     }
     addRequestedFileDetails(file){
         this.requestedFileDetails = file;
-        console.log(this.requestedFileDetails);
     }
 
     getFileDetails(fileName){
-        console.log(fileName);
         return this.$http({
             url: this.getUrl(`file/loadDetails/${fileName}`),
             method: "GET"
@@ -46,7 +44,6 @@ class UserService {
     }
 
     getFilesDetails(filesNames){
-        console.log(filesNames);
         return this.$http({
             url: this.getUrl(`file/loadDetails/files`),
             method: "POST",
@@ -72,7 +69,6 @@ class UserService {
 
 
     getNewsFiles(userEmail) {
-        console.log(userEmail);
         return this.$http({
             url: this.getUrl(`mainContent/news`),
             method: "POST",
@@ -92,12 +88,10 @@ class UserService {
         });
     }
     addCommentToFile(commentReq){
-        console.log("komcia2222");
         let request = {
             file: commentReq.fileName,
             comment: "~" + this.userData.email + ": " + commentReq.comment
         };
-        console.log(request);
         return this.$http({
             url: this.getUrl(`rate/comment`),
             method: "POST",
@@ -119,12 +113,15 @@ class UserService {
             method: "GET"
         });
     }
+    changeTimeOfLog(email){
+        return this.$http({
+            url: this.getUrl('edit/editTime/' + email),
+            method: "GET"
+        });
+    }
 
     saveNewImage(userFile, fileName){ //potem to zmienie, ogolna metoda na dodawnaie plikow
-        console.log("saveuje\n image");
-        var formdata = new FormData();
-        // console.log(fileName);
-        // console.log(userFile);
+       var formdata = new FormData();
         formdata.append( 'name', fileName);
         formdata.append( 'file', userFile);
         formdata.append( 'type', 'profilePic/jpg');
@@ -140,18 +137,14 @@ class UserService {
     }
 
     loadFiles(){
-        console.log("all");
         return this.$http({
             url: this.getUrl(`/mainContent/allDetails`),
             method: "GET"
         });
     }
 
-    saveNewFile(userFile, fileName, type){ //potem to zmienie, ogolna metoda na dodawnaie plikow
-        console.log("saveuje\n image");
+    saveNewFile(userFile, fileName, type){ 
         var formdata = new FormData();
-        // console.log(fileName);
-        // console.log(userFile);
         formdata.append( 'name', fileName);
         formdata.append( 'file', userFile);
         formdata.append( 'type', type);
@@ -166,10 +159,7 @@ class UserService {
 
     }
     saveNewEntity(userFile, fileName, type){ //potem to zmienie, ogolna metoda na dodawnaie plikow
-        console.log("saveuje\n image");
         var formdata = new FormData();
-        // console.log(fileName);
-        // console.log(userFile);
         formdata.append( 'name', fileName);
         formdata.append( 'file', userFile);
         formdata.append( 'type', type);
@@ -184,11 +174,7 @@ class UserService {
 
     }
 
-    saveNewFileBackend(userFileData, userFileDesc, fileType, analysesType, nameOfOutputFile, email){ //potem to zmienie, ogolna metoda na dodawnaie plikow
-        console.log("saveuje\n");
-        console.log(userFileData.name);
-        console.log(userFileDesc.name);
-
+    saveNewFileBackend(userFileData, userFileDesc, fileType, analysesType, nameOfOutputFile, email){ 
         var formdata = new FormData();
         formdata.append( 'nameData', userFileData.name);
         formdata.append( 'fileData', userFileData);
@@ -210,29 +196,6 @@ class UserService {
 
     }
     
-
-        // return this.$http({
-        //     // tutaj podaj url jaki chcesz miec do swojego pythonowego modulu - cała ściezka localhost:8000 .....
-        //     url: "http://127.0.0.1:8000/polls/",
-        //     method: "JSONP",
-        //     data: formdata,
-        //     cache: false,
-        //     headers: {'Content-Type': undefined },
-        //     processData: false
-        // });
-        // //
-        // // return this.$http({
-        // //     url: "http://127.0.0.1:8000/polls/",
-        // //     method: 'JSONP'
-        // // });
-        // return $.ajax({
-        //         url:  "http://127.0.0.1:8000/polls/",
-        //         data: queryStatusData,
-        //         dataType: "jsonp",
-        //         type: "GET",
-        //         success: queryStatusSuccessFunc
-        //     });
-    
     
     addFileEntity(file){
         return this.$http({
@@ -250,8 +213,6 @@ class UserService {
     }
 
     register(userData) {
-        console.log("DUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUPA");
-        console.log(userData);
         return this.$http({
             url: this.getUrl('register/new'),
             method: "POST",
@@ -260,7 +221,6 @@ class UserService {
     }
 
     edit(userData) {
-        console.log(userData);
         return this.$http({
             url: this.getUrl(`edit/saveEdited`),
             method: "POST",
@@ -270,7 +230,6 @@ class UserService {
 
 
     editPhoto(userData) {
-        console.log(userData);
         return this.$http({
             url: this.getUrl(`edit/saveEditedPhoto`),
             method: "POST",
@@ -292,7 +251,6 @@ class UserService {
     }
 
    deleteFileFromSubs(deleteRequest) {
-       console.log("usuwamy");
         return this.$http({
             url: this.getUrl(`file/deleteFromSubs`),
             method: "POST",
@@ -301,7 +259,6 @@ class UserService {
     }
 
     addFileToSubs(addRequest) {
-        console.log("dodajemy");
         return this.$http({
             url: this.getUrl(`file/addSubs`),
             method: "POST",
@@ -311,7 +268,6 @@ class UserService {
 
 
     getRandomFileName(){
-        console.log("RANDOMRANDOMRANDOM");
         return this.$http({
             url: this.getUrl(`mainContent/randomName`),
             method: "GET"
@@ -319,7 +275,6 @@ class UserService {
     }
 
     getRandomFile(){
-        console.log("RANDOMRANDOMRANDOM2");
         return this.$http({
             url: this.getUrl(`mainContent/randomFile`),
             method: "GET"
@@ -352,10 +307,6 @@ class UserService {
         if (this.$storage.userData) {
             this.userData = this.$storage.userData;
         }
-        console.log("data uzytko");
-        console.log(this.userData);
-        console.log("storage");
-        console.log(this.$storage)
         return this.userData;
     }
 

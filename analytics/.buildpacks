@@ -1,0 +1,6 @@
+cat <<EOF >.buildpacks
+https://github.com/heroku/heroku-buildpack-python.git
+https://github.com/weibeld/heroku-buildpack-graphviz.git
+EOF
+
+heroku buildpack:set https://github.com/ddollar/heroku-buildpack-multi.git

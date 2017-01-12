@@ -1,13 +1,11 @@
 <div class="col-md-12" id="stuff">
-    <div class="col-md-6" style="color:#B0B0B0;">
+    <a href="/#/logged"><button class="btn btn-success" id="x" style="padding: 5px 10px; margin-right: auto">x</button></a>
+    <div class="col-md-8" style="color:#B0B0B0;">
         <h4 style="padding-top: 10px; ">Generated materials</h4>
         <h4>for your uploaded files</h4>
         <div ng-if="imagesViewCtrl.loading" style="text-align: center; transform: scale(2)">
 
         </div>
-    </div>
-    <div class="col-md-5">
-        <img src="./assets/graph.png" class="img-responsive" style="background-color:transparent;">
     </div>
     <table class="table"  id="imageTable" ng-if="!imagesCtrl.loading" style="font-size: 70%; color:grey;">
         <thead>

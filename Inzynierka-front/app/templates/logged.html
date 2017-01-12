@@ -46,22 +46,9 @@
                             <td><p>CSV with data</p></td>
                             <td><input ng-model="userDataViewCtrl.newFile2" onchange="angular.element(this).scope().file_upload2(this)" type="file" />
                             </td>
-                            <td><p>JSON with description</p></td>
+                            <td><p>JSON/XML with description</p></td>
                         </tr>
                         <tr>
-                            <td>
-                                <select name="typeOfAnalysesSelect" id="analysesSelect" ng-model="userDataViewCtrl.analysesType" style="color: black">
-                                    <option value="" disabled selected>analyses type</option>
-                                    <option value="barChart">bar chart</option>
-                                    <option value="dendo">dendogram</option>
-                                    <option value="graph">graph</option>
-                                    <option value="radial">radial</option>
-                                    <option value="straight">straight graph</option>
-                                    <option value="decision">decision tree</option>
-                                    <option value="apriori">association rules</option>
-                                </select><br>
-                            </td>
-                            <td>type of analyses</td>
                             <td>
                                 <select name="typeSelect" id="typeSelect" ng-model="userDataViewCtrl.newFileType" style="color: black">
                                     <option value="" disabled selected>file type</option>
@@ -71,6 +58,18 @@
                                 </select><br>
                             </td>
                             <td>type of uploaded files</td>
+                            <td>
+                                <select name="userDataViewCtrl.newFileType" id="analysesSelect" ng-model="userDataViewCtrl.analysesType" style="color: black">
+                                    <option value="" disabled selected>analyses type</option>
+                                    <option ng-if="userDataViewCtrl.newFileType !== ''" value="barChart">bar chart</option>
+                                    <option ng-if="userDataViewCtrl.newFileType == 'labyrinth'" value="dendo">dendrogram</option>
+                                    <option ng-if="userDataViewCtrl.newFileType == 'labyrinth'" value="graph">graph</option>
+                                    <option ng-if="userDataViewCtrl.newFileType == 'labyrinth'" value="straight">straight graph</option>
+                                    <option ng-if="userDataViewCtrl.newFileType == 'simulation'" value="decision">decision tree</option>
+                                    <option ng-if="userDataViewCtrl.newFileType == 'multiple'" value="apriori">association rules</option>
+                                </select><br>
+                            </td>
+                            <td>type of analyses</td>
                         </tr>
                         </tbody>
                     </table>
@@ -144,8 +143,7 @@
             <div  style="text-align: center; padding-top:20px; padding-bottom:20px;"><p style="color:#B0B0B0;">By types of content</p></div>
             <div style="border-bottom: 0.5px solid #1A1A1C; padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/charts" >Saved bar charts</a></div>
             <div style="border-bottom: 0.5px solid #1A1A1C;  padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/images" style="text-align: center">Uploaded graphs</a></div>
-            <div style="border-bottom: 0.5px solid #1A1A1C; padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/patterns" style="text-align: center">Saved dendograms</a></div>
-            <div style="border-bottom: 0.5px solid #1A1A1C;  padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/cvs">Uploaded radial graphs</a></div>
+            <div style="border-bottom: 0.5px solid #1A1A1C; padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/patterns" style="text-align: center">Saved dendrograms</a></div>
             <div style="border-bottom: 0.5px solid #1A1A1C;  padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/others">Other / straight graphs</a></div>
             <div style="border-bottom: 0.5px solid #1A1A1C;  padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/apriori">Association rules</a></div>
             <div style="border-bottom: 0.5px solid #1A1A1C;  padding-bottom: 20px; margin-top: 20px; text-align: center"><a  href="/#/logged/decision">Decision tree</a></div>
@@ -161,7 +159,6 @@
                 <div id="err_msg"><p>{{userDataViewCtrl.msg}}</p></div>
             </form>
              <a href="/#/logged/editUser"><button class="btn btn-success">Edit your data</button></a>
-            <p class="text-muted"  id="fot"><a href="/#/logged/privacy">Privacy</a> · <a href="#/logged/terms">Terms</a> · <a href="#/logged/terms">Advertising</a> · <a href="#/logged/choices">Ad Choices</a> · <a href="#/logged/cookies">Cookies More</a> </p>
         </div>
     </div>
     <p style="visibility: hidden">tmptmp</p>

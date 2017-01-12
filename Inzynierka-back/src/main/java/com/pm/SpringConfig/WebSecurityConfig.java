@@ -24,14 +24,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                 //.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/database/generate").permitAll() //TODO: usunąć!
-                .antMatchers(HttpMethod.GET,"/test/test").permitAll() //TODO: usunąć!
                 .antMatchers(HttpMethod.GET,"/register/new").permitAll()
                 .antMatchers(HttpMethod.POST,"/register/new").permitAll()
                 .antMatchers(HttpMethod.POST,"/file/uploadNew").permitAll()
                 .antMatchers(HttpMethod.GET,"/file/uploadNew").permitAll()
                 .antMatchers(HttpMethod.POST,"/file/loadFile").permitAll()
                 .antMatchers(HttpMethod.GET,"/python/a").permitAll()
+                .antMatchers(HttpMethod.GET,"/content/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/content/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .requestCache()

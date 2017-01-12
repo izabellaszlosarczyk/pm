@@ -25,22 +25,17 @@ export default class LoginController {
 
     this.usersService.login(data).then(function successCallback(response, status, headers, config) {
       this.usersService.setUserSessionData(response.data);
-      console.log(response.data);
       this.token = response.headers()['x-auth-token'];
       this.tokenService.setToken(this.token);
-      console.log(data);
       this.usersService.getUserData(data).then(function successCallback(response, status, headers, config) {
         this.usersService.setUserDataValues(response.data);
         this.$rootScope.$broadcast('user-login');
         this.$state.go('logged');
       }.bind(this));
     }.bind(this), function errorCallback(response) {
-      console.log(response.data);
       if (response.data.error = "Unauthorized"){
         this.errorLogin =  true;
       }
-      /*this.token = response.data.token;
-      console.log(response.data)*/
     }.bind(this));
   }
 }

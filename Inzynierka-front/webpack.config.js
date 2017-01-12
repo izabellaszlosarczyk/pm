@@ -1,5 +1,6 @@
 var webpack = require('webpack');
-var nodeEnvironment = process.env.NODE_ENV
+//var nodeEnvironment = process.env.NODE_ENV
+var nodeEnvironment = 'development'
 var bourbon = require('node-bourbon').includePaths;
 var _ = require('lodash');
 

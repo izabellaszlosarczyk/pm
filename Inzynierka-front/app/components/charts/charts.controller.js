@@ -18,15 +18,10 @@ export default class ChartsController {
     this.userData = this.usersService.getUserDataValues();
     this.usersService.getFilesDetails(this.userData.savedFiles).then(function successCallback(response, status, headers, config) {
       this.loading = false;
-      console.log("MASAKRACJA");
       this.filesDetails= response.data;
-      console.log(this.filesDetails);
       for (var i in this.filesDetails) {
-        console.log(i);
         if (this.filesDetails[i].type == "barChart") {
-          console.log(this.userData.savedFiles[i]);
           this.chartFiles.push(this.filesDetails[i]);
-          console.log("MASAKRA");
         }
       }
       if (typeof this.chartFiles !== 'undefined' && this.chartFiles.length > 0) {
@@ -45,19 +40,14 @@ export default class ChartsController {
     this.usersService.deleteFileFromSubs(data).then(function successCallback(response, status, headers, config) {
       var index = this.usersService.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.userData.subscribedFiles.splice(index, 1);
       }
-      console.log(this.usersService.$storage.userData.subscribedFiles);
       index = this.usersService.$storage.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.usersService.$storage.userData.subscribedFiles.splice(index, 1);
       }
-      console.log(this.userData.subscribedFiles);
       index = this.userData.subscribedFiles.indexOf(fileDetails.title);
       if (index > -1) {
-        console.log("usuwam");
         this.userData.subscribedFiles.splice(index, 1);
       }
     }.bind(this));
@@ -66,16 +56,20 @@ export default class ChartsController {
 
   viewFile(fileDetails){
     this.usersService.addRequestedFileDetails(fileDetails);
-    console.log(this.usersService.requestedFileDetails);
     this.usersService.getFile(fileDetails.title).then(function successCallback(response, status, headers, config) {
       var decoder = new TextDecoder("utf-8");
       //decoder.decode(new Uint8Array(response.data));
-      this.jsonToVizualization = decoder.decode(new Uint8Array(response.data));
+      if (this.usersService.analysesType == "apriori" || this.usersService.analysesType == "decision"){
+        this.jsonToVizualization = JSON.parse(decoder.decode(new Uint8Array(response.data)));
+      }else {
+        this.jsonToVizualization = decoder.decode(new Uint8Array(response.data));
+      }
+      if(typeof this.jsonToVizualization !== "object")
+        this.jsonToVizualization = JSON.parse( this.jsonToVizualization );
       console.log(decoder.decode(new Uint8Array(response.data)));
       this.usersService.jsonToVisualisation = this.jsonToVizualization;
       this.usersService.analysesType = fileDetails.type;
       this.state.go('logged.fileDetails', fileDetails.title);
-      //console.log(this.jsonToVizualization);
     }.bind(this));
   }
 

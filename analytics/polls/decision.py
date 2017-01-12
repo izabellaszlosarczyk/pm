@@ -26,6 +26,9 @@ def decision_tree(data,desc_data):
         if classes[x] not in class_names:
             class_names.append(classes[x])
         classes[x] = class_names.index(classes[x])
+    print features
+    print classes
+    print desc[:-1]
     clf = clf.fit(features,classes)
     import pydotplus
     dot_data = tree.export_graphviz(clf, out_file=None,
@@ -35,32 +38,23 @@ def decision_tree(data,desc_data):
                              filled=True, rounded=False,
                              special_characters=True)
     graph = pydotplus.graph_from_dot_data(dot_data)
-    # print pydotplus.__version__
-    # print tree.__version__
-
     img = graph.create_png()
     graph.write_png("file_3.png")
     with open("file_3.png", "r+",) as imageFile:
-        # encoded_string = base64.b64encode(imageFile.read())
         f = imageFile.read()
-        # print f
     desc_data["file"] = f.encode('base64')
     desc_data2 = json.dumps(desc_data)
-    # print desc_data
     fh = open("imageToSave.png", "wb")
     fh.write(desc_data["file"].decode('base64'))
     fh.close()
-    # js = json.dumps({"file":f.encode('base64')})
-    # print desc_data
-    # with open("data2.js", "wb") as imageFile:
-    #     imageFile.write("var DATA ="+ json.dumps({"file":desc_data["file"].decode('base64')}))
-    # print desc_data
     return desc_data
 
-f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/decision.json','r+')
-desc = f.read()
-
-f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/decision_data.csv', 'r+')
-data = f.read()
-
-decision_tree(data,desc)
+#desc = {"a":"b"}
+#data = "1,1,1\n2,2,2"
+# f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/student_decision.json','r+')
+# desc = f.read()
+#
+# f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/decision_student.csv', 'r+')
+# data = f.read()
+#
+#decision_tree(data,desc)

@@ -81,8 +81,12 @@
 
   .node {
     font: 10px sans-serif;
+    color: #fff;
   }
 
+  .node text{
+    font: 20px sans-serif;;
+  }
   .link {
     fill: none;
     stroke: #ccc;
@@ -142,6 +146,9 @@
   }
 
   .text {
+    fill: #07dfff;
+  }
+  text {
     fill: #07dfff;
   }
 

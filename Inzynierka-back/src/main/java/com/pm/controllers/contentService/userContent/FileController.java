@@ -1,4 +1,4 @@
-package com.pm.controllers.contentService.userContent;
+﻿package com.pm.controllers.contentService.userContent;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mongodb.BasicDBObject;
@@ -235,31 +235,42 @@ public class FileController {
         URL url = null;
         try {
         System.out.println(analysesType);
+        System.out.println(type);
             // tutajw znaleznosci od urli do metod beda ify sobie
-            if (analysesType.contains("dendo".toLowerCase())){
-                url = new URL("https://morning-citadel-80511.herokuapp.com/dendo/");
+            if (type.contains("labyrinth")){
+                System.out.println("inlabirynth");
+                if (analysesType.contains("dendo".toLowerCase())){
+                    url = new URL("https://localhost:8080/dendo/");
+                }
+                if (analysesType.contains("straight".toLowerCase())){
+                    url = new URL("http://localhost:8080/straight/");
+                }
+                if (analysesType.contains("barChart")){
+                    url = new URL("http://localhost:8080/labbar/");
+                }
+                if (analysesType.contains("graph".toLowerCase())){
+                    url = new URL("http://localhost:8080/graph/");
+                }
+                if (analysesType.contains("radial".toLowerCase())){
+                    url = new URL("http://localhost:8080/radial/");
+                }
             }
-            if (analysesType.contains("straight".toLowerCase())){
-                url = new URL("http://127.0.0.1:8000/polls/straight/");
+            if (type.contains("simulation".toLowerCase())){
+                if (analysesType.contains("decision".toLowerCase())){
+                    url = new URL("http://localhost:8080/decision/");
+                }
+                if (analysesType.contains("barChart")){
+                    url = new URL("http://localhost:8080/simbar/");
+                }
             }
-            if (analysesType.contains("barChart")){
-                url = new URL("http://127.0.0.1:8000/polls/bar/");
+            if (type.contains("multiple".toLowerCase())){
+                if (analysesType.contains("apriori".toLowerCase())){
+                    url = new URL("http://localhost:8080/apriori/");
+                }
+                if (analysesType.contains("barChart")){
+                    url = new URL("http://localhost:8080/mulbar/");
+                }
             }
-            if (analysesType.contains("graph".toLowerCase())){
-                url = new URL("http://127.0.0.1:8000/polls/graph/");
-            }
-            if (analysesType.contains("radial".toLowerCase())){
-                url = new URL("http://127.0.0.1:8000/polls/radial/");
-            }
-            if (analysesType.contains("decision".toLowerCase())){
-                url = new URL("http://127.0.0.1:8000/polls/decision/");
-            }
-            if (analysesType.contains("apriori".toLowerCase())){
-                url = new URL("http://127.0.0.1:8000/polls/apriori/");
-            }
-            //else{
-            //url = new URL("http://127.0.0.1:8000/polls/");
-            //}
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

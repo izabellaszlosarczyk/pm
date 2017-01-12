@@ -1,5 +1,8 @@
 package com.pm.controllers.user.edit;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.gridfs.GridFSDBFile;
 import com.pm.database.ReadFromDatabase;
 import com.pm.database.SaveUpdateDatabase;
 import com.pm.model.User;
@@ -8,12 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by izabella on 23.07.16.
@@ -58,13 +60,29 @@ public class EditController {
         if (user ==null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        user.setPreviousLog(user.getLastLog());
+        user.setPreviousLog(LocalDate.now().toString());
         user.setLastLog(LocalDate.now().toString());
+        editClass.saveUser(user);
         System.out.println(user);
         return ResponseEntity.status(HttpStatus.OK).body(user);
 
     }
 
+    @RequestMapping(value = "/editTime/{email:.+}", method= RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<String> userSubs(@PathVariable String email) {
+        System.out.println("WHYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+        System.out.println(email);
+        ObjectMapper ob = new ObjectMapper();
+        User user = readClass.searchOneByEmail(email);
+        System.out.println(user);
+        if (user == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"value\":\"bad request\"}");
+        user.setPreviousLog(LocalDate.now().toString());
+        user.setLastLog(LocalDate.now().toString());
+        editClass.saveUser(user);
+        return  ResponseEntity.status(HttpStatus.OK).body("{\"value\":\"OK\"}");
+    }
 
     @RequestMapping(value = "/saveEdited", method=RequestMethod.POST)
     @ResponseBody

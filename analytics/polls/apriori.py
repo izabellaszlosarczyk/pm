@@ -7,7 +7,13 @@ import json
 
 def apriori_rules(data,desc_json):
     desc_json = json.loads(desc_json)
+    import sys
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
     rows = data.split('\n')
+    if rows[-1]=="":
+        rows=rows[:-1]
+
     rows = [x.split(",") for x in rows ]
     desc = rows[0]
     data = rows[1:]
@@ -20,7 +26,7 @@ def apriori_rules(data,desc_json):
             else:
                 set.append(desc_json['answers'][item]+"=1")
         dataset.append(set)
-    results = list(apriori(dataset,min_support=0.3,min_confidence=0.5))
+    results = list(apriori(dataset,min_support=0.5,min_confidence=0.85))
     ordered = [r.ordered_statistics for r in results]
     order  = [item for sublist in ordered for item in sublist]
     rules = []
@@ -30,11 +36,11 @@ def apriori_rules(data,desc_json):
     desc_json['rules']=rules
     return desc_json
 
-
-#f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/apriori.json','rb')
-#desc = f.read()
-
-#f = open('/home/zuchens/Desktop/pm/analytic_module/input_data/apriori.csv', 'rb')
-#data = f.read()
-
-#apriori_rules(data,desc)
+#
+# f = open("/home/zuchens/pmoves_sample_data/multiple_choice_description.json",'rb')
+# desc = f.read()
+#
+# f = open("/home/zuchens/pmoves_sample_data/multiple_choice_data.csv", 'rb')
+# data = f.read()
+#
+# print apriori_rules(data,desc)
